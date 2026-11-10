@@ -29,6 +29,9 @@ jobs:
           BN_EXPORT: "1"
           GITHUB_PAGES: "1"
       - uses: actions/configure-pages@v5
+        with:
+          # Depoda Pages kapalıysa ilk çalıştırmada "GitHub Actions" kaynağıyla etkinleştirir.
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
