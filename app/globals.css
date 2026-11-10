@@ -950,6 +950,9 @@ html.js:not(.reduced) .rv-scale.in {
 
 /* Taşma emniyeti: dekoratif mutlak konumlu katmanlar yatay kaydırma üretmesin. */
 html, body { overflow-x: clip; }
+/* Kök düzeltme: rv-l / rv-r açılış kaydırmaları (±32px) ve benzeri dekorlar
+   jest öncesinde belge genişliğini artırmasın. */
+main { overflow-x: clip; }
 
 /* İç sayfa açılış sahnesi */
 .page-hero {
