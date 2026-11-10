@@ -11,15 +11,18 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1] / ".next" / "server" / "app"
+BASE = Path(__file__).resolve().parents[1]
+# Sunuculu modda .next/server/app, statik export'ta out/ işlenir.
+ROOTS = [BASE / ".next" / "server" / "app", BASE / "out"]
 
+# basePath/assetPrefix ile script yolu /bn-hidrovalf-web/_next/... olabilir.
 SRC_SCRIPT = re.compile(
-    r"<script(\s[^>]*?)\bsrc=\"(/_next/[^\"]+)\"([^>]*)></script>",
+    r"<script(\s[^>]*?)\bsrc=\"((?:/[\w.-]+)*/_next/[^\"]+)\"([^>]*)></script>",
     re.I,
 )
 INLINE_SCRIPT = re.compile(r"<script>([\s\S]*?)</script>", re.I)
 PRELOAD_SCRIPT = re.compile(
-    r"<link\b(?=[^>]*\bas=\"script\")(?=[^>]*\bhref=\"/?_next/)[^>]*/?>",
+    r"<link\b(?=[^>]*\bas=\"script\")(?=[^>]*\bhref=\"(?:/[\w.-]+)*/?_next/)[^>]*/?>",
     re.I,
 )
 
@@ -51,17 +54,19 @@ def transform(html: str) -> str:
 
 
 def main() -> int:
-    if not ROOT.exists():
-        print(f"missing {ROOT}", file=sys.stderr)
+    roots = [r for r in ROOTS if r.exists()]
+    if not roots:
+        print(f"missing {ROOTS}", file=sys.stderr)
         return 1
     changed = 0
-    for path in sorted(ROOT.rglob("*.html")):
-        original = path.read_text(encoding="utf-8")
-        updated = transform(original)
-        if updated != original:
-            path.write_text(updated, encoding="utf-8")
-            changed += 1
-            print(f"deferred {path.relative_to(ROOT)}")
+    for root in roots:
+        for path in sorted(root.rglob("*.html")):
+            original = path.read_text(encoding="utf-8")
+            updated = transform(original)
+            if updated != original:
+                path.write_text(updated, encoding="utf-8")
+                changed += 1
+                print(f"deferred {path.relative_to(root)}")
     print(f"patched {changed} html files")
     return 0 if changed else 0
 

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { asset, assetSet } from "@/lib/paths";
 
 type Props = {
   src: string;
@@ -32,10 +33,10 @@ export function Pic({
   if (avifSet || srcSet) {
     return (
       <picture className={className}>
-        {avifSet ? <source srcSet={avifSet} type="image/avif" sizes={sizes} /> : null}
-        {webpSet ? <source srcSet={webpSet} type="image/webp" sizes={sizes} /> : null}
+        {avifSet ? <source srcSet={assetSet(avifSet)} type="image/avif" sizes={sizes} /> : null}
+        {webpSet ? <source srcSet={assetSet(webpSet)} type="image/webp" sizes={sizes} /> : null}
         <img
-          src={src}
+          src={asset(src)}
           alt={alt}
           width={width}
           height={height}

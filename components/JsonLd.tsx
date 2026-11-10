@@ -1,3 +1,4 @@
+import { videos } from "@/lib/media";
 import { faqs, site } from "@/lib/site";
 
 export function JsonLd() {
@@ -11,7 +12,7 @@ export function JsonLd() {
         legalName: site.legalName,
         url: site.url,
         email: site.email,
-        telephone: site.phone,
+        telephone: site.phoneTel,
         image: `${site.url}/og.jpg`,
         logo: `${site.url}/logo/bn-hidrovalf-makine-gecici.png`,
         address: {
@@ -23,6 +24,7 @@ export function JsonLd() {
           addressCountry: site.address.country,
         },
         areaServed: ["Ankara", "İvedik", "Ostim", "Türkiye"],
+        hasMap: site.maps,
       },
       {
         "@type": "Service",
@@ -81,6 +83,16 @@ export function JsonLd() {
           name: item.q,
           acceptedAnswer: { "@type": "Answer", text: item.a },
         })),
+      },
+      {
+        "@type": "VideoObject",
+        "@id": `${site.url}${videos.test320.src}#video`,
+        name: videos.test320.title,
+        description: videos.test320.desc,
+        contentUrl: `${site.url}${videos.test320.src}`,
+        thumbnailUrl: `${site.url}${videos.test320.poster}`,
+        duration: videos.test320.duration,
+        inLanguage: "tr",
       },
       {
         "@type": "BreadcrumbList",

@@ -1,3 +1,4 @@
+import Link from "next/link";
 function Arrow() {
   return (
     <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
@@ -14,7 +15,7 @@ export function Services() {
           Hizmetler
         </h2>
         <div className="pillars-grid">
-          <a href="/revizyon/valf" className="pillar pillar-valf rv-l">
+          <Link href="/revizyon/valf" className="pillar pillar-valf rv-l">
             <div>
               <p className="badge">Ana hizmet</p>
               <h2>
@@ -29,8 +30,8 @@ export function Services() {
               İnceleyin
               <Arrow />
             </span>
-          </a>
-          <a href="/revizyon/pompa" className="pillar pillar-pompa rv-r">
+          </Link>
+          <Link href="/revizyon/pompa" className="pillar pillar-pompa rv-r">
             <div>
               <p className="badge">Ana hizmet</p>
               <h2>
@@ -44,17 +45,17 @@ export function Services() {
               İnceleyin
               <Arrow />
             </span>
-          </a>
+          </Link>
         </div>
         <div className="support-grid">
-          <a href="/imalat" className="support-card rv" style={{ ["--d" as string]: "0ms" }}>
+          <Link href="/imalat" className="support-card rv" style={{ ["--d" as string]: "0ms" }}>
             <strong>CNC ve özel imalat</strong>
             <p>Revizyonu destekleyen spool ve özel parça imalatı.</p>
-          </a>
-          <a href="/yedek-parca" className="support-card rv" style={{ ["--d" as string]: "90ms" }}>
+          </Link>
+          <Link href="/yedek-parca" className="support-card rv" style={{ ["--d" as string]: "90ms" }}>
             <strong>Yedek parça</strong>
             <p>İşin gerektirdiği yerde, destek niteliğinde parça temini.</p>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

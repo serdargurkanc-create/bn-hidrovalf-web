@@ -1,4 +1,6 @@
-import { nav, site } from "@/lib/site";
+import Link from "next/link";
+import { asset } from "@/lib/paths";
+import { nav } from "@/lib/site";
 
 function Arrow() {
   return (
@@ -8,15 +10,20 @@ function Arrow() {
   );
 }
 
+/**
+ * Üst gezinme. Tamamı tek <header> landmark'ı içindedir (axe "region"
+ * uyarısı için); <header> display:contents olduğundan yapışkan çubuk ve
+ * sabit çekmece düzeni bozulmaz. Menü onay kutusu + CSS ile çalışır.
+ */
 export function Header() {
   return (
-    <>
+    <header className="header-root">
       <input type="checkbox" id="menu-toggle" className="menu-toggle" aria-label="Menüyü aç veya kapat" />
-      <header className="header">
+      <div className="header">
         <div className="header-inner">
-          <a href="/" className="brand">
+          <Link href="/" className="brand">
             <img
-              src="/logo/bn-hidrovalf-makine-gecici-160.webp"
+              src={asset("/logo/bn-hidrovalf-makine-gecici-160.webp")}
               alt=""
               width={160}
               height={95}
@@ -26,7 +33,7 @@ export function Header() {
               BN Hidrovalf
               <span>Makina</span>
             </span>
-          </a>
+          </Link>
 
           <nav className="nav" aria-label="Ana menü">
             {nav.map((item) =>
@@ -35,27 +42,27 @@ export function Header() {
                   <summary>{item.label}</summary>
                   <ul>
                     <li>
-                      <a href={item.href}>Tüm revizyon</a>
+                      <Link href={item.href}>Tüm revizyon</Link>
                     </li>
                     {item.children.map((c) => (
                       <li key={c.href}>
-                        <a href={c.href}>{c.label}</a>
+                        <Link href={c.href}>{c.label}</Link>
                       </li>
                     ))}
                   </ul>
                 </details>
               ) : (
-                <a key={item.href} href={item.href}>
+                <Link key={item.href} href={item.href}>
                   {item.label}
-                </a>
+                </Link>
               )
             )}
           </nav>
 
-          <a href="/teklif" className="btn btn-ink header-cta">
+          <Link href="/teklif" className="btn btn-ink header-cta">
             Teklif Alın
             <Arrow />
-          </a>
+          </Link>
 
           <label htmlFor="menu-toggle" className="menu-btn" aria-controls="mobil-menu">
             <span className="sr-only">Menüyü aç veya kapat</span>
@@ -67,7 +74,7 @@ export function Header() {
             </svg>
           </label>
         </div>
-      </header>
+      </div>
 
       <label htmlFor="menu-toggle" className="backdrop"><span className="sr-only">Menüyü kapat</span></label>
 
@@ -75,24 +82,24 @@ export function Header() {
         <nav aria-label="Mobil menü">
           {nav.map((item) => (
             <div key={item.href}>
-              <a href={item.href}>{item.label}</a>
+              <Link href={item.href}>{item.label}</Link>
               {"children" in item && item.children ? (
                 <ul>
                   {item.children.map((c) => (
                     <li key={c.href}>
-                      <a href={c.href}>{c.label}</a>
+                      <Link href={c.href}>{c.label}</Link>
                     </li>
                   ))}
                 </ul>
               ) : null}
             </div>
           ))}
-          <a href="/teklif" className="btn btn-ink" style={{ marginTop: "1.25rem", width: "100%" }}>
+          <Link href="/teklif" className="btn btn-ink" style={{ marginTop: "1.25rem", width: "100%" }}>
             Teklif Alın
             <Arrow />
-          </a>
+          </Link>
         </nav>
       </div>
-    </>
+    </header>
   );
 }

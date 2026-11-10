@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { whatsappQuote } from "@/lib/site";
 
 function Arrow() {
@@ -29,10 +30,10 @@ export function Hero() {
           ve videolu test kaydı. Teslimat kargo ile adrese veya otobüs kurye.
         </p>
         <div className="hero-cta">
-          <a href="/teklif" className="btn btn-primary">
+          <Link href="/teklif" className="btn btn-primary">
             Fotoğrafla Teklif Alın
             <Arrow />
-          </a>
+          </Link>
           <a href={whatsappQuote} className="btn btn-outline">
             WhatsApp ile fotoğraf gönderin
           </a>

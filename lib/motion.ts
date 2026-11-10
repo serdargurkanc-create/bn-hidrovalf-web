@@ -3,7 +3,9 @@ export function startMotion() {
     document.documentElement.classList.contains("reduced") ||
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const reveals = document.querySelectorAll<HTMLElement>(".rv, .rv-l, .rv-r, .rv-scale");
+  const reveals = document.querySelectorAll<HTMLElement>(
+    ".rv, .rv-l, .rv-r, .rv-scale, .anim, .timeline"
+  );
 
   if (reduced) {
     reveals.forEach((el) => el.classList.add("in"));

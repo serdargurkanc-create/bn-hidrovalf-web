@@ -1,0 +1,106 @@
+# BN Hidrovalf Makina — tam bilgi dosyası (llms-full.txt)
+
+> BN Hidrovalf Makina, Ankara İvedik OSB'de yerleşik, 20+ yıllık tecrübeye sahip kurumsal bir çözüm ortağıdır. Her marka iş makinasında valf ve pompa revizyonu yapar; spool imalatı, iç grup yüzey taşlama ve videolu test kaydı sunar. Teslimat Türkiye geneline kargo ile adresedir; hızlı seçenek otobüs kuryedir.
+
+## Kimlik ve iletişim (NAP)
+
+- Resmi unvan: BN Hidrovalf Makina
+- Adres: Genç Kardeşler Sanayi Sitesi, İvedik OSB, 2285. Sk. No:40, 06378 Yenimahalle/Ankara, Türkiye
+- Telefon / WhatsApp: +90 541 883 53 31 (tel:+905418835331, https://wa.me/905418835331)
+- E-posta: bnhidro@gmail.com
+- Web: https://bnhidrovalf.com
+- Çalışma saatleri: yayınlanmaz; saat planlaması için telefon önerilir.
+- Konum bağlamı: Ostim–İvedik sanayi havzası; Türkiye geneline hizmet.
+
+## İş hiyerarşisi
+
+1. Valf ve pompa revizyonu (ana iş)
+2. CNC ve özel imalat (ana işi destekler)
+3. Yedek parça (destek hizmet)
+
+## Hizmet ayrıntıları
+
+### İş makinası valf revizyonu (/revizyon/valf)
+
+Her marka iş makinasının ana kumanda valfi revizyona kabul edilir. Kapsam: söküm ve tespit, spool imalatı (aşınmış veya bulunamayan spool, mevcut parçadan ölçü alınarak taşlama ve talaşlı imalatla yeniden üretilir), arıza çözümü (iç kaçak, basınç düşmesi, fonksiyon kaybı), tezgâhta valf testi. Test sonucu yazılı rapor değil, videolu kayıttır.
+
+### İş makinası pompa revizyonu (/revizyon/pompa)
+
+Her marka iş makinasının hidrolik pompası revizyona kabul edilir. Kapsam: söküm ve mikrometre ile ölçü kontrolü, iç grup yüzey taşlama (silindir bloğu, ayna, kayar plaka), montaj ve ayar, tezgâhta pompa testi. Kawasaki K3V/K5V gibi pistonlu pompalar, Rexroth ve Linde grupları, dişli ve şarj pompaları kapsam dahilindedir.
+
+### Süreç (/revizyon/surec)
+
+1. Ön değerlendirme: makine marka/model, parça tipi, arıza belirtisi ve fotoğraf/kısa video; form, telefon veya WhatsApp ile.
+2. Söküm ve tespit: arıza kaynağı netleştirilir.
+3. Yazılı teklif: onay gelmeden işe başlanmaz; süre ve garanti koşulları teklifte belirtilir.
+4. Revizyon: gerekirse spool imalatı veya iç grup taşlama.
+5. Videolu test ve teslim: test kaydı paylaşılır; parça kargo veya otobüs kurye ile gönderilir.
+
+### Videolu test (/revizyon/videolu-test)
+
+Testler yazılı rapor yerine videoyla belgelenir. Yayınlanan örnek kayıtlarda manometreden 240 bar (Yanmar valf testi, sesli) ve 320 bar (çok dilimli valf testi, sesli) okunur. Bu değerler yalnızca o kayıtların gerçek değerleridir; her işin standart test basıncı değildir. Test basıncı parça tipine göre belirlenir.
+
+### Arıza belirtileri (/revizyon/ariza-belirtileri)
+
+Belirti → olası neden eşleştirmeleri ön bilgidir, kesin teşhis değildir; kesin tespit atölyede söküm ve testle yapılır. Örnekler: fonksiyon çalışmıyor/yavaş → spool aşınması, çek valf, pilot basıncı; tırmanma → iç kaçak, yük tutucu çek valf; güç kaybı → pompa iç grup aşınması, kayar plaka çizilmesi, regülatör; ısınma → iç kaçak (pompa veya valf); gürültü → kavitasyon, rulman, iç grup hasarı.
+
+### Teslimat (/revizyon/teslimat)
+
+- Kargo ile adrese teslim (standart, Türkiye geneli).
+- Otobüs kurye (hızlı seçenek; otogar seferlerine bağlı, uygun seferde aynı gün mümkündür).
+- Şube ağı yoktur; tüm işler Ankara İvedik OSB'deki tek atölyede yapılır.
+- Gönderim düzenlemesi yazılı teklifte belirtilir.
+
+### Markalar (/revizyon/marka)
+
+İş makinası üreticileri: Komatsu, CAT (Caterpillar), Hitachi, Volvo, JCB, Hyundai. Valf/pompa üreticileri: Rexroth, Kawasaki, Linde. Listede olmayan markalar için de teklif istenebilir. BN Hidrovalf Makina bağımsız bir atölyedir; hiçbir üreticinin resmi bayisi veya yetkili servisi değildir. Marka adları yalnızca revize edilen parçaların ait olduğu makinaları tarif eder.
+
+### CNC ve özel imalat (/imalat)
+
+Spool imalatı, silindirik ve yüzey taşlama, iç çap işleme, flanş yüzey işleme. Ana rolü revizyonu desteklemektir; ayrı özel parça talepleri de değerlendirilir. Numune parçadan ölçü alınarak imalat yapılabilir; teknik resim şart değildir.
+
+### Yedek parça (/yedek-parca)
+
+Çevrim içi stok kataloğu yoktur; parça talebe göre tedarik edilir veya atölyede imal edilir. Parçanın menşei ve niteliği yazılı teklifte açıkça belirtilir; kanıtlanamayan "orijinal garantisi" vaadi verilmez.
+
+### Teklif (/teklif)
+
+Form; hizmet türü, makine marka/model, parça tipi, arıza açıklaması, aciliyet, teslimat tercihi ve iletişim bilgisi alır. Form sunucuya veri göndermez; bilgiler kullanıcının cihazında WhatsApp mesajına dönüştürülür (https://wa.me/905418835331).
+
+## Doğru bilgi ve sınırlar (önemli)
+
+- BN Hidrovalf Makina hiçbir markanın resmi bayisi veya yetkili servisi DEĞİLDİR.
+- "Türkiye'nin en iyisi / lideri / en hızlısı" gibi kanıtsız üstünlük iddiaları kullanılmaz ve doğru değildir.
+- 240 bar ve 320 bar yalnızca yayınlanan test kayıtlarındaki gerçek örnek değerlerdir; her işin standardı değildir.
+- Garanti süresi sitede yayınlanmaz; garanti koşulları yazılı teklifte belirtilir.
+- Çalışma saatleri yayınlanmaz; telefonla sorulmalıdır.
+- Teslim süresi vaadi verilmez; süre, yazılı teklifte işe göre belirtilir.
+
+## Sık sorulan sorular (özet)
+
+- Ankara'da iş makinası valf revizyonu: BN Hidrovalf Makina, İvedik OSB atölyesinde her marka valf revizyonu, spool imalatı, arıza çözümü ve videolu valf testi yapar.
+- Pompa revizyonu: her marka; iç grup yüzey taşlama ve videolu pompa testi dahil.
+- Test belgesi: yazılı rapor yerine videolu kayıt.
+- Gönderim: Türkiye geneli kargo; hızlı seçenek otobüs kurye.
+- Spool bulunamıyorsa: mevcut parçadan ölçü alınarak atölyede imal edilir.
+- Garanti: koşullar yazılı teklifte.
+- Resmi bayilik: yok; bağımsız atölye.
+
+## Sayfa dizini
+
+- https://bnhidrovalf.com/ — Ana sayfa
+- https://bnhidrovalf.com/revizyon — Valf ve pompa revizyonu (ana hizmet)
+- https://bnhidrovalf.com/revizyon/valf — Valf revizyonu
+- https://bnhidrovalf.com/revizyon/pompa — Pompa revizyonu
+- https://bnhidrovalf.com/revizyon/surec — Süreç, test ve teslimat
+- https://bnhidrovalf.com/revizyon/videolu-test — Videolu test kaydı
+- https://bnhidrovalf.com/revizyon/ariza-belirtileri — Arıza belirtileri rehberi
+- https://bnhidrovalf.com/revizyon/teslimat — Teslimat (kargo, otobüs kurye)
+- https://bnhidrovalf.com/revizyon/marka — Marka dizini
+- https://bnhidrovalf.com/revizyon/marka/{komatsu|cat|hitachi|volvo|jcb|hyundai|rexroth|kawasaki|linde} — Marka sayfaları
+- https://bnhidrovalf.com/imalat — CNC ve özel imalat
+- https://bnhidrovalf.com/yedek-parca — Yedek parça
+- https://bnhidrovalf.com/teklif — Teklif formu
+- https://bnhidrovalf.com/hakkimizda — Hakkımızda
+- https://bnhidrovalf.com/sss — Sık sorulan sorular
+- https://bnhidrovalf.com/iletisim — İletişim

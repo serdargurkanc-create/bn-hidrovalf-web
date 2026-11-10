@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { MobileDock } from "@/components/MobileDock";
+import { asset } from "@/lib/paths";
 import { site } from "@/lib/site";
-import "./fonts.css";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -48,6 +48,11 @@ export const metadata: Metadata = {
   },
 };
 
+/* LCP başlık fontu: kritik alt küme; kalan ağırlıklar fonts-deferred.css ile. */
+const criticalFontCss = `@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:800;font-display:swap;src:url("${asset(
+  "/fonts/plus-jakarta-sans-800-lcp.woff2"
+)}") format("woff2");unicode-range:U+20,U+2e,U+42,U+48-49,U+4d-4e,U+61,U+64-66,U+69,U+6b-70,U+72-73,U+75-76,U+79-7a,U+117,U+130-131,U+137,U+13c,U+145-146,U+157,U+15f,U+17c,U+227,U+229,U+22f,U+307,U+327,U+1e02,U+1e0b,U+1e11,U+1e1f,U+1e22,U+1e28,U+1e40-1e41,U+1e44-1e45,U+1e57,U+1e59,U+1e61,U+1e8f;}`;
+
 const bootScript = [
   "document.documentElement.classList.add('js');",
   "if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('reduced');",
@@ -56,13 +61,14 @@ const bootScript = [
   "document.addEventListener('click',function(e){var t=e.target&&e.target.closest&&e.target.closest('.drawer a');if(t){var c=document.getElementById('menu-toggle');if(c)c.checked=false;}});",
   "(function(){var ev=['scroll','wheel','touchstart','pointerdown','keydown'];var motion=false,next=false;",
   "function drop(){ev.forEach(function(e){removeEventListener(e,onFirst);removeEventListener(e,bootMotion);});}",
-  "function bootMotion(){if(motion)return;motion=true;drop();var s=document.createElement('script');s.src='/motion.js';s.defer=true;document.head.appendChild(s);}",
+  `function bootMotion(){if(motion)return;motion=true;drop();var s=document.createElement('script');s.src='${asset(
+    "/motion.js"
+  )}';s.defer=true;document.head.appendChild(s);}`,
   "function runNext(){if(next)return;next=true;document.querySelectorAll('script[data-defer-next]').forEach(function(old){var s=document.createElement('script');var src=old.getAttribute('data-src');if(src){s.src=src;s.async=false;}else s.textContent=old.textContent;if(old.hasAttribute('nomodule'))s.noModule=true;if(old.id)s.id=old.id;old.replaceWith(s);});}",
   "function onFirst(){bootMotion();runNext();}",
-  "if(/\\/teklif(?:\\/|$)/.test(location.pathname)){if(document.readyState==='loading')addEventListener('DOMContentLoaded',runNext,{once:true});else runNext();ev.forEach(function(e){addEventListener(e,bootMotion,{once:true,passive:true});});}",
-  "else{ev.forEach(function(e){addEventListener(e,bootMotion,{once:true,passive:true});});}",
+  "ev.forEach(function(e){addEventListener(e,onFirst,{once:true,passive:true});});",
   "})();",
-  "addEventListener('load',function(){var l=document.querySelector('link[href=\"/fonts-deferred.css\"]');if(l)l.media='all';},{once:true});",
+  `addEventListener('load',function(){var l=document.querySelector('link[data-fonts-deferred]');if(l)l.media='all';},{once:true});`,
 ].join("");
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -71,14 +77,25 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <link
           rel="preload"
-          href="/fonts/plus-jakarta-sans-800-lcp.woff2"
+          href={asset("/fonts/plus-jakarta-sans-800-lcp.woff2")}
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
           fetchPriority="high"
         />
-        <link rel="alternate" type="text/markdown" href="https://bnhidrovalf.com/llms.txt" title="llms.txt" />
-        <link rel="stylesheet" href="/fonts-deferred.css" media="print" />
+        <style dangerouslySetInnerHTML={{ __html: criticalFontCss }} />
+        <link
+          rel="alternate"
+          type="text/markdown"
+          href={`${site.url}/llms.txt`}
+          title="llms.txt"
+        />
+        <link
+          rel="stylesheet"
+          href={asset("/fonts-deferred.css")}
+          media="print"
+          data-fonts-deferred
+        />
         <script dangerouslySetInnerHTML={{ __html: bootScript }} />
       </head>
       <body>

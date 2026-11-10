@@ -3,7 +3,9 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const root = path.dirname(fileURLToPath(import.meta.url));
-const isExport = process.env.BN_EXPORT === "1";
+const isExport =
+  process.env.BN_EXPORT === "1" || process.env.GITHUB_PAGES === "1";
+const basePath = isExport ? "/bn-hidrovalf-web" : "";
 
 const nextConfig: NextConfig = {
   images: {
@@ -13,10 +15,15 @@ const nextConfig: NextConfig = {
   },
   poweredByHeader: false,
   turbopack: { root },
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
   ...(isExport
     ? {
         output: "export" as const,
-        trailingSlash: false,
+        trailingSlash: true,
+        basePath,
+        assetPrefix: basePath,
       }
     : {}),
 };

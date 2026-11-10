@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "bundle:motion": "esbuild lib/motion-entry.ts --bundle --minify --format=iife --outfile=public/motion.js --target=es2020",
+    "bundle:motion": "esbuild lib/motion-entry.ts --bundle --minify --format=iife --outfile=public/motion.js --target=es2020 && esbuild lib/form-entry.ts --bundle --minify --format=iife --outfile=public/form.js --target=es2020",
     "defer-js": "python3 scripts/defer-next-js.py",
     "build": "npm run bundle:motion && next build --webpack && npm run defer-js",
     "start": "next start",

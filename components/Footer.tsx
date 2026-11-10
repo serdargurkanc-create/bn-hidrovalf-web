@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { asset } from "@/lib/paths";
 import { site } from "@/lib/site";
 
 export function Footer() {
@@ -32,7 +33,16 @@ export function Footer() {
               <Link href="/revizyon/pompa">Pompa revizyonu</Link>
             </li>
             <li>
-              <Link href="/revizyon/surec">Süreç, test ve teslimat</Link>
+              <Link href="/revizyon/surec">Süreç ve teslimat</Link>
+            </li>
+            <li>
+              <Link href="/revizyon/videolu-test">Videolu test</Link>
+            </li>
+            <li>
+              <Link href="/revizyon/ariza-belirtileri">Arıza belirtileri</Link>
+            </li>
+            <li>
+              <Link href="/revizyon/marka">Marka sayfaları</Link>
             </li>
             <li>
               <Link href="/imalat">CNC ve özel imalat</Link>
@@ -64,7 +74,7 @@ export function Footer() {
         <span>© {new Date().getFullYear()} {site.name}</span>
         <Link href="/gizlilik">KVKK ve gizlilik</Link>
         <Link href="/cerez-politikasi">Çerez politikası</Link>
-        <a href="/llms.txt" type="text/markdown" rel="alternate">
+        <a href={asset("/llms.txt")} type="text/markdown" rel="alternate">
           llms.txt
         </a>
       </div>

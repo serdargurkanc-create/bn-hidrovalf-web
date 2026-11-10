@@ -1,4 +1,5 @@
 import { Pic } from "@/components/Pic";
+import { asset } from "@/lib/paths";
 
 const shots = [
   {
@@ -75,7 +76,7 @@ export function Atelier() {
           {shots.map((s, i) => (
             <a
               key={s.src}
-              href={s.full}
+              href={asset(s.full)}
               className="gallery-item rv-scale"
               style={{ ["--d" as string]: `${(i % 3) * 90}ms` }}
               data-lightbox

@@ -6,6 +6,7 @@ import { Hero } from "@/components/home/Hero";
 import { Journey } from "@/components/home/Journey";
 import { Proof } from "@/components/home/Proof";
 import { Services } from "@/components/home/Services";
+import { TestProof } from "@/components/home/TestProof";
 import { JsonLd } from "@/components/JsonLd";
 
 export default function HomePage() {
@@ -17,6 +18,7 @@ export default function HomePage() {
       <Proof />
       <Journey />
       <Services />
+      <TestProof />
       <Atelier />
       <Faq />
       <Contact />
