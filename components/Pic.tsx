@@ -51,7 +51,7 @@ export function Pic({
 
   return (
     <Image
-      src={src}
+      src={asset(src)}
       alt={alt}
       width={width}
       height={height}

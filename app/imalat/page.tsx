@@ -82,10 +82,12 @@ export default function Page() {
         media={
           <Pic
             src="/images/foto-spool-imalati-tezgah-01.webp"
+            srcSet="/images/foto-spool-imalati-tezgah-01.webp 1200w"
             alt="Tezgâhta spool imalatı"
             width={1200}
             height={900}
             sizes="(max-width: 900px) 100vw, 480px"
+            priority
           />
         }
       >
