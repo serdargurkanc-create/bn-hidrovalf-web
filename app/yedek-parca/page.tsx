@@ -18,7 +18,7 @@ const crumbs = [{ href: "/", label: "Ana sayfa" }, { label: "Yedek parça" }];
 const faqItems = [
   {
     q: "Hazır parça stok listeniz var mı?",
-    a: "Çevrim içi bir stok kataloğu yayınlanmaz. Parça, talebe göre tedarik edilir; spool gibi parçalar gerektiğinde atölyede imal edilir. Bu yüzden en hızlı yol, parça fotoğrafı ve etiket bilgisiyle talep iletmektir.",
+    a: "Çevrim içi bir stok kataloğu yayınlanmaz. Parça, talebe göre tedarik edilir; spool gibi parçalar gerektiğinde atölyede imal edilir. Bu yüzden en pratik yol, parça fotoğrafı ve etiket bilgisiyle talep iletmektir.",
   },
   {
     q: "Yalnızca revizyon yaptırırsam mı parça alabilirim?",

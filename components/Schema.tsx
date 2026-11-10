@@ -1,6 +1,12 @@
 import type { Video } from "@/lib/media";
 import { site } from "@/lib/site";
 
+/** Sayfa adresini canonical ile aynı biçimde üretir (sonda eğik çizgi). */
+function abs(path: string): string {
+  if (!path || path === "/") return `${site.url}/`;
+  return `${site.url}${path.endsWith("/") ? path : `${path}/`}`;
+}
+
 type Crumb = { href?: string; label: string };
 type Faq = { q: string; a: string };
 
@@ -21,16 +27,16 @@ export function SchemaLd({
   faqs?: readonly Faq[];
   videoList?: readonly Video[];
 }) {
-  const pageUrl = `${site.url}${path === "/" ? "" : path}`;
+  const pageUrl = abs(path);
   const graph: Record<string, unknown>[] = [
     {
       "@type": "BreadcrumbList",
       "@id": `${pageUrl}#breadcrumb`,
-      itemListElement: crumbs.map((c, i) => ({
+      itemListElement: crumbs.map((c, index) => ({
         "@type": "ListItem",
-        position: i + 1,
+        position: index + 1,
         name: c.label,
-        ...(c.href ? { item: `${site.url}${c.href === "/" ? "" : c.href}` } : { item: pageUrl }),
+        item: c.href ? abs(c.href) : pageUrl,
       })),
     },
   ];

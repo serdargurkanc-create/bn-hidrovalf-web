@@ -43,7 +43,7 @@ export function JsonLd() {
                 name: "İş makinası valf revizyonu",
                 description:
                   "Her marka iş makinası valf revizyonu, spool imalatı, arıza çözümü ve valf testi. Test sonucu videolu kayıttır.",
-                url: `${site.url}/revizyon/valf`,
+                url: `${site.url}/revizyon/valf/`,
               },
             },
             {
@@ -53,7 +53,7 @@ export function JsonLd() {
                 name: "İş makinası pompa revizyonu",
                 description:
                   "Her marka iş makinası pompa revizyonu, iç grup yüzey taşlama ve pompa testi. Test sonucu videolu kayıttır.",
-                url: `${site.url}/revizyon/pompa`,
+                url: `${site.url}/revizyon/pompa/`,
               },
             },
             {
@@ -61,7 +61,7 @@ export function JsonLd() {
               itemOffered: {
                 "@type": "Service",
                 name: "CNC ve özel imalat",
-                url: `${site.url}/imalat`,
+                url: `${site.url}/imalat/`,
               },
             },
             {
@@ -69,7 +69,7 @@ export function JsonLd() {
               itemOffered: {
                 "@type": "Service",
                 name: "Yedek parça",
-                url: `${site.url}/yedek-parca`,
+                url: `${site.url}/yedek-parca/`,
               },
             },
           ],
