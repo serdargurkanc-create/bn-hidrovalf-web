@@ -78,7 +78,7 @@ export default function Page() {
             alt="Logo fonu önünde sökülmüş valf gövdeleri ve yaylı spool’lar"
             width={1200}
             height={900}
-            sizes="(max-width: 900px) 100vw, 480px"
+            sizes="(max-width: 900px) 55vw, 480px"
             priority
           />
         }

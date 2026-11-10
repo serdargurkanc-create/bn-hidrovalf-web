@@ -68,7 +68,9 @@ const bootScript = [
   "function onFirst(){bootMotion();runNext();}",
   "ev.forEach(function(e){addEventListener(e,onFirst,{once:true,passive:true});});",
   "})();",
-  `addEventListener('load',function(){var l=document.querySelector('link[data-fonts-deferred]');if(l)l.media='all';},{once:true});`,
+  // Kalan font ağırlıkları ilk boyamadan hemen sonra (DOMContentLoaded) devreye girer;
+  // 'load' beklenirse takas geç olur ve görünür CLS üretir.
+  `(function(){function f(){var l=document.querySelector('link[data-fonts-deferred]');if(l)l.media='all';}if(document.readyState==='loading')addEventListener('DOMContentLoaded',f,{once:true});else f();})();`,
 ].join("");
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
