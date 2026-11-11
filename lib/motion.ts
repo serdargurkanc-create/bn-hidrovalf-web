@@ -15,6 +15,7 @@ export function startMotion() {
       el.classList.add("in");
       io.unobserve(el);
       pending.delete(el);
+      if (el.classList.contains("gauge")) runGaugeCount(el);
     };
     const io = new IntersectionObserver(
       (entries) => {
@@ -43,7 +44,10 @@ export function startMotion() {
     addEventListener("scroll", onScroll, { passive: true });
     // Güvenlik ağı: her durumda 3 sn sonra kalan tüm öğeler görünür.
     setTimeout(() => {
-      pending.forEach((el) => el.classList.add("in"));
+      pending.forEach((el) => {
+        el.classList.add("in");
+        if (el.classList.contains("gauge")) runGaugeCount(el);
+      });
       pending.clear();
       removeEventListener("scroll", onScroll);
     }, 3000);
@@ -93,6 +97,29 @@ export function startMotion() {
   }
 
   return () => close();
+}
+
+/** Gösterge sayısı: 0 → hedef bar, ibre süresiyle senkron. */
+function runGaugeCount(el: HTMLElement) {
+  const target = Number(el.dataset.gaugeBar || 0);
+  const num = el.querySelector<HTMLElement>("[data-gauge-num]");
+  if (!num || !target) return;
+  const delay = parseFloat(getComputedStyle(el).getPropertyValue("--d")) || 0;
+  const dur = 1550;
+  num.textContent = "0";
+  const startAt = performance.now() + delay;
+  const tick = (now: number) => {
+    if (now < startAt) {
+      requestAnimationFrame(tick);
+      return;
+    }
+    const t = Math.min(1, (now - startAt) / dur);
+    const eased = 1 - Math.pow(1 - t, 3);
+    num.textContent = String(Math.round(target * eased));
+    if (t < 1) requestAnimationFrame(tick);
+    else num.textContent = String(target);
+  };
+  requestAnimationFrame(tick);
 }
 
 /** Valf hikâyesi: kaydırma ilerledikçe boru dolar, temas eden sahne oynar. */

@@ -1122,18 +1122,48 @@ main { overflow-x: clip; }
 
 /* Basınç göstergesi */
 .gauge { max-width: 230px; text-align: center; }
-.gauge svg { width: 100%; height: auto; }
+.gauge svg { width: 100%; height: auto; display: block; }
 .gauge-face { fill: #fff; stroke: var(--line); stroke-width: 2; }
 .gauge-tick { stroke: var(--ink-soft); stroke-width: 2; stroke-linecap: round; }
+.gauge-arc-track {
+  stroke: var(--line);
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+.gauge-arc {
+  stroke: var(--accent-2);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: var(--gauge-arc, 0);
+}
+.gauge-needle { transform-origin: 0 0; transform: rotate(var(--gauge-angle, 0deg)); }
 .gauge-needle line { stroke: var(--accent-2); stroke-width: 3.5; stroke-linecap: round; }
+.gauge-needle-dot { fill: var(--accent-2); }
 .gauge-hub { fill: var(--ink); }
 .gauge-value { font: 800 15px var(--font); fill: var(--ink); letter-spacing: -0.02em; }
 .gauge-label { margin: 0.5rem 0 0; font-size: 0.88rem; color: var(--ink-soft); }
-.gauge-needle { transform-origin: 60px 60px; transform: rotate(var(--gauge-angle, 0deg)); }
-html.js:not(.reduced) .anim:not(.in) .gauge-needle { transform: rotate(-120deg); }
-html.js:not(.reduced) .anim.in .gauge-needle {
+
+/* Başlangıç: ibre solda (0 bar), yay boş — görünür olunca hedefe */
+html.js:not(.reduced) .gauge.anim:not(.in) .gauge-needle { transform: rotate(-120deg); }
+html.js:not(.reduced) .gauge.anim:not(.in) .gauge-arc { stroke-dashoffset: 100; }
+html.js:not(.reduced) .gauge.anim.in .gauge-needle {
   transform: rotate(var(--gauge-angle, 0deg));
-  transition: transform 1.4s var(--ease);
+  transition: transform 1.55s var(--ease);
+  transition-delay: var(--d, 0ms);
+}
+html.js:not(.reduced) .gauge.anim.in .gauge-arc {
+  stroke-dashoffset: var(--gauge-arc, 0);
+  transition: stroke-dashoffset 1.55s var(--ease);
+  transition-delay: var(--d, 0ms);
+}
+html.js:not(.reduced) .gauge.anim.in .gauge-hub {
+  animation: gauge-hub-pulse 0.55s var(--ease) calc(var(--d, 0ms) + 1.4s) 1 both;
+}
+@keyframes gauge-hub-pulse {
+  0% { transform-origin: 60px 60px; transform: scale(1); }
+  45% { transform-origin: 60px 60px; transform: scale(1.28); fill: var(--accent-2); }
+  100% { transform-origin: 60px 60px; transform: scale(1); }
 }
 .gauge-row { display: grid; gap: 1.5rem; margin-top: 2rem; align-items: center; justify-items: center; }
 .gauge-copy h3 { margin: 0 0 0.5rem; font-size: 1.2rem; letter-spacing: -0.03em; }
@@ -1383,6 +1413,8 @@ html.js:not(.reduced) .form-step:focus-within { border-color: var(--accent); box
 @media (prefers-reduced-motion: reduce) {
   .flow-oil, .ship-line { animation: none !important; }
   .gauge-needle { transform: rotate(var(--gauge-angle, 0deg)) !important; transition: none !important; }
+  .gauge-arc { stroke-dashoffset: var(--gauge-arc, 0) !important; transition: none !important; }
+  .gauge-hub { animation: none !important; }
   html.js .anim, html.js .timeline { opacity: 1 !important; transform: none !important; }
 }
 

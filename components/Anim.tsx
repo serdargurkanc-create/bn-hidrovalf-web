@@ -5,21 +5,48 @@
  * son kare görünür (içerik asla opacity:0 ile gizlenmez).
  */
 
-/** Basınç göstergesi: kayıtlı test değerine (240 veya 320 bar) dönen ibre. */
+/** Basınç göstergesi: görünür olunca ibre 0→hedef, sayı sayar (CSS + hafif JS). */
 export function Gauge({
   bar,
   label,
+  delayMs = 0,
 }: {
   bar: 240 | 320;
   label: string;
+  delayMs?: number;
 }) {
   // Skala 0–400 bar, -120° ile +120° arası.
   const angle = -120 + (bar / 400) * 240;
   const ticks = Array.from({ length: 9 }, (_, i) => -120 + i * 30);
+  // Yay: 240° skala, pathLength=100 ile dash animasyonu
+  const arcLen = (bar / 400) * 100;
   return (
-    <div className="gauge anim" role="img" aria-label={`${bar} bar — ${label}`}>
+    <div
+      className="gauge anim"
+      role="img"
+      aria-label={`${bar} bar — ${label}`}
+      style={{
+        ["--gauge-angle" as string]: `${angle}deg`,
+        ["--gauge-arc" as string]: String(100 - arcLen),
+        ["--d" as string]: `${delayMs}ms`,
+      }}
+      data-gauge-bar={bar}
+    >
       <svg viewBox="0 0 120 120" aria-hidden="true">
         <circle cx="60" cy="60" r="54" className="gauge-face" />
+        {/* Skala yayı (dolum) */}
+        <path
+          className="gauge-arc-track"
+          d="M18.4 90 A48 48 0 1 1 101.6 90"
+          pathLength={100}
+          fill="none"
+        />
+        <path
+          className="gauge-arc"
+          d="M18.4 90 A48 48 0 1 1 101.6 90"
+          pathLength={100}
+          fill="none"
+        />
         {ticks.map((t) => (
           <line
             key={t}
@@ -31,15 +58,19 @@ export function Gauge({
             transform={`rotate(${t} 60 60)`}
           />
         ))}
-        <g
-          className="gauge-needle"
-          style={{ ["--gauge-angle" as string]: `${angle}deg` }}
-        >
-          <line x1="60" y1="60" x2="60" y2="20" />
+        {/* İbre: merkez orijinli — CSS rotate güvenilir */}
+        <g transform="translate(60 60)">
+          <g className="gauge-needle">
+            <line x1="0" y1="0" x2="0" y2="-40" />
+            <circle cx="0" cy="0" r="3.5" className="gauge-needle-dot" />
+          </g>
         </g>
         <circle cx="60" cy="60" r="5" className="gauge-hub" />
-        <text x="60" y="88" textAnchor="middle" className="gauge-value">
-          {bar} bar
+        <text x="60" y="92" textAnchor="middle" className="gauge-value">
+          <tspan className="gauge-num" data-gauge-num>
+            {bar}
+          </tspan>
+          <tspan dx="3">bar</tspan>
         </text>
       </svg>
       <p className="gauge-label">{label}</p>

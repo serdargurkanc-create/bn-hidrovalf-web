@@ -20,8 +20,8 @@ export function TestProof() {
         </div>
         <div className="test-proof-grid">
           <div className="gauge-pair rv-l">
-            <Gauge bar={240} label="Yanmar valf testi kaydı" />
-            <Gauge bar={320} label="Çok dilimli valf testi kaydı" />
+            <Gauge bar={240} label="Yanmar valf testi kaydı" delayMs={0} />
+            <Gauge bar={320} label="Çok dilimli valf testi kaydı" delayMs={280} />
           </div>
           <div className="test-proof-media rv-r">
             <VideoFigure video={videos.test320} />
