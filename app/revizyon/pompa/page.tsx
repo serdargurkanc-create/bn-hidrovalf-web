@@ -50,7 +50,7 @@ const scope = [
 const faqItems = [
   {
     q: "Hangi pompalar revizyona kabul ediliyor?",
-    a: "Her marka iş makinasının hidrolik pompası kabul edilir. Kawasaki K3V/K5V gibi pistonlu pompalar, Rexroth ve Linde pompa grupları ile dişli ve şarj pompaları kapsam dahilindedir. BN Hidrovalf Makina bağımsız bir atölyedir; üretici bayisi değildir.",
+    a: "Her marka iş makinasının hidrolik pompası kabul edilir. Kawasaki K3V/K5V gibi pistonlu pompalar, Rexroth ve Linde pompa grupları ile dişli ve şarj pompaları kapsam dahilindedir. Gereken parça tedarik edilir veya atölyede imal edilir.",
   },
   {
     q: "İç grup yüzey taşlama nedir, neden önemlidir?",
@@ -184,7 +184,7 @@ export default function Page() {
         kicker="Markalar"
         title="Hangi pompalar"
         accent="kabul edilir?"
-        lead="Aşağıdaki markalar dahil her marka kabul edilir. Resmi bayilik veya yetkili servis ilişkisi yoktur."
+        lead="Aşağıdaki markalar dahil her marka kabul edilir. Gereken parça tedarik edilir veya atölyede imal edilir."
       >
         <BrandChips slugs={brands} />
         <p className="sec-note">

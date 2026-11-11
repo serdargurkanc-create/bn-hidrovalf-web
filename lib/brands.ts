@@ -1,7 +1,5 @@
 /**
- * Marka sayfaları için olgusal veri. Kural: resmi bayi / yetkili servis
- * izlenimi verilmez; kanıtsız üstünlük iddiası yazılmaz. Her sayfada
- * bağımsız atölye uyarısı gösterilir.
+ * Marka sayfaları için olgusal veri. Kanıtsız üstünlük iddiası yazılmaz.
  */
 export type Brand = {
   slug: string;

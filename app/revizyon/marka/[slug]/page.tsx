@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import {
   BrandChips,
   FaqList,
-  IndependentNotice,
   PageHero,
   QuoteCta,
   Section,
@@ -27,7 +26,7 @@ export async function generateMetadata({
   if (!brand) return {};
   return pageMeta({
     title: `${brand.name} valf ve pompa revizyonu`,
-    description: `${brand.scope} Test sonucu videolu kayıttır. Bağımsız atölye; resmi bayilik yoktur. BN Hidrovalf Makina, İvedik OSB, Ankara.`,
+    description: `${brand.scope} Test sonucu videolu kayıttır. Gereken parça tedarik edilir veya atölyede imal edilir. BN Hidrovalf Makina, İvedik OSB, Ankara.`,
     path: `/revizyon/marka/${brand.slug}`,
   });
 }
@@ -48,8 +47,8 @@ export default async function Page({
 
   const faqItems = [
     {
-      q: `${brand.name} valf veya pompam için resmi servise mi gitmeliyim?`,
-      a: `Bu kararı iş sahibi verir. BN Hidrovalf Makina bağımsız bir revizyon atölyesidir; ${brand.name} ile bayilik veya yetkili servis ilişkisi yoktur. Atölyede yapılan iş; söküm, tespit, taşlama/imalat ve tezgâhta videolu testtir.`,
+      q: `${brand.name} valf veya pompa revizyonu burada yapılır mı?`,
+      a: `Evet. ${brand.name} valf ve pompaları İvedik OSB’deki atölyede sökülür, ölçülür; gereken taşlama veya imalat yapılır ve tezgâhta videolu test edilir. Parça işe göre tedarik edilir veya atölyede imal edilir.`,
     },
     {
       q: `${brand.name} için yedek parça stoğunuz var mı?`,
@@ -84,9 +83,7 @@ export default async function Page({
         accent="valf ve pompa revizyonu"
         lead={brand.scope}
         crumbs={crumbs}
-      >
-        <IndependentNotice brand={brand.name} />
-      </PageHero>
+      />
 
       <Section id="kapsam" kicker="Kapsam" title="Bu markada" accent="yapılan iş">
         <div className="prose prose-wide">

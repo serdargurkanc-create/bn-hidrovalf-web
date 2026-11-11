@@ -24,8 +24,8 @@ export function Footer() {
             BN Hidrovalf Makina, Ankara İvedik OSB Yenimahalle’de 20+ yıldır valf ve
             pompa revizyonu yapan bağımsız bir atölyedir. Her marka iş makinasında
             söküm, spool imalatı, iç grup yüzey taşlama ve tezgâhta videolu test bu
-            adreste tamamlanır. Resmi bayi değildir; parça Türkiye genelinden tek
-            atölyeye gelir.
+            adreste tamamlanır. Gereken parça tedarik edilir veya atölyede imal
+            edilir; iş Türkiye genelinden tek atölyeye gelir.
           </p>
           <ul className="footer-contact">
             <li>

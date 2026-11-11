@@ -1,7 +1,7 @@
 export const blogAuthor = {
   name: "BN Hidrovalf Atölye",
   role: "Yazar",
-  bio: "Ankara İvedik OSB’de valf ve pompa revizyonu yapan bağımsız atölyenin notları. Metinler söküm, ölçüm ve test tezgâhındaki işe dayanır; resmi bayilik iddiası taşımaz.",
+  bio: "Ankara İvedik OSB’de valf ve pompa revizyonu yapan atölyenin notları. Metinler söküm, ölçüm ve test tezgâhındaki işe dayanır.",
 };
 
 export type BlogBlock =
@@ -78,7 +78,7 @@ export const posts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "BN Hidrovalf Makina bu işi İvedik OSB’deki tek atölyesinde yapar. Her marka iş makinası kabul edilir; resmi bayi veya yetkili servis değildir.",
+        text: "BN Hidrovalf Makina bu işi İvedik OSB’deki tek atölyesinde yapar. Her marka iş makinası kabul edilir; gereken parça tedarik edilir veya atölyede imal edilir.",
       },
     ],
   },

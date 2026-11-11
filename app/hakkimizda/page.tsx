@@ -11,7 +11,6 @@ import {
 import {
   BrandChips,
   FaqList,
-  IndependentNotice,
   PageHero,
   QuoteCta,
   Section,
@@ -36,7 +35,7 @@ const facts = [
   { v: "20+", l: "Yıl atölye tecrübesi" },
   { v: "İvedik OSB", l: "Tek adres, Ankara" },
   { v: "Videolu", l: "Test ile teslim" },
-  { v: "Bağımsız", l: "Resmi bayi değil" },
+  { v: "Parça", l: "Tedarik ve imalat" },
 ];
 
 const hierarchy = [
@@ -77,8 +76,8 @@ const ilkeler = [
     d: "Spool ve benzeri hassas parçalar beklenmez; taşlama ve talaşlı imalatla burada üretilir.",
   },
   {
-    t: "Abartısız, bağımsız dil",
-    d: "Kanıtsız üstünlük iddiası kullanılmaz. Resmi bayilik izlenimi verilmez; bağımsız atölye olduğumuz açıkça yazılır.",
+    t: "Abartısız dil",
+    d: "Kanıtsız üstünlük iddiası kullanılmaz. İş; söküm, ölçüm ve videolu testle anlatılır.",
   },
 ];
 
@@ -90,10 +89,6 @@ const faqs = [
   {
     q: "Ana işiniz nedir?",
     a: "Birinci iş valf ve pompa revizyonu, ikinci iş bunu destekleyen CNC ve özel imalat, üçüncüsü ihtiyaca göre yedek parça tedarikidir. Her marka iş makinası kabul edilir.",
-  },
-  {
-    q: "Resmi bayi veya yetkili servis misiniz?",
-    a: "Hayır. BN Hidrovalf Makina bağımsız bir revizyon atölyesidir; hiçbir üreticinin resmi bayisi veya yetkili servisi değildir. Marka adları yalnızca revize edilen parçaların ait olduğu makinaları tarif eder.",
   },
   {
     q: "Test sonucu nasıl belgelenir?",
@@ -315,9 +310,8 @@ export default function Page() {
         kicker="Kapsam"
         title="İşlenen"
         accent="markalar"
-        lead="Listede olmayan markalar için de teklif istenebilir. Aşağıdaki adlar resmi bayilik anlamına gelmez."
+        lead="Listede olmayan markalar için de teklif istenebilir. Gereken parça tedarik edilir veya atölyede imal edilir."
       >
-        <IndependentNotice />
         <div className="about-brand-block rv">
           <BrandChips
             heading="Marka sayfaları"

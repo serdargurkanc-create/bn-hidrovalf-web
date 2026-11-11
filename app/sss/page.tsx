@@ -24,10 +24,6 @@ const extraFaqs = [
     a: "Saat bilgisi bu sitede yayınlanmaz; gün ve saat planlaması için +90 541 883 53 31 numarasını arayabilir veya WhatsApp’tan yazabilirsiniz.",
   },
   {
-    q: "Resmi bayi veya yetkili servis misiniz?",
-    a: "Hayır. BN Hidrovalf Makina bağımsız bir revizyon atölyesidir; hiçbir üreticinin bayisi veya yetkili servisi değildir. Marka adları yalnızca revize edilen parçaların ait olduğu makinaları tarif eder.",
-  },
-  {
     q: "Fiyatı görmeden parça göndermek istemiyorum; nasıl ilerleyebilirim?",
     a: "Fotoğraf ve belirti ile ücretsiz ön değerlendirme yapılır; yaklaşık kapsam telefonda konuşulur. Kesin teklif, parça söküldükten sonra yazılı verilir ve onaysız işe başlanmaz.",
   },

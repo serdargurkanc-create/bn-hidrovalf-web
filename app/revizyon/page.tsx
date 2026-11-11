@@ -129,7 +129,7 @@ export default function Page() {
         kicker="Markalar"
         title="Her marka"
         accent="kabul edilir"
-        lead="Marka sayfaları, o markanın valf ve pompalarında yapılan işi anlatır. Resmi bayilik ilişkisi yoktur."
+        lead="Marka sayfaları, o markanın valf ve pompalarında yapılan işi anlatır. Gereken parça tedarik edilir veya atölyede imal edilir."
         tone="soft"
       >
         <BrandChips slugs={brands} />
