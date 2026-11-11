@@ -399,35 +399,59 @@ a { color: inherit; }
 
 /* Marquee + stats */
 .ribbon {
-  background: var(--bg-soft);
+  background:
+    linear-gradient(180deg, #fbf9f6 0%, var(--bg-soft) 100%);
   border-block: 1px solid var(--line);
   overflow: hidden;
-  padding: 1rem 0;
+  padding: 1.35rem 0;
 }
-.marquee { overflow: hidden; }
+.marquee { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
 .marquee-track {
   display: flex;
   width: max-content;
   gap: 0;
-  animation: drift 32s linear infinite;
+  animation: drift 48s linear infinite;
+  align-items: center;
 }
 .marquee-track:hover { animation-play-state: paused; }
-.marquee-track span {
+
+/* Premium marka şeridi — tek tip, monokrom, düşük kontrast */
+.brand-mark {
   display: inline-flex;
   align-items: center;
-  gap: 0.85rem;
-  padding: 0 1.5rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  white-space: nowrap;
+  gap: 0.55rem;
+  height: 44px;
+  padding: 0 2.1rem;
   color: var(--ink);
+  opacity: 0.42;
+  transition: opacity 0.35s var(--ease);
+  position: relative;
+  white-space: nowrap;
 }
-.marquee-track span::before {
+.brand-mark:hover { opacity: 0.78; }
+.brand-mark + .brand-mark::before {
   content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--accent-2);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 1px;
+  height: 18px;
+  transform: translateY(-50%);
+  background: color-mix(in srgb, var(--ink) 14%, transparent);
+}
+.bm-label {
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.bm-glyph {
+  width: 15px;
+  height: 15px;
+  flex: none;
+  opacity: 0.9;
 }
 
 .stats {
