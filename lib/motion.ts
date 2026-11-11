@@ -10,16 +10,43 @@ export function startMotion() {
   if (reduced) {
     reveals.forEach((el) => el.classList.add("in"));
   } else {
+    const pending = new Set<HTMLElement>(reveals);
+    const markIn = (el: HTMLElement) => {
+      el.classList.add("in");
+      io.unobserve(el);
+      pending.delete(el);
+    };
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          (entry.target as HTMLElement).classList.add("in");
-          io.unobserve(entry.target);
+          markIn(entry.target as HTMLElement);
         });
       },
       { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
     );
+    // Hızlı kaydırmada IO'nun atladığı, viewport'u geçmiş öğeleri yakala.
+    let raf = 0;
+    const sweep = () => {
+      pending.forEach((el) => {
+        if (el.getBoundingClientRect().bottom < window.innerHeight) markIn(el);
+      });
+      if (!pending.size) removeEventListener("scroll", onScroll);
+    };
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        sweep();
+      });
+    };
+    addEventListener("scroll", onScroll, { passive: true });
+    // Güvenlik ağı: her durumda 3 sn sonra kalan tüm öğeler görünür.
+    setTimeout(() => {
+      pending.forEach((el) => el.classList.add("in"));
+      pending.clear();
+      removeEventListener("scroll", onScroll);
+    }, 3000);
     reveals.forEach((el, i) => {
       if (!el.style.getPropertyValue("--d")) {
         const siblings = el.parentElement
@@ -34,11 +61,8 @@ export function startMotion() {
         el.style.setProperty("--d", `${Math.min(idx * 90, 540)}ms`);
       }
       io.observe(el);
-      // already in view (e.g. after late boot)
-      if (i === 0) {
-        /* observed immediately */
-      }
     });
+    sweep();
   }
 
   const lb = document.getElementById("lightbox") as HTMLElement | null;
