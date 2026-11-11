@@ -1560,6 +1560,27 @@ html.js:not(.reduced) .anim.in .bn-rec-dot { animation: sc-blink 1.2s ease infin
 
 
 
+/* Biz kimiz — iskelet (CLS). Hover/yörünge process-lens.css içinde. */
+.who-band { padding: 4.2rem 0 4.5rem; }
+.who { display: grid; gap: 36px; align-items: center; }
+.who-visual {
+  position: relative;
+  aspect-ratio: 4 / 4.6;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #2a1a12;
+}
+.who-visual .wv-orbit { opacity: 0; }
+@media (min-width: 961px) {
+  .who { grid-template-columns: 1.05fr 0.95fr; gap: 64px; }
+}
+@media (hover: none) {
+  .who-visual .wv-orbit { opacity: 1; }
+}
+@media (max-width: 960px) {
+  .who-band { padding-bottom: 5rem; }
+}
+
 /* Süreç merceği — kritik iskelet (CLS); süs process-lens.css ile gelir */
 .process-who {
   display: grid;
