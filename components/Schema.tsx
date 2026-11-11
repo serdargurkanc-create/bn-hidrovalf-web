@@ -63,7 +63,8 @@ export function SchemaLd({
       url: `${site.url}/`,
       telephone: site.phoneTel,
       email: site.email,
-      image: `${site.url}/images/logo.png`,
+      image: `${site.url}/logo/bn-hidrovalf-logo.png`,
+      logo: `${site.url}/logo/bn-hidrovalf-logo.png`,
       description: site.description,
       address: {
         "@type": "PostalAddress",

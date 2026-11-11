@@ -29,18 +29,16 @@ export function Header() {
       <input type="checkbox" id="menu-toggle" className="menu-toggle" aria-label="Menüyü aç veya kapat" />
       <div className="header">
         <div className="header-inner">
-          <Link href="/" className="brand">
+          <Link href="/" className="brand" aria-label="BN Hidrovalf Makina — ana sayfa">
             <img
-              src={asset("/logo/bn-hidrovalf-makine-gecici-160.webp")}
-              alt=""
-              width={160}
-              height={95}
-              fetchPriority="low"
+              src={asset("/logo/bn-hidrovalf-logo-112.webp")}
+              srcSet={`${asset("/logo/bn-hidrovalf-logo-56.webp")} 56w, ${asset("/logo/bn-hidrovalf-logo-112.webp")} 112w, ${asset("/logo/bn-hidrovalf-logo-160.webp")} 160w`}
+              sizes="120px"
+              alt="BN Hidrovalf Makina"
+              width={240}
+              height={112}
+              fetchPriority="high"
             />
-            <span className="brand-name">
-              BN Hidrovalf
-              <span>Makina</span>
-            </span>
           </Link>
 
           <nav className="nav" aria-label="Ana menü">

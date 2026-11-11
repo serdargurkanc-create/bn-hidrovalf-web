@@ -198,7 +198,16 @@ a { color: inherit; }
   min-height: 44px;
   margin-right: auto;
 }
-.brand img { width: 44px; height: auto; }
+.brand img {
+  width: auto;
+  height: 44px;
+  max-width: min(168px, 46vw);
+  object-fit: contain;
+  display: block;
+}
+@media (min-width: 768px) {
+  .brand img { height: 50px; max-width: 200px; }
+}
 .brand-name {
   display: flex;
   flex-direction: column;
@@ -885,6 +894,18 @@ a { color: inherit; }
   gap: 2rem;
 }
 .footer .brand-name { color: var(--ink); margin-bottom: 0.75rem; }
+.footer-brand {
+  display: inline-block;
+  margin-bottom: 0.85rem;
+  text-decoration: none;
+}
+.footer-brand img {
+  height: 48px;
+  width: auto;
+  max-width: 180px;
+  object-fit: contain;
+  display: block;
+}
 .footer h2 {
   font-size: 0.85rem;
   letter-spacing: 0.04em;
