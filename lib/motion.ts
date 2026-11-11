@@ -80,6 +80,7 @@ export function startMotion() {
 
   /* Kaydırmayla 1→5 hikâye: akış çizgisi + sırayla .play */
   bindStoryRails(reduced);
+  bindBlogSlider(reduced);
 
   const lb = document.getElementById("lightbox") as HTMLElement | null;
   const lbImg = lb?.querySelector("img");
@@ -129,6 +130,90 @@ function runGaugeCount(el: HTMLElement) {
     else num.textContent = String(target);
   };
   requestAnimationFrame(tick);
+}
+
+/** Ana sayfa blog şeridi: ortadaki net, yanlar soluk, 3,5 sn, hover’da durur. */
+function bindBlogSlider(reduced: boolean) {
+  const root = document.querySelector<HTMLElement>("[data-blog-slider]");
+  if (!root) return;
+  const viewport = root.querySelector<HTMLElement>(".blog-slider-viewport");
+  const track = root.querySelector<HTMLElement>(".blog-slider-track");
+  if (!viewport || !track) return;
+  const slides = [...track.children] as HTMLElement[];
+  const n = slides.length;
+  if (!n) return;
+
+  let index = 0;
+  let timer = 0;
+  let paused = false;
+
+  const layout = (animate: boolean) => {
+    slides.forEach((slide, i) => slide.classList.toggle("is-active", i === index));
+    const slide = slides[index];
+    const left = slide.offsetLeft - (viewport.clientWidth - slide.offsetWidth) / 2;
+    track.style.transition = !animate || reduced ? "none" : "";
+    track.style.transform = `translate3d(${-Math.round(left)}px,0,0)`;
+  };
+
+  const go = (next: number) => {
+    const prev = index;
+    index = (next + n) % n;
+    const wrapped = (next > prev && index < prev) || (next < prev && index > prev);
+    layout(!wrapped);
+  };
+
+  const stop = () => window.clearInterval(timer);
+  const start = () => {
+    stop();
+    if (reduced || paused) return;
+    timer = window.setInterval(() => go(index + 1), 3500);
+  };
+
+  root.addEventListener("mouseenter", () => {
+    paused = true;
+    stop();
+  });
+  root.addEventListener("mouseleave", () => {
+    paused = false;
+    start();
+  });
+  root.addEventListener("focusin", () => {
+    paused = true;
+    stop();
+  });
+  root.addEventListener("focusout", (e) => {
+    if (root.contains(e.relatedTarget as Node)) return;
+    paused = false;
+    start();
+  });
+
+  root.querySelector<HTMLButtonElement>("[data-blog-prev]")?.addEventListener("click", () => go(index - 1));
+  root.querySelector<HTMLButtonElement>("[data-blog-next]")?.addEventListener("click", () => go(index + 1));
+
+  let x0 = 0;
+  viewport.addEventListener("pointerdown", (e) => {
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    x0 = e.clientX;
+  });
+  viewport.addEventListener("pointerup", (e) => {
+    const dx = e.clientX - x0;
+    if (Math.abs(dx) > 48) go(index + (dx < 0 ? 1 : -1));
+  });
+
+  let resizeT = 0;
+  addEventListener("resize", () => {
+    window.clearTimeout(resizeT);
+    resizeT = window.setTimeout(() => layout(false), 80);
+  });
+
+  if (reduced) {
+    slides.forEach((slide) => slide.classList.add("is-active"));
+    viewport.style.overflowX = "auto";
+    return;
+  }
+
+  layout(false);
+  start();
 }
 
 /** Valf merceği: kaydırma/adım seçimi ile 1→5; imleç glow. */
