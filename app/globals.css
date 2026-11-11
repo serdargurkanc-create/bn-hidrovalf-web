@@ -1195,8 +1195,7 @@ a { color: inherit; }
 }
 .footer-ico svg { width: 18px; height: 18px; }
 .footer-contact a:hover { color: inherit; background: none; }
-.footer-ico:hover,
-.footer-contact a:hover .footer-ico {
+.footer-ico:hover {
   background: var(--accent-2);
   color: #fff;
 }
