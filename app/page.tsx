@@ -1,6 +1,5 @@
 import { Atelier } from "@/components/home/Atelier";
 import { BlogStrip } from "@/components/home/BlogStrip";
-import { Contact } from "@/components/home/Contact";
 import { Facts } from "@/components/home/Facts";
 import { Faq } from "@/components/home/Faq";
 import { Hero } from "@/components/home/Hero";
@@ -23,7 +22,6 @@ export default function HomePage() {
       <Atelier />
       <Faq />
       <BlogStrip />
-      <Contact />
     </>
   );
 }
