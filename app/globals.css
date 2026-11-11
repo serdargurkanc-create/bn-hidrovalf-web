@@ -962,7 +962,11 @@ a { color: inherit; }
   color: #fff;
 }
 .dock a:first-child:active { background: #000; }
-.dock a:last-child { background: var(--accent-2); color: var(--on-accent); }
+.dock a:last-child {
+  background: #25d366;
+  color: #fff;
+}
+.dock a:last-child:active { background: #1ebe57; }
 @media (min-width: 800px) {
   .dock { display: none; }
 }
