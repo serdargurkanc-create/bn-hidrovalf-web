@@ -12,10 +12,22 @@ export function startMotion() {
   } else {
     const pending = new Set<HTMLElement>(reveals);
     const markIn = (el: HTMLElement) => {
-      el.classList.add("in");
       io.unobserve(el);
       pending.delete(el);
-      if (el.classList.contains("gauge")) runGaugeCount(el);
+      // Gösterge: başlangıç karesinin bir kez boyanması için çift rAF;
+      // aksi halde .in aynı karede gelince CSS transition atlanır.
+      if (el.classList.contains("gauge")) {
+        el.classList.remove("in");
+        void el.offsetWidth;
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            el.classList.add("in");
+            runGaugeCount(el);
+          });
+        });
+        return;
+      }
+      el.classList.add("in");
     };
     const io = new IntersectionObserver(
       (entries) => {
@@ -44,10 +56,7 @@ export function startMotion() {
     addEventListener("scroll", onScroll, { passive: true });
     // Güvenlik ağı: her durumda 3 sn sonra kalan tüm öğeler görünür.
     setTimeout(() => {
-      pending.forEach((el) => {
-        el.classList.add("in");
-        if (el.classList.contains("gauge")) runGaugeCount(el);
-      });
+      [...pending].forEach((el) => markIn(el));
       pending.clear();
       removeEventListener("scroll", onScroll);
     }, 3000);
