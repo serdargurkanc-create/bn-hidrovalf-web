@@ -1121,6 +1121,59 @@ main { overflow-x: clip; }
 .sec-lead { color: var(--ink-soft); margin: 0; }
 .sec-note { color: var(--ink-soft); margin: 1.5rem 0 0; font-size: 0.98rem; }
 .sec-note a { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 2px; }
+.faq-help {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1.5rem;
+  padding: 1rem 1.05rem;
+  border-radius: var(--r);
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--line));
+  background:
+    radial-gradient(120% 80% at 0% 0%, var(--accent-soft), transparent 55%),
+    var(--bg-tint);
+}
+.faq-help p {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.faq-help-actions {
+  display: grid;
+  gap: 0.55rem;
+}
+.faq-help-actions a {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  background: var(--ink);
+  color: #fff;
+  border: 1px solid var(--ink);
+}
+.faq-help-actions a svg { width: 18px; height: 18px; flex: none; }
+.faq-help-actions a.is-wa {
+  background: #157347;
+  border-color: #0f5c38;
+  color: #fff;
+}
+.faq-help-actions a:last-child {
+  background: #fff;
+  color: var(--ink);
+  border-color: var(--line);
+}
+@media (min-width: 800px) {
+  .faq-help {
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    padding: 0.85rem 0.9rem 0.85rem 1.25rem;
+  }
+  .faq-help-actions { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
 
 /* Kapsam kartları */
 .scope-grid { display: grid; gap: 1rem; }
