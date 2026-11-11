@@ -27,13 +27,40 @@ export function Footer() {
             adreste tamamlanır. Resmi bayi değildir; parça Türkiye genelinden tek
             atölyeye gelir.
           </p>
-          <p style={{ marginTop: "1rem" }}>
-            <a href={`tel:${site.phoneTel}`}>{site.phone}</a>
-            <br />
-            <a href={`mailto:${site.email}`}>{site.email}</a>
-            <br />
-            {site.address.line}
-          </p>
+          <ul className="footer-contact">
+            <li>
+              <a href={`tel:${site.phoneTel}`}>
+                <span className="footer-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M8 4h3l1.5 4-2 1.2a12 12 0 0 0 5.3 5.3L17 13l4 1.5v3a2 2 0 0 1-2.2 2A16 16 0 0 1 4 6.2 2 2 0 0 1 6 4h2z" />
+                  </svg>
+                </span>
+                <span>{site.phone}</span>
+              </a>
+            </li>
+            <li>
+              <a href={`mailto:${site.email}`}>
+                <span className="footer-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="M3 7l9 7 9-7" />
+                  </svg>
+                </span>
+                <span>{site.email}</span>
+              </a>
+            </li>
+            <li>
+              <a href={site.maps} target="_blank" rel="noopener noreferrer">
+                <span className="footer-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11z" />
+                    <circle cx="12" cy="10" r="2.2" />
+                  </svg>
+                </span>
+                <span>{site.address.line}</span>
+              </a>
+            </li>
+          </ul>
         </div>
         <div>
           <h2>Hizmetler</h2>
