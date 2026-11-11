@@ -131,94 +131,52 @@ function runGaugeCount(el: HTMLElement) {
   requestAnimationFrame(tick);
 }
 
-/** Valf hikâyesi: kaydırma ilerledikçe boru dolar, temas eden sahne oynar. */
+/** Valf merceği: kaydırma/adım seçimi ile 1→5; imleç glow. */
 function bindStoryRails(reduced: boolean) {
   const rails = document.querySelectorAll<HTMLElement>("[data-story-rail]");
   if (!rails.length) return;
 
-  const layout = (rail: HTMLElement) => {
-    const pipe = rail.querySelector<HTMLElement>(".story-pipe");
-    const scenes = [...rail.querySelectorAll<HTMLElement>("[data-story-step] .story-scene")];
-    if (!pipe || scenes.length < 2) return;
-    const rb = rail.getBoundingClientRect();
-    const first = scenes[0].getBoundingClientRect();
-    const last = scenes[scenes.length - 1].getBoundingClientRect();
-    const horizontal = Math.abs(first.top - last.top) < 40;
-    if (horizontal) {
-      rail.dataset.dir = "h";
-      const y = (first.top + first.height / 2) - rb.top;
-      const x1 = first.left + first.width / 2 - rb.left;
-      const x2 = last.left + last.width / 2 - rb.left;
-      pipe.style.top = `${Math.round(y - 1.5)}px`;
-      pipe.style.left = `${Math.round(x1)}px`;
-      pipe.style.width = `${Math.max(0, Math.round(x2 - x1))}px`;
-      pipe.style.height = "3px";
-      pipe.style.bottom = "auto";
-    } else {
-      rail.dataset.dir = "v";
-      const x = first.left - rb.left + 10;
-      const y1 = first.top + first.height / 2 - rb.top;
-      const y2 = last.top + last.height / 2 - rb.top;
-      pipe.style.left = `${Math.round(x)}px`;
-      pipe.style.top = `${Math.round(y1)}px`;
-      pipe.style.height = `${Math.max(0, Math.round(y2 - y1))}px`;
-      pipe.style.width = "3px";
-      pipe.style.bottom = "auto";
-    }
-  };
-
-  const midY = (step: HTMLElement) => {
-    const el = step.querySelector(".story-scene") || step;
-    const b = el.getBoundingClientRect();
-    return b.top + b.height * 0.45;
+  const applyStep = (rail: HTMLElement, index: number, n: number) => {
+    const i = Math.max(0, Math.min(n - 1, index));
+    rail.dataset.active = String(i);
+    rail.style.setProperty("--story-p", n <= 1 ? "1" : (i / (n - 1)).toFixed(4));
+    rail.querySelectorAll<HTMLElement>(".pl-frame").forEach((frame, fi) => {
+      const on = fi === i;
+      frame.classList.toggle("is-on", on);
+      frame.querySelector(".story-scene")?.classList.toggle("play", on);
+    });
+    rail.querySelectorAll<HTMLElement>(".pl-steps > li").forEach((li, li_i) => {
+      li.classList.toggle("is-on", li_i === i);
+      li.classList.toggle("is-done", li_i < i);
+    });
   };
 
   const scrub = () => {
     const vh = window.innerHeight || 1;
-    const trigger = vh * 0.58;
     rails.forEach((rail) => {
-      const steps = [...rail.querySelectorAll<HTMLElement>("[data-story-step]")];
-      const n = steps.length;
+      if (rail.dataset.locked === "1") return;
+      const n = Number(rail.dataset.steps) || rail.querySelectorAll(".pl-frame").length;
       if (!n) return;
       if (reduced) {
-        rail.style.setProperty("--story-p", "1");
-        steps.forEach((step) => {
-          step.classList.add("is-on");
-          step.querySelector(".story-scene")?.classList.add("play");
-        });
+        applyStep(rail, n - 1, n);
         return;
       }
-
-      let p = 0;
-      if (rail.dataset.dir === "h") {
-        // Yatay sıra: tüm sahneler aynı Y'de → dikey kaydırmayı 0→1'e map et
-        const box = rail.getBoundingClientRect();
-        const start = vh * 0.78;
-        const end = vh * 0.22;
-        p = Math.min(1, Math.max(0, (start - box.top) / Math.max(1, start - end)));
-      } else {
-        // Dikey (mobil): her kutu tetik çizgisini geçtikçe ilerle
-        let hi = -1;
+      const stepItems = [...rail.querySelectorAll<HTMLElement>(".pl-steps > li")];
+      // Mobil: yapışkan mercek + adım listesi; hangi madde tetik çizgisini geçtiyse o oynar
+      if (stepItems.length === n && window.matchMedia("(max-width: 959px)").matches) {
+        const trigger = vh * 0.62;
+        let hi = 0;
         for (let i = 0; i < n; i++) {
-          if (midY(steps[i]) <= trigger) hi = i;
+          if (stepItems[i].getBoundingClientRect().top <= trigger) hi = i;
         }
-        if (hi >= n - 1) p = 1;
-        else if (hi >= 0) {
-          const a = midY(steps[hi]);
-          const b = midY(steps[hi + 1]);
-          const frac = Math.min(1, Math.max(0, (trigger - a) / Math.max(1, b - a)));
-          p = (hi + frac) / (n - 1);
-        }
+        applyStep(rail, hi, n);
+        return;
       }
-
-      rail.style.setProperty("--story-p", p.toFixed(4));
-      steps.forEach((step, i) => {
-        const scene = step.querySelector(".story-scene");
-        const threshold = n <= 1 ? 0 : i / (n - 1);
-        const play = p >= threshold - 0.001;
-        step.classList.toggle("is-on", play);
-        scene?.classList.toggle("play", play);
-      });
+      const box = rail.getBoundingClientRect();
+      const start = vh * 0.75;
+      const end = vh * 0.28;
+      const p = Math.min(1, Math.max(0, (start - box.top) / Math.max(1, start - end)));
+      applyStep(rail, Math.round(p * (n - 1)), n);
     });
   };
 
@@ -230,17 +188,63 @@ function bindStoryRails(reduced: boolean) {
       scrub();
     });
   };
-  let resizeT = 0;
-  const onResize = () => {
-    clearTimeout(resizeT);
-    resizeT = window.setTimeout(() => {
-      rails.forEach(layout);
-      scrub();
-    }, 80);
-  };
 
-  rails.forEach(layout);
+  rails.forEach((rail) => {
+    const stage = rail.querySelector<HTMLElement>("[data-process-lens]");
+    const n = Number(rail.dataset.steps) || rail.querySelectorAll(".pl-frame").length;
+
+    rail.querySelectorAll<HTMLElement>("[data-story-goto]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const i = Number(btn.dataset.storyGoto);
+        if (!Number.isFinite(i)) return;
+        rail.dataset.locked = "1";
+        applyStep(rail, i, n);
+        window.setTimeout(() => {
+          delete rail.dataset.locked;
+        }, 1800);
+      });
+    });
+
+    if (stage && !reduced) {
+      let gx = 0.5;
+      let gy = 0.42;
+      let tx = gx;
+      let ty = gy;
+      let glowRaf = 0;
+      const tickGlow = () => {
+        gx += (tx - gx) * 0.12;
+        gy += (ty - gy) * 0.12;
+        stage.style.setProperty("--lx", `${(gx * 100).toFixed(2)}%`);
+        stage.style.setProperty("--ly", `${(gy * 100).toFixed(2)}%`);
+        glowRaf = 0;
+        if (Math.abs(tx - gx) > 0.001 || Math.abs(ty - gy) > 0.001) {
+          glowRaf = requestAnimationFrame(tickGlow);
+        }
+      };
+      const onMove = (e: PointerEvent) => {
+        const b = stage.getBoundingClientRect();
+        tx = Math.min(1, Math.max(0, (e.clientX - b.left) / Math.max(1, b.width)));
+        ty = Math.min(1, Math.max(0, (e.clientY - b.top) / Math.max(1, b.height)));
+        if (!glowRaf) glowRaf = requestAnimationFrame(tickGlow);
+      };
+      stage.addEventListener("pointermove", onMove, { passive: true });
+      stage.addEventListener(
+        "pointerleave",
+        () => {
+          tx = 0.5;
+          ty = 0.42;
+          if (!glowRaf) glowRaf = requestAnimationFrame(tickGlow);
+        },
+        { passive: true }
+      );
+      stage.style.setProperty("--lx", "50%");
+      stage.style.setProperty("--ly", "42%");
+    }
+
+    applyStep(rail, 0, n);
+  });
+
   scrub();
   addEventListener("scroll", onScroll, { passive: true });
-  addEventListener("resize", onResize, { passive: true });
+  addEventListener("resize", onScroll, { passive: true });
 }
