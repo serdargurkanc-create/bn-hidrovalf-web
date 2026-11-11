@@ -1,61 +1,120 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PageHero, QuoteCta, Section } from "@/components/Inner";
+import { FlowSvg, Gauge } from "@/components/Anim";
+import { ValveStory } from "@/components/anim/Scenes";
+import {
+  BrandChips,
+  FaqList,
+  IndependentNotice,
+  PageHero,
+  QuoteCta,
+  Section,
+} from "@/components/Inner";
 import { Pic } from "@/components/Pic";
 import { SchemaLd } from "@/components/Schema";
+import { brands } from "@/lib/brands";
 import { pageMeta } from "@/lib/meta";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = pageMeta({
-  title: "Hakkımızda",
+  title: "Hakkımızda — İvedik OSB’de valf ve pompa revizyon atölyesi",
   description:
-    "BN Hidrovalf Makina, Ankara İvedik OSB’de 20+ yıllık tecrübeye sahip kurumsal çözüm ortağıdır. Valf ve pompa revizyonu, spool imalatı, videolu test.",
+    "BN Hidrovalf Makina, Ankara İvedik OSB’de 20+ yıllık tecrübeye sahip bağımsız revizyon atölyesidir. Valf ve pompa revizyonu, spool imalatı, iç grup taşlama, videolu test. Adres, telefon ve çalışma biçimi.",
   path: "/hakkimizda",
 });
 
 const crumbs = [{ href: "/", label: "Ana sayfa" }, { label: "Hakkımızda" }];
 
+const facts = [
+  { v: "20+", l: "Yıl atölye tecrübesi" },
+  { v: "İvedik OSB", l: "Tek adres, Ankara" },
+  { v: "Videolu", l: "Test ile teslim" },
+  { v: "Bağımsız", l: "Resmi bayi değil" },
+];
+
+const hierarchy = [
+  {
+    n: "01",
+    t: "Valf ve pompa revizyonu",
+    d: "Ana iş. Her marka iş makinasında söküm, tespit, spool imalatı veya iç grup yüzey taşlama, montaj ve tezgâhta test.",
+    href: "/revizyon",
+    cta: "Revizyonu incele",
+  },
+  {
+    n: "02",
+    t: "CNC ve özel imalat",
+    d: "Ana işi destekler. Spool, silindirik/yüzey taşlama, iç çap ve flanş işleme; numuneden ölçü alınarak üretim.",
+    href: "/imalat",
+    cta: "İmalatı incele",
+  },
+  {
+    n: "03",
+    t: "Yedek parça",
+    d: "Destek hizmet. Çevrimiçi stok kataloğu yoktur; parça talebe göre tedarik edilir veya atölyede imal edilir.",
+    href: "/yedek-parca",
+    cta: "Parça talep et",
+  },
+];
+
 const ilkeler = [
   {
     t: "Önce tespit, sonra teklif",
-    d: "Parça sökülmeden fiyat atılmaz. Teklif, arıza kaynağı netleştikten sonra yazılı verilir ve onay gelmeden işe başlanmaz.",
+    d: "Parça sökülmeden fiyat atılmaz. Teklif, arıza kaynağı netleştikten sonra yazılı verilir; onay gelmeden işe başlanmaz.",
   },
   {
     t: "Kanıt: videolu test",
     d: "Her iş, test tezgâhında çekilen videoyla teslim edilir. Beyan yerine görüntü esastır.",
   },
   {
-    t: "İmalat gücü",
-    d: "Spool ve benzeri hassas parçalar beklenmez; taşlama ve talaşlı imalatla atölyede üretilir.",
+    t: "İmalat gücü atölyede",
+    d: "Spool ve benzeri hassas parçalar beklenmez; taşlama ve talaşlı imalatla burada üretilir.",
   },
   {
-    t: "Abartısız dil",
-    d: "'En iyi', 'lider' gibi kanıtsız iddialar kullanılmaz. Resmi bayilik izlenimi verilmez; bağımsız atölye olduğumuz açıkça yazılır.",
+    t: "Abartısız, bağımsız dil",
+    d: "Kanıtsız üstünlük iddiası kullanılmaz. Resmi bayilik izlenimi verilmez; bağımsız atölye olduğumuz açıkça yazılır.",
   },
 ];
 
+const faqs = [
+  {
+    q: "BN Hidrovalf Makina nerede?",
+    a: `Ankara İvedik OSB, Genç Kardeşler Sanayi Sitesi, 2285. Sk. No:40, 06378 Yenimahalle. Telefon: ${site.phone}. E-posta: ${site.email}. Şube ağı yoktur; tüm işler bu tek atölyede yapılır.`,
+  },
+  {
+    q: "Ana işiniz nedir?",
+    a: "Birinci iş valf ve pompa revizyonu, ikinci iş bunu destekleyen CNC ve özel imalat, üçüncüsü ihtiyaca göre yedek parça tedarikidir. Her marka iş makinası kabul edilir.",
+  },
+  {
+    q: "Resmi bayi veya yetkili servis misiniz?",
+    a: "Hayır. BN Hidrovalf Makina bağımsız bir revizyon atölyesidir; hiçbir üreticinin resmi bayisi veya yetkili servisi değildir. Marka adları yalnızca revize edilen parçaların ait olduğu makinaları tarif eder.",
+  },
+  {
+    q: "Test sonucu nasıl belgelenir?",
+    a: "Yazılı rapor yerine videolu kayıt verilir. Yayınlanan örnek kayıtlarda 240 bar ve 320 bar okunur; bunlar yalnızca o kayıtların gerçek değerleridir, her işin standart basıncı değildir.",
+  },
+  {
+    q: "Türkiye’nin başka illerinden parça gönderilebilir mi?",
+    a: "Evet. Parça kargo ile atölyeye ulaştırılır; teslimatta da kargo veya hızlı seçenek olarak otobüs kurye kullanılır. Ayrıntılar teslimat sayfasında ve yazılı teklifte yer alır.",
+  },
+] as const;
+
 const shots = [
   {
-    src: "/images/foto-valf-revizyonu-cat-spool-01-600.webp",
+    src: "/images/gallery/galeri-01-spool-600.webp",
     srcSet:
-      "/images/foto-valf-revizyonu-cat-spool-01-600.webp 600w, /images/foto-valf-revizyonu-cat-spool-01.webp 1600w",
-    avifSrcSet:
-      "/images/foto-valf-revizyonu-cat-spool-01-600.avif 600w, /images/foto-valf-revizyonu-cat-spool-01-800.avif 800w",
+      "/images/gallery/galeri-01-spool-600.webp 600w, /images/gallery/galeri-01-spool-800.webp 800w, /images/gallery/galeri-01-spool-1200.webp 1200w",
     alt: "Valf spool’ları yakın çekim",
   },
   {
-    src: "/images/foto-pompa-govde-mikrometre-01-600.webp",
+    src: "/images/gallery/galeri-02-mikrometre-600.webp",
     srcSet:
-      "/images/foto-pompa-govde-mikrometre-01-600.webp 600w, /images/foto-pompa-govde-mikrometre-01.webp 1600w",
-    avifSrcSet:
-      "/images/foto-pompa-govde-mikrometre-01-600.avif 600w, /images/foto-pompa-govde-mikrometre-01-800.avif 800w",
+      "/images/gallery/galeri-02-mikrometre-600.webp 600w, /images/gallery/galeri-02-mikrometre-800.webp 800w, /images/gallery/galeri-02-mikrometre-1200.webp 1200w",
     alt: "Pompa gövdesinde mikrometre ile ölçü kontrolü",
   },
   {
-    src: "/images/foto-valf-blok-seri-uretim-01-600.webp",
+    src: "/images/gallery/galeri-03-blok-600.webp",
     srcSet:
-      "/images/foto-valf-blok-seri-uretim-01-600.webp 600w, /images/foto-valf-blok-seri-uretim-01.webp 1600w",
-    avifSrcSet: "/images/foto-valf-blok-seri-uretim-01.avif 1600w",
+      "/images/gallery/galeri-03-blok-600.webp 600w, /images/gallery/galeri-03-blok-800.webp 800w, /images/gallery/galeri-03-blok-1200.webp 1200w",
     alt: "Tezgâhta valf blokları",
   },
 ];
@@ -63,18 +122,19 @@ const shots = [
 export default function Page() {
   return (
     <>
-      <SchemaLd path="/hakkimizda" crumbs={crumbs} />
+      <SchemaLd path="/hakkimizda" crumbs={crumbs} about faqs={faqs} />
+
       <PageHero
         kicker="Kurumsal çözüm ortağı"
         title="20+ yıldır"
         accent="tezgâh başında"
-        lead={`${site.name}, Ankara İvedik OSB, Genç Kardeşler Sanayi Sitesi’nde yerleşik bağımsız bir revizyon atölyesidir. Ana iş, her marka iş makinasında valf ve pompa revizyonudur.`}
+        lead={`${site.name}, Ankara İvedik OSB’de yerleşik bağımsız bir revizyon atölyesidir. Ana iş: her marka iş makinasında valf ve pompa revizyonu; destek: spool imalatı, iç grup taşlama ve videolu test.`}
         crumbs={crumbs}
         media={
           <Pic
             src="/images/foto-valf-revizyonu-spool-logo-fon-01-600.webp"
-            srcSet="/images/foto-valf-revizyonu-spool-logo-fon-01-600.webp 600w, /images/foto-valf-revizyonu-spool-logo-fon-01-800.webp 800w"
-            avifSrcSet="/images/foto-valf-revizyonu-spool-logo-fon-01-600.avif 600w, /images/foto-valf-revizyonu-spool-logo-fon-01-800.avif 800w"
+            srcSet="/images/foto-valf-revizyonu-spool-logo-fon-01-600.webp 600w, /images/foto-valf-revizyonu-spool-logo-fon-01-800.webp 800w, /images/foto-valf-revizyonu-spool-logo-fon-01-1200.webp 1200w"
+            avifSrcSet="/images/foto-valf-revizyonu-spool-logo-fon-01-600.avif 600w, /images/foto-valf-revizyonu-spool-logo-fon-01-800.avif 800w, /images/foto-valf-revizyonu-spool-logo-fon-01-1200.avif 1200w"
             alt="Logo fonu önünde sökülmüş valf gövdeleri ve yaylı spool’lar"
             width={1200}
             height={900}
@@ -84,23 +144,90 @@ export default function Page() {
         }
       />
 
-      <Section id="kim" kicker="Kim bu atölye?" title="Ana iş belli:" accent="revizyon">
+      {/* Özet olgular — GEO / hızlı tarama */}
+      <section className="about-facts" aria-label="Kısa olgular">
+        <div className="wrap about-facts-grid">
+          {facts.map((f, i) => (
+            <div className="about-fact rv" key={f.l} style={{ ["--d" as string]: `${i * 70}ms` }}>
+              <b>{f.v}</b>
+              <span>{f.l}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <Section id="kim" kicker="Kim bu atölye?" title="İş sırası net:" accent="revizyon önce">
         <div className="prose prose-wide">
           <p>
-            BN Hidrovalf Makina’nın iş sıralaması nettir: birinci iş valf ve
-            pompa revizyonu, ikinci iş bunu destekleyen{" "}
-            <Link href="/imalat">CNC ve özel imalat</Link>, üçüncüsü ihtiyaca
-            göre <Link href="/yedek-parca">yedek parça</Link> tedarikidir.
-            Ostim–İvedik sanayi havzasındaki filo, servis ve atölyelere ve
-            Türkiye geneline hizmet verilir.
+            {site.name}, Genç Kardeşler Sanayi Sitesi’nde (İvedik OSB, Yenimahalle/Ankara)
+            yerleşiktir. Ostim–İvedik sanayi havzasındaki filo, servis ve atölyelere
+            hizmet verir; parça Türkiye geneline gönderilir ve geri alınır.
           </p>
           <p>
-            Çalışma biçimi 20 yılı aşkın sürede oturmuştur: parça gelir,
-            sökülür, ölçülür; teklif yazılı verilir; iş tezgâhta{" "}
-            <Link href="/revizyon/videolu-test">videolu testle</Link> kapanır
-            ve parça <Link href="/revizyon/teslimat">kargo veya otobüs
-            kurye</Link> ile geri döner.
+            Çalışma biçimi yıllar içinde oturmuştur: parça gelir, sökülür, ölçülür;
+            teklif yazılı verilir; iş tezgâhta{" "}
+            <Link href="/revizyon/videolu-test">videolu testle</Link> kapanır.
+            Gönderim seçenekleri <Link href="/revizyon/teslimat">teslimat</Link> sayfasında
+            açıklanır.
           </p>
+        </div>
+
+        <ol className="hierarchy">
+          {hierarchy.map((h, i) => (
+            <li key={h.n} className="hierarchy-card rv" style={{ ["--d" as string]: `${i * 100}ms` }}>
+              <span className="hierarchy-n">{h.n}</span>
+              <div>
+                <h3>{h.t}</h3>
+                <p>{h.d}</p>
+                <Link href={h.href} className="text-link">
+                  {h.cta} →
+                </Link>
+              </div>
+            </li>
+          ))}
+        </ol>
+
+        <FlowSvg />
+      </Section>
+
+      <Section
+        id="surec"
+        kicker="Atölyede nasıl ilerler?"
+        title="Revizyon"
+        accent="beş adımda"
+        lead="Şematik çizimler süreci özetler; ayrıntılı adımlar süreç sayfasında."
+        tone="soft"
+      >
+        <ValveStory />
+        <p className="about-more">
+          Adım adım metin ve teslimat için{" "}
+          <Link href="/revizyon/surec">süreç sayfasına</Link> bakın.
+        </p>
+      </Section>
+
+      <Section
+        id="kanit"
+        kicker="Kanıt"
+        title="Videolu test,"
+        accent="yazılı rapor değil"
+        lead="Örnek kayıtlarda manometreden okunan değerler yalnızca o işlere aittir; her işin standart basıncı değildir."
+      >
+        <div className="split">
+          <div className="gauge-pair rv-l">
+            <Gauge bar={240} label="Yanmar valf testi kaydı (örnek)" delayMs={0} />
+            <Gauge bar={320} label="Çok dilimli valf testi (örnek)" delayMs={220} />
+          </div>
+          <div className="split-copy rv-r">
+            <h3>Tezgâhta çekilir, paylaşılır</h3>
+            <p>
+              Test sonucu PDF rapor olarak değil, videolu kayıt olarak verilir. Kayıt,
+              ilgili valf veya pompa işiyle birlikte paylaşılır.
+            </p>
+            <p>
+              <Link href="/revizyon/videolu-test">Videolu test sayfası</Link> — gerçek
+              atölye klipleri, tıklanınca yüklenir.
+            </p>
+          </div>
         </div>
       </Section>
 
@@ -120,22 +247,45 @@ export default function Page() {
       </Section>
 
       <Section
+        id="markalar"
+        kicker="Kapsam"
+        title="İşlenen"
+        accent="markalar"
+        lead="Listede olmayan markalar için de teklif istenebilir. Aşağıdaki adlar resmi bayilik anlamına gelmez."
+      >
+        <IndependentNotice />
+        <div className="about-brand-block rv">
+          <BrandChips
+            heading="Marka sayfaları"
+            slugs={brands.map((b) => ({ slug: b.slug, name: b.name }))}
+          />
+        </div>
+        <p className="about-more">
+          Marka bazlı kapsam için <Link href="/revizyon/marka">marka dizinine</Link> gidin.
+        </p>
+      </Section>
+
+      <Section
         id="atolye"
         kicker="Atölye"
         title="Tezgâhtan"
-        accent="üç kare"
+        accent="kareler"
         lead="Yüz içeren kayıtlar, izin alınmadan yayınlanmaz."
+        tone="soft"
       >
         <div className="gallery-grid gallery-grid-3">
           {shots.map((s, i) => (
-            <div className="gallery-item rv-scale" key={s.src} style={{ ["--d" as string]: `${i * 90}ms` }}>
+            <div
+              className="gallery-item rv-scale"
+              key={s.src}
+              style={{ ["--d" as string]: `${i * 90}ms` }}
+            >
               <Pic
                 src={s.src}
                 srcSet={s.srcSet}
-                avifSrcSet={s.avifSrcSet}
                 alt={s.alt}
-                width={1600}
-                height={1200}
+                width={1200}
+                height={900}
                 sizes="(max-width: 900px) 100vw, 33vw"
               />
             </div>
@@ -143,23 +293,63 @@ export default function Page() {
         </div>
       </Section>
 
-      <Section id="nap" kicker="Adres" title="Tek adres," accent="İvedik OSB" tone="soft">
-        <div className="contact-grid">
-          <div className="contact-card rv">
-            <span>Adres</span>
-            <a href={site.maps} rel="noopener noreferrer" target="_blank">
-              {site.address.line}
-            </a>
+      <Section id="nap" kicker="Konum ve iletişim" title="Tek adres," accent="İvedik OSB">
+        <div className="about-nap">
+          <div className="about-nap-card rv">
+            <h3>NAP</h3>
+            <dl className="nap-list">
+              <div>
+                <dt>Unvan</dt>
+                <dd>{site.legalName}</dd>
+              </div>
+              <div>
+                <dt>Adres</dt>
+                <dd>
+                  <a href={site.maps} rel="noopener noreferrer" target="_blank">
+                    {site.address.line}
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt>Telefon / WhatsApp</dt>
+                <dd>
+                  <a href={`tel:${site.phoneTel}`}>{site.phone}</a>
+                </dd>
+              </div>
+              <div>
+                <dt>E-posta</dt>
+                <dd>
+                  <a href={`mailto:${site.email}`}>{site.email}</a>
+                </dd>
+              </div>
+            </dl>
+            <p className="nap-note">
+              Çalışma saatleri sitede yayınlanmaz; planlama için telefon önerilir.
+            </p>
+            <div className="page-cta">
+              <Link href="/iletisim" className="btn btn-outline">
+                İletişim
+              </Link>
+              <a href={site.maps} className="btn btn-primary" rel="noopener noreferrer" target="_blank">
+                Haritada aç
+              </a>
+            </div>
           </div>
-          <div className="contact-card rv" style={{ ["--d" as string]: "90ms" }}>
-            <span>Telefon / WhatsApp</span>
-            <a href={`tel:${site.phoneTel}`}>{site.phone}</a>
-          </div>
-          <div className="contact-card rv" style={{ ["--d" as string]: "180ms" }}>
-            <span>E-posta</span>
-            <a href={`mailto:${site.email}`}>{site.email}</a>
+          <div className="about-nap-map rv-r" aria-hidden="true">
+            <div className="about-map-art">
+              <span className="about-map-pin" />
+              <p>
+                <strong>İvedik OSB</strong>
+                <br />
+                Yenimahalle / Ankara
+              </p>
+            </div>
           </div>
         </div>
+      </Section>
+
+      <Section id="sss" kicker="SSS" title="Hakkımızda" accent="soruları" tone="soft">
+        <FaqList items={faqs} />
       </Section>
 
       <QuoteCta />
