@@ -71,6 +71,9 @@ export function Footer() {
               <Link href="/hakkimizda">Hakkımızda</Link>
             </li>
             <li>
+              <Link href="/blog">Blog</Link>
+            </li>
+            <li>
               <Link href="/sss">Sık sorulan sorular</Link>
             </li>
             <li>
