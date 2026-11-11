@@ -1154,11 +1154,24 @@ a { color: inherit; }
   display: block;
 }
 .footer h2 {
+  position: relative;
+  display: inline-block;
   font-size: 0.85rem;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink);
-  margin: 0 0 0.8rem;
+  margin: 0 0 1.15rem;
+  padding-bottom: 0.55rem;
+}
+.footer h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 2.25rem;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
 }
 .footer ul { list-style: none; margin: 0; padding: 0; }
 .footer li { margin: 0.35rem 0; }
