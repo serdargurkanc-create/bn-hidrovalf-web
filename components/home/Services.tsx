@@ -52,14 +52,48 @@ export function Services() {
         </div>
         <div className="support-grid">
           <Link href="/imalat" className="support-card rv" style={{ ["--d" as string]: "0ms" }}>
-            <IconCnc />
-            <strong>CNC ve özel imalat</strong>
-            <p>Revizyonu destekleyen spool ve özel parça imalatı.</p>
+            <span className="support-top">
+              <IconCnc />
+              <span>
+                <span className="support-kicker">Destek</span>
+                <strong>CNC ve özel imalat</strong>
+              </span>
+            </span>
+            <p>
+              Revizyonu destekleyen spool ve özel parça imalatı. Ölçü mevcut
+              parçadan alınır; teknik resim şart değildir.
+            </p>
+            <ul className="support-points">
+              <li>Spool imalatı</li>
+              <li>Yüzey taşlama</li>
+              <li>Flanş işleme</li>
+            </ul>
+            <span className="support-go">
+              İnceleyin
+              <Arrow />
+            </span>
           </Link>
           <Link href="/yedek-parca" className="support-card rv" style={{ ["--d" as string]: "90ms" }}>
-            <IconParca />
-            <strong>Yedek parça</strong>
-            <p>İşin gerektirdiği yerde, destek niteliğinde parça temini.</p>
+            <span className="support-top">
+              <IconParca />
+              <span>
+                <span className="support-kicker">Destek</span>
+                <strong>Yedek parça</strong>
+              </span>
+            </span>
+            <p>
+              İşin gerektirdiği yerde parça temini. Katalog yoktur; parça talebe
+              göre tedarik edilir veya atölyede imal edilir.
+            </p>
+            <ul className="support-points">
+              <li>Talebe göre tedarik</li>
+              <li>Fotoğrafla talep</li>
+              <li>Atölyede imalat</li>
+            </ul>
+            <span className="support-go">
+              Parça iste
+              <Arrow />
+            </span>
           </Link>
         </div>
       </div>
