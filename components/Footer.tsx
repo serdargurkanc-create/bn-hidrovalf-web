@@ -119,16 +119,16 @@ export function Footer() {
         <span>© {new Date().getFullYear()} {site.name}</span>
         <a
           className="footer-credit"
-          href="https://somdijital.com/"
+          href="https://sumdijital.com/"
           target="_blank"
-          rel="noopener"
-          aria-label="Som Dijital"
+          rel="noopener noreferrer"
+          aria-label="sumdijital.com"
         >
           <img
-            src={asset("/logo/som-dijital.webp")}
-            alt="Som Dijital"
-            width={168}
-            height={41}
+            src={asset("/logo/sum-dijital.webp")}
+            alt=""
+            width={160}
+            height={74}
           />
         </a>
         <nav aria-label="Yasal">
