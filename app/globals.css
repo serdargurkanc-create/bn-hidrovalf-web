@@ -1707,6 +1707,12 @@ html.js:not(.reduced) .timeline.in::after { opacity: 0.85; animation: tl-flow 1s
 .about-fact {
   display: grid;
   gap: 0.2rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--accent-2);
+  border-radius: var(--r);
+  padding: 1.05rem 1.1rem;
+  box-shadow: var(--sh-sm);
 }
 .about-fact b {
   font-size: clamp(1.35rem, 2.8vw, 1.85rem);
@@ -1834,6 +1840,61 @@ html.js:not(.reduced) .timeline.in::after { opacity: 0.85; animation: tl-flow 1s
 }
 .about-map-art p { margin: 0; font-size: 1rem; line-height: 1.45; }
 .about-map-art strong { font-size: 1.2rem; letter-spacing: -0.03em; }
+.about-nap-map { min-height: 320px; padding: 0.75rem; }
+.about-map-svg { width: 100%; height: auto; display: block; }
+.about-map-grid line { stroke: color-mix(in srgb, var(--ink) 12%, transparent); stroke-width: 1; }
+.about-map-block { fill: rgba(255, 255, 255, 0.72); stroke: var(--line); stroke-width: 1.5; }
+.about-map-plot { fill: var(--accent-soft); stroke: var(--accent-ink); stroke-width: 1.8; }
+.about-map-route { stroke: var(--accent-2); stroke-width: 3.5; stroke-linecap: round; }
+.about-map-dot { fill: var(--accent-2); }
+.about-map-label, .about-map-sub { font-family: var(--font); fill: var(--ink); }
+.about-map-label { font-size: 18px; font-weight: 800; }
+.about-map-sub { font-size: 14px; fill: var(--ink-soft); font-weight: 600; }
+html.js:not(.reduced) .about-map-dot { transform-box: fill-box; transform-origin: center; animation: about-pulse 1.8s ease-in-out infinite; }
+@keyframes about-pulse { 50% { transform: scale(1.35); } }
+
+.about-rail { position: relative; margin-top: 0.25rem; }
+.about-rail > ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.9rem; }
+.about-rail-track {
+  position: absolute;
+  left: 0.55rem;
+  top: 1.2rem;
+  bottom: 1.2rem;
+  width: 3px;
+  border-radius: 999px;
+  background: var(--line);
+  overflow: hidden;
+  pointer-events: none;
+}
+.about-rail-track i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  transform-origin: top center;
+}
+.about-chapter {
+  display: grid;
+  gap: 0.65rem;
+  margin-left: 1.6rem;
+  padding: 0.75rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  box-shadow: var(--sh-sm);
+}
+.about-chapter-scene .scene { background: #fff; margin: 0; }
+.about-chapter-copy h3 { margin: 0.2rem 0 0.35rem; font-size: 1.2rem; letter-spacing: -0.03em; }
+.about-chapter-copy p { margin: 0; color: var(--ink-soft); }
+@media (min-width: 800px) {
+  .about-chapter {
+    grid-template-columns: minmax(180px, 240px) 1fr;
+    align-items: center;
+    gap: 1.25rem;
+    margin-left: 1.8rem;
+    padding: 0.85rem 1rem;
+  }
+}
 @media (min-width: 900px) {
   .about-nap { grid-template-columns: 1.15fr 0.85fr; align-items: stretch; gap: 1.5rem; }
   .about-nap-map { min-height: 100%; }
