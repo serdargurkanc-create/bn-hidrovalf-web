@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Gauge } from "@/components/Anim";
+import { TestBenchScene } from "@/components/anim/Scenes";
 import { FaqList, PageHero, QuoteCta, Section } from "@/components/Inner";
 import { SchemaLd } from "@/components/Schema";
 import { VideoFigure } from "@/components/VideoFigure";
@@ -70,6 +71,16 @@ export default function Page() {
             <VideoFigure key={v.src} video={v} />
           ))}
         </div>
+      </Section>
+
+      <Section
+        id="cizimle"
+        kicker="Çizimle anlatım"
+        title="Test tezgâhı"
+        accent="nasıl kurulur?"
+        lead="Şematik çizim: güç ünitesinden gelen hat revizyonu biten valfe bağlanır, manometre basıncı gösterir ve tüm test kamerayla kaydedilir."
+      >
+        <TestBenchScene />
       </Section>
 
       <Section

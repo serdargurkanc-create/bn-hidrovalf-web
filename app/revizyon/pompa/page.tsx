@@ -9,6 +9,7 @@ import {
 } from "@/components/Inner";
 import { SchemaLd } from "@/components/Schema";
 import { Pic } from "@/components/Pic";
+import { PumpExploded } from "@/components/anim/Scenes";
 import { VideoFigure } from "@/components/VideoFigure";
 import { brands } from "@/lib/brands";
 import { videos } from "@/lib/media";
@@ -123,6 +124,17 @@ export default function Page() {
             </article>
           ))}
         </div>
+      </Section>
+
+      <Section
+        id="cizimle"
+        kicker="Çizimle anlatım"
+        title="İç grup"
+        accent="nasıl çalışır?"
+        lead="Şematik çizim pistonlu pompanın iç grubunu açılmış hâlde gösterir: kayar plaka, pistonlar, silindir bloğu ve valf plakası. Revizyonda bu parçaların yüzeyleri ölçülür ve taşlanır."
+        tone="soft"
+      >
+        <PumpExploded />
       </Section>
 
       <Section

@@ -99,7 +99,8 @@ export function Atelier() {
         <button type="button" className="lightbox-close" data-lightbox-close>
           Kapat
         </button>
-        <img alt="" />
+        {/* src, lightbox açılırken motion.js tarafından atanır; boş src bırakılmaz */}
+        <img alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
       </div>
     </section>
   );

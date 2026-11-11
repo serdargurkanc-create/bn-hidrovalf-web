@@ -1312,3 +1312,145 @@ html.js:not(.reduced) .form-step:focus-within { border-color: var(--accent); box
   .gauge-needle { transform: rotate(var(--gauge-angle, 0deg)) !important; transition: none !important; }
   html.js .anim, html.js .timeline { opacity: 1 !important; transform: none !important; }
 }
+
+/* ===================== v6: animasyonlu hikâye sahneleri ===================== */
+
+/* Mobil dev ok düzeltmesi: boyutsuz SVG'ye sınır */
+.pillar .go svg, .go svg { width: 18px; height: 18px; flex: none; }
+
+/* Video kutusu: poster yüklenmeden simsiyah blok görünmesin */
+.video-figure video { background: var(--bg-soft); }
+
+/* --- Sahne kabı --- */
+.scene {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--bg-tint);
+  padding: 0.9rem;
+}
+.scene svg { width: 100%; height: auto; display: block; }
+.scene-tag {
+  position: absolute; top: 0.6rem; right: 0.75rem;
+  font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+/* çizim dili */
+.sc-fill { fill: #fff; stroke: var(--ink); stroke-width: 2; }
+.sc-line { stroke: var(--ink); stroke-width: 2; stroke-linecap: round; }
+.sc-dash { stroke: var(--ink-soft); stroke-width: 1.5; stroke-dasharray: 4 5; stroke-linecap: round; }
+.sc-accent { fill: var(--accent-soft); stroke: var(--accent-ink); stroke-width: 2; }
+.sc-accent-fill { fill: var(--accent-soft); stroke: var(--accent-ink); stroke-width: 1.8; }
+.sc-bore { fill: var(--bg-soft); stroke: var(--line); stroke-width: 1.5; }
+.sc-axis { stroke: var(--line); stroke-width: 1.5; stroke-dasharray: 2 6; }
+.sc-needle { stroke: var(--accent-ink); stroke-width: 2.5; stroke-linecap: round; }
+.sc-spark { stroke: var(--accent-2); stroke-width: 2; stroke-linecap: round; }
+.sc-check { stroke: var(--teal); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.sc-kidney { stroke: var(--accent-ink); stroke-width: 3; stroke-linecap: round; }
+.sc-wheel { stroke: var(--accent-ink); stroke-width: 2; fill: none; stroke-dasharray: 10 8; }
+.sc-flow { stroke: var(--accent-2); stroke-width: 2; stroke-dasharray: 6 9; stroke-linecap: round; opacity: 0.9; }
+.sc-measure, .li-draw { stroke: var(--ink); }
+
+/* transform hazırlığı */
+.sc-cap, .sc-bolt, .sc-anvil, .sc-slide, .sc-measure, .sc-check,
+.px-plate, .px-piston, .px-vplate {
+  transition: transform 0.9s var(--ease), opacity 0.9s var(--ease), stroke-dashoffset 1s var(--ease);
+}
+.sc-anvil { transition-delay: 0.35s; }
+
+/* SON KARE = varsayılan (JS yok / reduced): her şey açık ve yerinde */
+.sc-cap { transform: translateY(-16px); }
+.sc-bolt-a { transform: translate(-6px, -22px); }
+.sc-bolt-b { transform: translate(6px, -22px); }
+.sc-anvil { transform: translateX(22px); }
+.sc-slide { transform: translateX(26px); }
+.sc-measure { stroke-dasharray: 100; stroke-dashoffset: 0; }
+.sc-check { stroke-dasharray: 100; stroke-dashoffset: 0; fill: none; }
+.px-plate { transform: translateX(-14px); }
+.px-piston { transform: translateX(-6px); }
+.px-vplate { transform: translateX(14px); }
+.sc-needle-g { transform: rotate(118deg); transform-origin: center; transform-box: fill-box; }
+.li-draw { stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 100; stroke-dashoffset: 0; }
+
+/* BAŞLANGIÇ KARESİ: yalnız JS + hareket izni varken */
+html.js:not(.reduced) .anim:not(.in) .sc-cap,
+html.js:not(.reduced) .anim:not(.in) .sc-bolt-a,
+html.js:not(.reduced) .anim:not(.in) .sc-bolt-b,
+html.js:not(.reduced) .anim:not(.in) .sc-anvil,
+html.js:not(.reduced) .anim:not(.in) .sc-slide,
+html.js:not(.reduced) .anim:not(.in) .px-plate,
+html.js:not(.reduced) .anim:not(.in) .px-piston,
+html.js:not(.reduced) .anim:not(.in) .px-vplate { transform: none; }
+html.js:not(.reduced) .anim:not(.in) .sc-measure,
+html.js:not(.reduced) .anim:not(.in) .sc-check,
+html.js:not(.reduced) .anim:not(.in) .li-draw { stroke-dashoffset: 100; }
+html.js:not(.reduced) .anim:not(.in) .sc-needle-g { transform: rotate(-30deg); }
+html.js:not(.reduced) .anim.in .sc-needle-g { transition: transform 1.6s var(--ease) 0.3s; }
+html.js:not(.reduced) .anim.in .sc-check { transition-delay: 1.2s; }
+html.js:not(.reduced) .anim.in .li-draw { transition: stroke-dashoffset 0.9s var(--ease); }
+html.js:not(.reduced) .anim.in .li-d2 { transition-delay: 0.15s; }
+html.js:not(.reduced) .anim.in .li-d3 { transition-delay: 0.3s; }
+html.js:not(.reduced) .anim.in .li-d4 { transition-delay: 0.45s; }
+html.js:not(.reduced) .anim.in .px-piston:nth-child(2) { transition-delay: 0.08s; }
+html.js:not(.reduced) .anim.in .px-piston:nth-child(3) { transition-delay: 0.16s; }
+html.js:not(.reduced) .anim.in .px-piston:nth-child(4) { transition-delay: 0.24s; }
+
+/* döngü animasyonları: yalnız .in iken */
+@keyframes sc-spin { to { stroke-dashoffset: -18; } }
+@keyframes sc-spark { 0%, 100% { opacity: 0; } 40% { opacity: 1; } }
+@keyframes sc-slide-dash { to { stroke-dashoffset: -9; } }
+@keyframes sc-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+.sc-sparks .sc-spark { opacity: 0.45; }
+html.js:not(.reduced) .anim.in .sc-wheel { animation: sc-spin 0.9s linear infinite; }
+html.js:not(.reduced) .anim.in .sc-spark { animation: sc-spark 0.7s linear infinite; }
+html.js:not(.reduced) .anim.in .sc-spark:nth-child(2) { animation-delay: 0.18s; }
+html.js:not(.reduced) .anim.in .sc-spark:nth-child(3) { animation-delay: 0.36s; }
+html.js:not(.reduced) .anim.in .sc-spark:nth-child(4) { animation-delay: 0.5s; }
+html.js:not(.reduced) .anim.in .sc-flow { animation: sc-slide-dash 0.8s linear infinite; }
+html.js:not(.reduced) .anim.in .lt-spin { animation: sc-slide-dash 0.5s linear infinite; }
+.bn-rec-dot { fill: #c2452c; }
+html.js:not(.reduced) .anim.in .bn-rec-dot { animation: sc-blink 1.2s ease infinite; }
+
+/* --- Hikâye ızgarası (ana sayfa + valf) --- */
+.story-grid {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+.story-step { display: grid; gap: 0.5rem; align-content: start; }
+.story-step h3 { font-size: 1rem; margin: 0.35rem 0 0; display: flex; gap: 0.5rem; align-items: baseline; }
+.story-no { font-family: var(--serif); color: var(--accent-ink); font-size: 1.05rem; }
+.story-step p { margin: 0; color: var(--ink-soft); font-size: 0.92rem; line-height: 1.5; }
+
+/* --- Hizmet kartı çizgi ikonları --- */
+.line-icon {
+  width: 52px; height: 52px; display: grid; place-items: center;
+  border-radius: 14px; background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent-ink) 22%, transparent);
+}
+.line-icon svg { width: 30px; height: 30px; }
+.pillar .line-icon { margin-bottom: 0.9rem; }
+.support-card .line-icon { margin-bottom: 0.35rem; }
+html.js:not(.reduced) .pillar:hover .line-icon svg,
+html.js:not(.reduced) .support-card:hover .line-icon svg {
+  transform: rotate(-6deg) scale(1.08);
+  transition: transform 0.4s var(--ease);
+}
+.line-icon svg { transition: transform 0.4s var(--ease); }
+
+/* --- Süreç zaman çizelgesi: adımlar arasında akan hidrolik hat --- */
+.timeline::after {
+  content: "";
+  position: absolute; left: 17px; top: 8px; bottom: 8px; width: 2px;
+  background: linear-gradient(var(--accent-2) 0, var(--accent-2) 6px, transparent 6px, transparent 14px) repeat-y;
+  background-size: 2px 14px;
+  opacity: 0;
+  pointer-events: none;
+}
+@keyframes tl-flow { to { background-position-y: 14px; } }
+html.js:not(.reduced) .timeline.in::after { opacity: 0.85; animation: tl-flow 1s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .timeline::after { opacity: 0.5 !important; animation: none !important; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .sc-wheel, .sc-spark, .sc-flow, .lt-spin, .bn-rec-dot { animation: none !important; }
+}

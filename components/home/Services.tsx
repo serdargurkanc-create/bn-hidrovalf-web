@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { IconValf, IconPompa, IconCnc, IconParca } from "@/components/anim/Scenes";
 function Arrow() {
   return (
     <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
@@ -17,6 +18,7 @@ export function Services() {
         <div className="pillars-grid">
           <Link href="/revizyon/valf" className="pillar pillar-valf rv-l">
             <div>
+              <IconValf />
               <p className="badge">Ana hizmet</p>
               <h2>
                 Valf <span className="serif-accent">revizyonu</span>
@@ -33,6 +35,7 @@ export function Services() {
           </Link>
           <Link href="/revizyon/pompa" className="pillar pillar-pompa rv-r">
             <div>
+              <IconPompa />
               <p className="badge">Ana hizmet</p>
               <h2>
                 Pompa <span className="serif-accent">revizyonu</span>
@@ -49,10 +52,12 @@ export function Services() {
         </div>
         <div className="support-grid">
           <Link href="/imalat" className="support-card rv" style={{ ["--d" as string]: "0ms" }}>
+            <IconCnc />
             <strong>CNC ve özel imalat</strong>
             <p>Revizyonu destekleyen spool ve özel parça imalatı.</p>
           </Link>
           <Link href="/yedek-parca" className="support-card rv" style={{ ["--d" as string]: "90ms" }}>
+            <IconParca />
             <strong>Yedek parça</strong>
             <p>İşin gerektirdiği yerde, destek niteliğinde parça temini.</p>
           </Link>

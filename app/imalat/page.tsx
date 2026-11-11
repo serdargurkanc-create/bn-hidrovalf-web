@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FaqList, PageHero, QuoteCta, Section } from "@/components/Inner";
 import { Pic } from "@/components/Pic";
+import { LatheScene } from "@/components/anim/Scenes";
 import { SchemaLd } from "@/components/Schema";
 import { VideoFigure } from "@/components/VideoFigure";
 import { videos } from "@/lib/media";
@@ -111,6 +112,17 @@ export default function Page() {
             </article>
           ))}
         </div>
+      </Section>
+
+      <Section
+        id="cizimle"
+        kicker="Çizimle anlatım"
+        title="Tezgâhta"
+        accent="talaşlı imalat"
+        lead="Şematik çizim: aynaya bağlı iş parçası döner, kesici takım yüzeyi işler. Spool ve özel parçalar bu düzende üretilir."
+        tone="soft"
+      >
+        <LatheScene />
       </Section>
 
       <Section

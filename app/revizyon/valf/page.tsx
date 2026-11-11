@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Gauge } from "@/components/Anim";
+import { ValveStory } from "@/components/anim/Scenes";
 import {
   BrandChips,
   FaqList,
@@ -123,6 +124,17 @@ export default function Page() {
             </article>
           ))}
         </div>
+      </Section>
+
+      <Section
+        id="cizimle"
+        kicker="Çizimle anlatım"
+        title="Beş adımda"
+        accent="valf revizyonu"
+        lead="Aşağıdaki şematik çizimler süreci özetler: söküm, ölçüm, taşlama, montaj ve test."
+        tone="soft"
+      >
+        <ValveStory />
       </Section>
 
       <Section

@@ -1,11 +1,11 @@
 import { Pic } from "@/components/Pic";
-import { journey } from "@/lib/site";
+import { ValveStory } from "@/components/anim/Scenes";
 
 const feats = [
   "20+ yıllık tecrübeye sahip kurumsal çözüm ortağı",
   "Her marka iş makinası valf ve pompa revizyonu",
   "Test sonucu videolu kayıt olarak paylaşılır",
-  "Teslimat: kargo ile adrese veya otobüs kurye",
+  "Spool imalatı ve yüzey taşlama atölye içinde",
 ];
 
 export function Journey() {
@@ -50,22 +50,10 @@ export function Journey() {
           <div className="cards-head rv">
             <p className="badge">Süreç</p>
             <h2 id="surec-title">
-              Fotoğraftan <span className="serif-accent">teslime</span>
+              Revizyon <span className="serif-accent">nasıl yapılır?</span>
             </h2>
           </div>
-          <div className="process-grid">
-            {journey.map((step, i) => (
-              <article
-                key={step.id}
-                className="process-card rv"
-                style={{ ["--d" as string]: `${i * 90}ms` }}
-              >
-                <span className="n">{step.id}</span>
-                <h3>{step.title}</h3>
-                <p>{step.body}</p>
-              </article>
-            ))}
-          </div>
+          <ValveStory />
         </div>
       </section>
     </>
