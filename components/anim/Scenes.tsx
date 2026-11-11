@@ -13,14 +13,20 @@ function Scene({
   viewBox,
   className,
   label,
+  story = false,
 }: {
   children: React.ReactNode;
   viewBox: string;
   className: string;
   label?: string;
+  /** Kaydırma ile .play alan hikâye sahneleri (IO .anim değil). */
+  story?: boolean;
 }) {
   return (
-    <div className={`scene anim ${className}`} aria-hidden="true">
+    <div
+      className={`scene ${story ? "story-scene" : "anim"} ${className}`}
+      aria-hidden="true"
+    >
       <svg viewBox={viewBox} fill="none">
         {children}
       </svg>
@@ -59,7 +65,7 @@ function Spool({ className = "" }: { className?: string }) {
 /** 1 — Söküm: kapak kalkar, cıvatalar çıkar. */
 export function SceneSokum({ className }: P) {
   return (
-    <Scene viewBox="0 0 240 150" className={`sc-sokum ${className || ""}`}>
+    <Scene story viewBox="0 0 240 150" className={`sc-sokum ${className || ""}`}>
       <ValveBody y={74} />
       <g className="sc-cap">
         <rect x="36" y="48" width="168" height="18" rx="6" className="sc-fill" />
@@ -81,7 +87,7 @@ export function SceneSokum({ className }: P) {
 /** 2 — Ölçüm: spool dışarıda, mikrometre çenesi kapanır. */
 export function SceneOlcum({ className }: P) {
   return (
-    <Scene viewBox="0 0 240 150" className={`sc-olcum ${className || ""}`}>
+    <Scene story viewBox="0 0 240 150" className={`sc-olcum ${className || ""}`}>
       <g transform="translate(44 96)">
         <Spool />
       </g>
@@ -100,7 +106,7 @@ export function SceneOlcum({ className }: P) {
 /** 3 — Taşlama: dönen taş + kıvılcım. */
 export function SceneTaslama({ className }: P) {
   return (
-    <Scene viewBox="0 0 240 150" className={`sc-taslama ${className || ""}`}>
+    <Scene story viewBox="0 0 240 150" className={`sc-taslama ${className || ""}`}>
       <g className="sc-wheel-g">
         <circle cx="150" cy="52" r="34" className="sc-fill" />
         <circle cx="150" cy="52" r="34" className="sc-wheel" pathLength={100} />
@@ -122,7 +128,7 @@ export function SceneTaslama({ className }: P) {
 /** 4 — Montaj: spool gövdeye geri kayar. */
 export function SceneMontaj({ className }: P) {
   return (
-    <Scene viewBox="0 0 240 150" className={`sc-montaj ${className || ""}`}>
+    <Scene story viewBox="0 0 240 150" className={`sc-montaj ${className || ""}`}>
       <ValveBody y={64} />
       <rect x="36" y="76" width="168" height="24" rx="6" className="sc-bore" />
       <g transform="translate(52 76)">
@@ -137,7 +143,7 @@ export function SceneMontaj({ className }: P) {
 /** 5 — Test: hortum, akış ve ibre. */
 export function SceneTest({ className }: P) {
   return (
-    <Scene viewBox="0 0 240 150" className={`sc-test ${className || ""}`}>
+    <Scene story viewBox="0 0 240 150" className={`sc-test ${className || ""}`}>
       <rect x="22" y="84" width="92" height="36" rx="8" className="sc-fill" />
       <line x1="34" y1="102" x2="102" y2="102" className="sc-dash" />
       <path d="M114 102h34c12 0 16-6 16-16V74" className="sc-line" />
@@ -322,16 +328,27 @@ export const valveStorySteps = [
 
 export function ValveStory() {
   return (
-    <ol className="story-grid">
-      {valveStorySteps.map((s, i) => (
-        <li key={s.id} className="story-step rv" style={{ ["--d" as string]: `${i * 110}ms` }}>
-          <s.Scene />
-          <h3>
-            <span className="story-no">{s.id}</span> {s.title}
-          </h3>
-          <p>{s.note}</p>
-        </li>
-      ))}
-    </ol>
+    <div className="story-rail" data-story-rail data-steps={valveStorySteps.length}>
+      {/* Kutular arası renkli akış; --story-p (0–1) kaydırmayla dolar */}
+      <div className="story-pipe" aria-hidden="true">
+        <span className="story-pipe-fill" />
+      </div>
+      <ol className="story-grid">
+        {valveStorySteps.map((s, i) => (
+          <li
+            key={s.id}
+            className="story-step rv"
+            data-story-step={i}
+            style={{ ["--d" as string]: `${i * 80}ms` }}
+          >
+            <s.Scene />
+            <h3>
+              <span className="story-no">{s.id}</span> {s.title}
+            </h3>
+            <p>{s.note}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
   );
 }

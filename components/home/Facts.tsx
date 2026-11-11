@@ -1,15 +1,4 @@
-const chips = [
-  "Valf revizyonu",
-  "Spool imalatı",
-  "Arıza çözümü",
-  "Valf testi",
-  "Pompa revizyonu",
-  "İç grup yüzey taşlama",
-  "Pompa testi",
-  "Videolu test kaydı",
-  "CNC ve özel imalat",
-  "Yedek parça",
-];
+import { BrandMark, brandMarks } from "@/components/home/BrandMarks";
 
 const stats = [
   { value: "20+", label: "Yıl atölye tecrübesi" },
@@ -19,14 +8,15 @@ const stats = [
 ];
 
 export function Facts() {
-  const loop = [...chips, ...chips];
+  // Sonsuz kaydırma için iki kez tekrarla
+  const loop = [...brandMarks, ...brandMarks];
   return (
     <>
-      <div className="ribbon" aria-hidden="true">
+      <div className="ribbon" aria-label="İşlediğimiz markalar" role="img">
         <div className="marquee">
-          <div className="marquee-track">
-            {loop.map((item, i) => (
-              <span key={`${item}-${i}`}>{item}</span>
+          <div className="marquee-track marquee-brands">
+            {loop.map((m, i) => (
+              <BrandMark key={`${m.slug}-${i}`} mark={m} />
             ))}
           </div>
         </div>

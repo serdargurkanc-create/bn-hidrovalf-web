@@ -1,60 +1,67 @@
 import { Pic } from "@/components/Pic";
 import { asset } from "@/lib/paths";
 
+/** Hepsi 4:3 kırpılmış atölye kareleri — tek tip ızgara, boşluksuz. */
 const shots = [
   {
-    src: "/images/foto-valf-revizyonu-cat-spool-01-600.webp",
-    srcSet: "/images/foto-valf-revizyonu-cat-spool-01-600.webp 600w, /images/foto-valf-revizyonu-cat-spool-01.webp 1600w",
-    avifSrcSet: "/images/foto-valf-revizyonu-cat-spool-01-600.avif 600w, /images/foto-valf-revizyonu-cat-spool-01-800.avif 800w, /images/foto-valf-revizyonu-cat-spool-01.avif 1600w",
-    full: "/images/foto-valf-revizyonu-cat-spool-01.webp",
-    w: 1600,
-    h: 1200,
+    src: "/images/gallery/galeri-01-spool-600.webp",
+    srcSet:
+      "/images/gallery/galeri-01-spool-600.webp 600w, /images/gallery/galeri-01-spool-800.webp 800w, /images/gallery/galeri-01-spool-1200.webp 1200w",
+    full: "/images/gallery/galeri-01-spool-1200.webp",
+    w: 1200,
+    h: 900,
     alt: "Valf spool’ları yakın çekim",
+    label: "Spool",
   },
   {
-    src: "/images/foto-pompa-govde-mikrometre-01-600.webp",
-    srcSet: "/images/foto-pompa-govde-mikrometre-01-600.webp 600w, /images/foto-pompa-govde-mikrometre-01.webp 1600w",
-    avifSrcSet: "/images/foto-pompa-govde-mikrometre-01-600.avif 600w, /images/foto-pompa-govde-mikrometre-01-800.avif 800w, /images/foto-pompa-govde-mikrometre-01.avif 1600w",
-    full: "/images/foto-pompa-govde-mikrometre-01.webp",
-    w: 1600,
-    h: 1200,
+    src: "/images/gallery/galeri-02-mikrometre-600.webp",
+    srcSet:
+      "/images/gallery/galeri-02-mikrometre-600.webp 600w, /images/gallery/galeri-02-mikrometre-800.webp 800w, /images/gallery/galeri-02-mikrometre-1200.webp 1200w",
+    full: "/images/gallery/galeri-02-mikrometre-1200.webp",
+    w: 1200,
+    h: 900,
     alt: "Pompa gövdesinde mikrometre ile ölçü kontrolü",
+    label: "Ölçüm",
   },
   {
-    src: "/images/foto-valf-blok-seri-uretim-01-600.webp",
-    srcSet: "/images/foto-valf-blok-seri-uretim-01-600.webp 600w, /images/foto-valf-blok-seri-uretim-01.webp 1600w",
-    avifSrcSet: "/images/foto-valf-blok-seri-uretim-01.avif 1600w",
-    full: "/images/foto-valf-blok-seri-uretim-01.webp",
-    w: 1600,
-    h: 1200,
+    src: "/images/gallery/galeri-03-blok-600.webp",
+    srcSet:
+      "/images/gallery/galeri-03-blok-600.webp 600w, /images/gallery/galeri-03-blok-800.webp 800w, /images/gallery/galeri-03-blok-1200.webp 1200w",
+    full: "/images/gallery/galeri-03-blok-1200.webp",
+    w: 1200,
+    h: 900,
     alt: "Tezgâhta valf blokları",
+    label: "Valf bloğu",
   },
   {
-    src: "/images/foto-pompa-kayar-plaka-01-600.webp",
-    srcSet: "/images/foto-pompa-kayar-plaka-01-600.webp 600w, /images/foto-pompa-kayar-plaka-01.webp 1600w",
-    avifSrcSet: "/images/foto-pompa-kayar-plaka-01.avif 1600w",
-    full: "/images/foto-pompa-kayar-plaka-01.webp",
-    w: 1600,
-    h: 1200,
+    src: "/images/gallery/galeri-04-kayar-plaka-600.webp",
+    srcSet:
+      "/images/gallery/galeri-04-kayar-plaka-600.webp 600w, /images/gallery/galeri-04-kayar-plaka-800.webp 800w, /images/gallery/galeri-04-kayar-plaka-1200.webp 1200w",
+    full: "/images/gallery/galeri-04-kayar-plaka-1200.webp",
+    w: 1200,
+    h: 900,
     alt: "Pompa kayar plakası",
+    label: "Kayar plaka",
   },
   {
-    src: "/images/foto-sarz-pompasi-disli-set-01-600.webp",
-    srcSet: "/images/foto-sarz-pompasi-disli-set-01-600.webp 600w, /images/foto-sarz-pompasi-disli-set-01.webp 1600w",
-    avifSrcSet: "/images/foto-sarz-pompasi-disli-set-01.avif 1600w",
-    full: "/images/foto-sarz-pompasi-disli-set-01.webp",
-    w: 1600,
-    h: 1200,
+    src: "/images/gallery/galeri-05-disli-600.webp",
+    srcSet:
+      "/images/gallery/galeri-05-disli-600.webp 600w, /images/gallery/galeri-05-disli-800.webp 800w, /images/gallery/galeri-05-disli-1200.webp 1200w",
+    full: "/images/gallery/galeri-05-disli-1200.webp",
+    w: 1200,
+    h: 900,
     alt: "Şarj pompası dişli seti",
+    label: "Dişli set",
   },
   {
-    src: "/images/foto-pompa-govde-dortlu-01-600.webp",
-    srcSet: "/images/foto-pompa-govde-dortlu-01-600.webp 600w, /images/foto-pompa-govde-dortlu-01-800.webp 800w",
-    avifSrcSet: "/images/foto-pompa-govde-dortlu-01-800.avif 800w, /images/foto-pompa-govde-dortlu-01.avif 1600w",
-    full: "/images/foto-pompa-govde-dortlu-01.webp",
-    w: 1600,
-    h: 1200,
+    src: "/images/gallery/galeri-06-dortlu-600.webp",
+    srcSet:
+      "/images/gallery/galeri-06-dortlu-600.webp 600w, /images/gallery/galeri-06-dortlu-800.webp 800w, /images/gallery/galeri-06-dortlu-1200.webp 1200w",
+    full: "/images/gallery/galeri-06-dortlu-1200.webp",
+    w: 1200,
+    h: 900,
     alt: "Dört pompa gövdesi tezgâh üzerinde",
+    label: "Pompa gövdesi",
   },
 ];
 
@@ -85,12 +92,12 @@ export function Atelier() {
               <Pic
                 src={s.src}
                 srcSet={s.srcSet}
-                avifSrcSet={s.avifSrcSet}
                 alt={s.alt}
                 width={s.w}
                 height={s.h}
-                sizes="(max-width: 900px) 50vw, 33vw"
+                sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 360px"
               />
+              <span className="gallery-cap">{s.label}</span>
             </a>
           ))}
         </div>

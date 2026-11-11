@@ -48,10 +48,13 @@ export const metadata: Metadata = {
   },
 };
 
-/* LCP başlık fontu: kritik alt küme; kalan ağırlıklar fonts-deferred.css ile. */
-const criticalFontCss = `@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:800;font-display:swap;src:url("${asset(
+/* LCP hero alt kümesi AYRI aile adında: aynı "Plus Jakarta Sans" adına
+   dar unicode-range yazılırsa "Videolu" gibi kelimelerde bazı harfler
+   alt kümeden, bazıları sistem fontundan gelir → kalın/ince karışımı.
+   Tam aile fonts-deferred.css ile yüklenir; tüm site tek tip kalır. */
+const criticalFontCss = `@font-face{font-family:"Plus Jakarta Sans LCP";font-style:normal;font-weight:800;font-display:swap;src:url("${asset(
   "/fonts/plus-jakarta-sans-800-lcp.woff2"
-)}") format("woff2");unicode-range:U+20,U+2e,U+42,U+48-49,U+4d-4e,U+61,U+64-66,U+69,U+6b-70,U+72-73,U+75-76,U+79-7a,U+117,U+130-131,U+137,U+13c,U+145-146,U+157,U+15f,U+17c,U+227,U+229,U+22f,U+307,U+327,U+1e02,U+1e0b,U+1e11,U+1e1f,U+1e22,U+1e28,U+1e40-1e41,U+1e44-1e45,U+1e57,U+1e59,U+1e61,U+1e8f;}`;
+)}") format("woff2");}`;
 
 const bootScript = [
   "document.documentElement.classList.add('js');",
@@ -87,6 +90,24 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           type="font/woff2"
           crossOrigin="anonymous"
           fetchPriority="high"
+        />
+        {/* Tam aile: LCP alt kümesiyle karışmasın diye ayrı aile; istatistik/başlık
+            kalınlıkları tek dosyadan gelsin diye düşük öncelikli preload. */}
+        <link
+          rel="preload"
+          href={asset("/fonts/plus-jakarta-sans-normal-400800-latin.woff2")}
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+          fetchPriority="low"
+        />
+        <link
+          rel="preload"
+          href={asset("/fonts/plus-jakarta-sans-normal-400800-latin-ext.woff2")}
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+          fetchPriority="low"
         />
         <style dangerouslySetInnerHTML={{ __html: criticalFontCss }} />
         <link
