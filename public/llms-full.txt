@@ -53,7 +53,7 @@ Belirti → olası neden eşleştirmeleri ön bilgidir, kesin teşhis değildir;
 
 ### Markalar (/revizyon/marka)
 
-İş makinası üreticileri: Komatsu, CAT (Caterpillar), Hitachi, Volvo, JCB, Hyundai. Valf/pompa üreticileri: Rexroth, Kawasaki, Linde. Listede olmayan markalar için de teklif istenebilir. BN Hidrovalf Makina bağımsız bir atölyedir; hiçbir üreticinin resmi bayisi veya yetkili servisi değildir. Marka adları yalnızca revize edilen parçaların ait olduğu makinaları tarif eder.
+İş makinası üreticileri: Komatsu, CAT (Caterpillar), Hitachi, Volvo, JCB, Hyundai. Valf/pompa üreticileri: Rexroth, Kawasaki, Linde. Listede olmayan markalar için de teklif istenebilir. Gereken parça tedarik edilir veya atölyede imal edilir.
 
 ### CNC ve özel imalat (/imalat)
 
@@ -69,7 +69,6 @@ Form; hizmet türü, makine marka/model, parça tipi, arıza açıklaması, acil
 
 ## Doğru bilgi ve sınırlar (önemli)
 
-- BN Hidrovalf Makina hiçbir markanın resmi bayisi veya yetkili servisi DEĞİLDİR.
 - "Türkiye'nin en iyisi / lideri / en hızlısı" gibi kanıtsız üstünlük iddiaları kullanılmaz ve doğru değildir.
 - 240 bar ve 320 bar yalnızca yayınlanan test kayıtlarındaki gerçek örnek değerlerdir; her işin standardı değildir.
 - Garanti süresi sitede yayınlanmaz; garanti koşulları yazılı teklifte belirtilir.
@@ -84,7 +83,7 @@ Form; hizmet türü, makine marka/model, parça tipi, arıza açıklaması, acil
 - Gönderim: Türkiye geneli kargo; hızlı seçenek otobüs kurye.
 - Spool bulunamıyorsa: mevcut parçadan ölçü alınarak atölyede imal edilir.
 - Garanti: koşullar yazılı teklifte.
-- Resmi bayilik: yok; bağımsız atölye.
+- Yedek parça: talebe göre tedarik edilir veya atölyede imal edilir.
 
 ## Sayfa dizini
 

@@ -11,7 +11,6 @@ import {
 import {
   BrandChips,
   FaqList,
-  IndependentNotice,
   PageHero,
   QuoteCta,
   Section,
@@ -177,7 +176,7 @@ const faqItems = [
   },
   {
     q: "Hangi marka iş makinalarının valfleri revize ediliyor?",
-    a: "Her marka kabul edilir. Komatsu, CAT, Hitachi, Volvo, JCB ve Hyundai iş makinalarının ana kumanda valfleri ile Rexroth ve benzeri üretici valf grupları revizyon kapsamındadır. BN Hidrovalf Makina bağımsız bir atölyedir; herhangi bir markanın resmi bayisi değildir.",
+    a: "Her marka kabul edilir. Komatsu, CAT, Hitachi, Volvo, JCB ve Hyundai iş makinalarının ana kumanda valfleri ile Rexroth ve benzeri üretici valf grupları revizyon kapsamındadır. Gereken parça tedarik edilir veya atölyede imal edilir.",
   },
   {
     q: "Spool bulunamıyorsa ne oluyor?",
@@ -231,7 +230,7 @@ export default function Page() {
         kicker="Ana hizmet · İvedik OSB"
         title="İş makinası"
         accent="valf revizyonu"
-        lead="Her marka iş makinasının ana kumanda valfi bu atölyede revize edilir. Kapsam spool imalatı, arıza çözümü ve tezgâhta videolu testtir. Resmi bayi değiliz; iş tek adreste biter."
+        lead="Her marka iş makinasının ana kumanda valfi bu atölyede revize edilir. Kapsam spool imalatı, arıza çözümü ve tezgâhta videolu testtir. İş tek adreste biter."
         crumbs={crumbs}
         media={<VideoFigure video={videos.spoolLogo} />}
       >
@@ -379,7 +378,6 @@ export default function Page() {
         lead="Listede olmayan marka da teklif ister. Adlar, revize edilen parçanın hangi makinaya ait olduğunu söyler."
         tone="soft"
       >
-        <IndependentNotice />
         <BrandChips
           heading="Marka sayfaları"
           slugs={brands.map((b) => ({ slug: b.slug, name: b.name }))}

@@ -2,7 +2,7 @@ import { asset } from "@/lib/paths";
 
 /**
  * Ana sayfa şeridi: markaların kendi logoları, tek yükseklikte siyah.
- * Resmi bayi izlenimi vermez; yalnızca işlenen markaları gösterir.
+ * İşlenen markaları gösterir.
  */
 
 type Mark = {

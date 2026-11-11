@@ -1,11 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  IndependentNotice,
-  PageHero,
-  QuoteCta,
-  Section,
-} from "@/components/Inner";
+import { PageHero, QuoteCta, Section } from "@/components/Inner";
 import { SchemaLd } from "@/components/Schema";
 import { brands } from "@/lib/brands";
 import { pageMeta } from "@/lib/meta";
@@ -13,7 +8,7 @@ import { pageMeta } from "@/lib/meta";
 export const metadata: Metadata = pageMeta({
   title: "Marka bazlı valf ve pompa revizyonu",
   description:
-    "Komatsu, CAT, Hitachi, Volvo, JCB, Hyundai iş makinaları ile Rexroth, Kawasaki, Linde valf ve pompa gruplarının revizyonu. Bağımsız atölye; resmi bayilik yoktur.",
+    "Komatsu, CAT, Hitachi, Volvo, JCB, Hyundai iş makinaları ile Rexroth, Kawasaki, Linde valf ve pompa gruplarının revizyonu. Gereken parça tedarik edilir veya atölyede imal edilir.",
   path: "/revizyon/marka",
 });
 
@@ -35,9 +30,7 @@ export default function Page() {
         accent="tek atölye"
         lead="Aşağıdaki markaların iş makinası valf ve pompaları revizyona kabul edilir; listede olmayan markalar için de teklif istenebilir."
         crumbs={crumbs}
-      >
-        <IndependentNotice />
-      </PageHero>
+      />
 
       <Section
         id="makine"

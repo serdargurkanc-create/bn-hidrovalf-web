@@ -202,18 +202,6 @@ export function FaqList({
   );
 }
 
-/** Bağımsız atölye uyarısı (marka sayfaları). */
-export function IndependentNotice({ brand }: { brand?: string }) {
-  return (
-    <p className="notice">
-      BN Hidrovalf Makina bağımsız bir revizyon atölyesidir;
-      {brand ? ` ${brand} dahil ` : " "}hiçbir üreticinin resmi bayisi veya
-      yetkili servisi değildir. Marka adları yalnızca revizyonu yapılan
-      parçaların hangi makinalara ait olduğunu tarif etmek için kullanılır.
-    </p>
-  );
-}
-
 /** Marka seçici hapleri. */
 export function BrandChips({
   heading = "Marka seçin",
