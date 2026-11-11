@@ -225,9 +225,10 @@ a { color: inherit; }
   gap: 0.15rem 1.15rem;
 }
 .nav > a, .nav summary {
+  position: relative;
   font-size: 0.92rem;
-  font-weight: 500;
-  color: var(--ink);
+  font-weight: 600;
+  color: var(--ink-soft);
   text-decoration: none;
   min-height: 44px;
   display: inline-flex;
@@ -236,6 +237,29 @@ a { color: inherit; }
   list-style: none;
   background: none;
   border: 0;
+  transition: color 0.2s;
+}
+.nav > a:hover,
+.nav summary:hover,
+.nav details[open] > summary { color: var(--ink); }
+.nav > a::after,
+.nav summary::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 8px;
+  height: 2px;
+  width: 0;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width 0.3s;
+  pointer-events: none;
+}
+.nav > a:hover::after,
+.nav summary:hover::after,
+.nav details[open] > summary::after { width: 100%; }
+@media (prefers-reduced-motion: reduce) {
+  .nav > a, .nav summary, .nav > a::after, .nav summary::after { transition: none; }
 }
 .nav summary::-webkit-details-marker { display: none; }
 .nav details { position: relative; }
