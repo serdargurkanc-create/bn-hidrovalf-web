@@ -66,9 +66,6 @@ export function Footer() {
           <h2>Hizmetler</h2>
           <ul className="footer-services">
             <li>
-              <Link href="/revizyon">Valf ve pompa revizyonu</Link>
-            </li>
-            <li>
               <Link href="/revizyon/valf">Valf revizyonu</Link>
             </li>
             <li>
@@ -76,9 +73,6 @@ export function Footer() {
             </li>
             <li>
               <Link href="/revizyon/surec">Süreç ve teslimat</Link>
-            </li>
-            <li>
-              <Link href="/revizyon/videolu-test">Videolu test</Link>
             </li>
             <li>
               <Link href="/revizyon/ariza-belirtileri">Arıza belirtileri</Link>

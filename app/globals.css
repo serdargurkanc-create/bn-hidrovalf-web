@@ -1155,14 +1155,6 @@ a { color: inherit; }
   display: grid;
   grid-template-columns: minmax(0, 1fr);
 }
-@media (min-width: 800px) {
-  .footer-services {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-rows: repeat(5, auto);
-    grid-auto-flow: column;
-    column-gap: 1.25rem;
-  }
-}
 .footer-services a { align-items: flex-start; line-height: 1.35; padding-top: 0.45rem; }
 .footer a { text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
 .footer a:hover { color: var(--accent-ink); }
