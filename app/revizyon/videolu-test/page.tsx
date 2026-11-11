@@ -91,8 +91,8 @@ export default function Page() {
         tone="soft"
       >
         <div className="gauge-row gauge-row-2">
-          <Gauge bar={240} label="Yanmar valf testi kaydı (15 sn, sesli)" />
-          <Gauge bar={320} label="Çok dilimli valf testi kayıtları (sesli)" />
+          <Gauge bar={240} label="Yanmar valf testi kaydı (15 sn, sesli)" delayMs={0} />
+          <Gauge bar={320} label="Çok dilimli valf testi kayıtları (sesli)" delayMs={280} />
         </div>
         <p className="sec-note">
           Bu değerler yalnızca yukarıdaki kayıtlarda okunan örneklerdir; her
