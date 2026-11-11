@@ -1234,7 +1234,7 @@ a { color: inherit; }
   .footer { padding: 2.75rem 0 1.35rem; }
   .footer-grid {
     grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.85fr) minmax(0, 0.72fr) minmax(220px, 1.05fr);
-    gap: 2rem 1.75rem;
+    gap: 2rem 2.65rem;
   }
   .footer-grid > div:first-child,
   .footer-contact-col { grid-column: auto; }
