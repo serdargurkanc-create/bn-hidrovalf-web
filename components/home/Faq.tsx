@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { faqs, whatsappQuote } from "@/lib/site";
 
+/* Teslimat sorusu ana sayfada gösterilmez; SSS ve teslimat sayfasında kalır. */
+const homeFaqs = faqs.filter((f) => !f.q.includes("gönderilir"));
+
 function Arrow() {
   return (
     <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
@@ -45,7 +48,7 @@ export function Faq() {
             </h2>
           </div>
           <div className="faq-list">
-            {faqs.map((item) => (
+            {homeFaqs.map((item) => (
               <details key={item.q} className="faq-item rv">
                 <summary>{item.q}</summary>
                 <p>{item.a}</p>

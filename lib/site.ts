@@ -18,7 +18,7 @@ export const site = {
   },
   maps: "https://www.google.com/maps/search/?api=1&query=Gen%C3%A7%20Karde%C5%9Fler%20Sanayi%20Sitesi%202285.%20Sk.%20No:40%20Yenimahalle%20Ankara",
   description:
-    "BN Hidrovalf Makina, Ankara İvedik OSB’de 20+ yıllık tecrübeye sahip kurumsal çözüm ortağıdır. Her marka iş makinasında valf ve pompa revizyonu, spool imalatı, iç grup yüzey taşlama ve videolu test kaydı. Teslimat kargo veya otobüs kurye.",
+    "BN Hidrovalf Makina, Ankara İvedik OSB’de 20+ yıllık tecrübeye sahip kurumsal çözüm ortağıdır. Her marka iş makinasında valf ve pompa revizyonu, spool imalatı, iç grup yüzey taşlama ve videolu test kaydı.",
   heroTitle: "İş makinalarında valf ve pompa revizyonu.",
 } as const;
 
@@ -104,7 +104,7 @@ export const journey = [
   {
     id: "05",
     title: "Videolu test ve teslim",
-    body: "Valf veya pompa testi yapılır. Sonuç yazılı rapor olarak değil, videolu kayıt olarak verilir. Teslimat Türkiye geneline kargo ile adrese; hızlı çözüm olarak otobüs kurye.",
+    body: "Valf veya pompa testi yapılır. Sonuç yazılı rapor olarak değil, videolu kayıt olarak verilir ve parça teslim edilir. Gönderim seçenekleri teslimat sayfasında açıklanır.",
     image: {
       webp: "/images/valf-testi-pakens-01-600.webp",
       srcSet: "/images/valf-testi-pakens-01-600.webp 600w, /images/valf-testi-pakens-01-800.webp 800w, /images/valf-testi-pakens-01.webp 1200w",

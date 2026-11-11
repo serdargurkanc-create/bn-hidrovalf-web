@@ -27,7 +27,7 @@ export function Hero() {
         <p className="hero-lead">
           BN Hidrovalf Makina, 20+ yıllık tecrübeye sahip kurumsal çözüm ortağıdır.
           Her marka iş makinasında valf ve pompa revizyonu, spool imalatı, arıza çözümü
-          ve videolu test kaydı. Teslimat kargo ile adrese veya otobüs kurye.
+          ve videolu test kaydı.
         </p>
         <div className="hero-cta">
           <Link href="/teklif" className="btn btn-primary">
@@ -38,7 +38,6 @@ export function Hero() {
             WhatsApp ile fotoğraf gönderin
           </a>
         </div>
-        <div className="scroll-hint" aria-hidden="true" />
       </div>
     </section>
   );

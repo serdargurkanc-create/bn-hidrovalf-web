@@ -7,8 +7,6 @@ const chips = [
   "İç grup yüzey taşlama",
   "Pompa testi",
   "Videolu test kaydı",
-  "Kargo ile adrese teslim",
-  "Otobüs kurye",
   "CNC ve özel imalat",
   "Yedek parça",
 ];
@@ -17,7 +15,7 @@ const stats = [
   { value: "20+", label: "Yıl atölye tecrübesi" },
   { value: "Her marka", label: "İş makinası valf ve pompa" },
   { value: "Videolu", label: "Test kaydı ile teslim" },
-  { value: "Kargo", label: "veya otobüs kurye" },
+  { value: "İvedik OSB", label: "Ankara, tek atölye" },
 ];
 
 export function Facts() {
