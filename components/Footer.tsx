@@ -64,7 +64,7 @@ export function Footer() {
         </div>
         <div>
           <h2>Hizmetler</h2>
-          <ul>
+          <ul className="footer-services">
             <li>
               <Link href="/revizyon">Valf ve pompa revizyonu</Link>
             </li>
