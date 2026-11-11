@@ -1,6 +1,9 @@
 import { videos } from "@/lib/media";
 import { faqs, site } from "@/lib/site";
 
+/* Şema, ana sayfada görünen SSS ile birebir eşleşir (teslimat sorusu SSS sayfasında). */
+const homeFaqs = faqs.filter((f) => !f.q.includes("gönderilir"));
+
 export function JsonLd() {
   const data = {
     "@context": "https://schema.org",
@@ -78,7 +81,7 @@ export function JsonLd() {
       {
         "@type": "FAQPage",
         "@id": `${site.url}/#faq`,
-        mainEntity: faqs.map((item) => ({
+        mainEntity: homeFaqs.map((item) => ({
           "@type": "Question",
           name: item.q,
           acceptedAnswer: { "@type": "Answer", text: item.a },
