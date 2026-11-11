@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { FlowSvg, Gauge } from "@/components/Anim";
-import { ValveStory } from "@/components/anim/Scenes";
+import {
+  SceneMontaj,
+  SceneOlcum,
+  SceneSokum,
+  SceneTaslama,
+  SceneTest,
+} from "@/components/anim/Scenes";
 import {
   BrandChips,
   FaqList,
@@ -14,6 +20,7 @@ import { Pic } from "@/components/Pic";
 import { SchemaLd } from "@/components/Schema";
 import { brands } from "@/lib/brands";
 import { pageMeta } from "@/lib/meta";
+import { asset } from "@/lib/paths";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = pageMeta({
@@ -99,25 +106,51 @@ const faqs = [
 ] as const;
 
 const shots = [
+  ["galeri-01-spool", "Valf spool’ları yakın çekim"],
+  ["galeri-02-mikrometre", "Pompa gövdesinde mikrometre ile ölçü kontrolü"],
+  ["galeri-03-blok", "Tezgâhta valf blokları"],
+  ["galeri-04-kayar-plaka", "Pompa kayar plakası"],
+  ["galeri-05-disli", "Şarj pompası dişli seti"],
+  ["galeri-06-dortlu", "Dört pompa gövdesi tezgâh üzerinde"],
+].map(([id, alt]) => ({
+  src: `/images/gallery/${id}-600.webp`,
+  srcSet: `/images/gallery/${id}-600.webp 600w, /images/gallery/${id}-800.webp 800w, /images/gallery/${id}-1200.webp 1200w`,
+  avifSrcSet: `/images/gallery/${id}-600.avif 600w, /images/gallery/${id}-800.avif 800w`,
+  alt,
+}));
+
+const chapters = [
   {
-    src: "/images/gallery/galeri-01-spool-600.webp",
-    srcSet:
-      "/images/gallery/galeri-01-spool-600.webp 600w, /images/gallery/galeri-01-spool-800.webp 800w, /images/gallery/galeri-01-spool-1200.webp 1200w",
-    alt: "Valf spool’ları yakın çekim",
+    n: "01",
+    t: "Söküm",
+    d: "Valf veya pompa açılır. Kapak, cıvata ve spool dışarı alınır; arıza kaynağı görünür hale gelir.",
+    Scene: SceneSokum,
   },
   {
-    src: "/images/gallery/galeri-02-mikrometre-600.webp",
-    srcSet:
-      "/images/gallery/galeri-02-mikrometre-600.webp 600w, /images/gallery/galeri-02-mikrometre-800.webp 800w, /images/gallery/galeri-02-mikrometre-1200.webp 1200w",
-    alt: "Pompa gövdesinde mikrometre ile ölçü kontrolü",
+    n: "02",
+    t: "Ölçüm",
+    d: "Spool, kanal ve iç grup mikrometreyle ölçülür. Teklif bu ölçüden sonra yazılır.",
+    Scene: SceneOlcum,
   },
   {
-    src: "/images/gallery/galeri-03-blok-600.webp",
-    srcSet:
-      "/images/gallery/galeri-03-blok-600.webp 600w, /images/gallery/galeri-03-blok-800.webp 800w, /images/gallery/galeri-03-blok-1200.webp 1200w",
-    alt: "Tezgâhta valf blokları",
+    n: "03",
+    t: "Taşlama",
+    d: "Aşınan yüzey taşlanır. Gereken spool atölyede imal edilir; parça dışarıda bekletilmez.",
+    Scene: SceneTaslama,
   },
-];
+  {
+    n: "04",
+    t: "Montaj",
+    d: "Temizlenen parçalar gövdeye geri toplanır. Keçe, yay ve plaka yerinde kontrol edilir.",
+    Scene: SceneMontaj,
+  },
+  {
+    n: "05",
+    t: "Test",
+    d: "Parça tezgâhta çalıştırılır. Sonuç yazılı rapor değil, videolu kayıt olarak paylaşılır.",
+    Scene: SceneTest,
+  },
+] as const;
 
 export default function Page() {
   return (
@@ -144,12 +177,25 @@ export default function Page() {
         }
       />
 
+      <div data-about>
+      <script
+        defer
+        src={asset("/about.js")}
+      />
       {/* Özet olgular — GEO / hızlı tarama */}
       <section className="about-facts" aria-label="Kısa olgular">
         <div className="wrap about-facts-grid">
           {facts.map((f, i) => (
-            <div className="about-fact rv" key={f.l} style={{ ["--d" as string]: `${i * 70}ms` }}>
-              <b>{f.v}</b>
+            <div className="about-fact" data-rise key={f.l} style={{ ["--d" as string]: `${i * 70}ms` }}>
+              <b>
+                {f.v === "20+" ? (
+                  <span data-count="20" data-suffix="+">
+                    20+
+                  </span>
+                ) : (
+                  f.v
+                )}
+              </b>
               <span>{f.l}</span>
             </div>
           ))}
@@ -174,7 +220,7 @@ export default function Page() {
 
         <ol className="hierarchy">
           {hierarchy.map((h, i) => (
-            <li key={h.n} className="hierarchy-card rv" style={{ ["--d" as string]: `${i * 100}ms` }}>
+            <li key={h.n} className="hierarchy-card" data-rise style={{ ["--d" as string]: `${i * 100}ms` }}>
               <span className="hierarchy-n">{h.n}</span>
               <div>
                 <h3>{h.t}</h3>
@@ -195,10 +241,28 @@ export default function Page() {
         kicker="Atölyede nasıl ilerler?"
         title="Revizyon"
         accent="beş adımda"
-        lead="Şematik çizimler süreci özetler; ayrıntılı adımlar süreç sayfasında."
+        lead="Kaydırdıkça hat dolar; her adımın şeması görünür alana gelince oynar. Ayrıntılı metin süreç sayfasında."
         tone="soft"
       >
-        <ValveStory />
+        <div className="about-rail" data-rail>
+          <span className="about-rail-track" aria-hidden="true">
+            <i data-rail-fill />
+          </span>
+          <ol>
+          {chapters.map((c) => (
+            <li key={c.n} className="about-chapter" data-rise>
+              <div className="about-chapter-scene">
+                <c.Scene live />
+              </div>
+              <div className="about-chapter-copy">
+                <span className="hierarchy-n">{c.n}</span>
+                <h3>{c.t}</h3>
+                <p>{c.d}</p>
+              </div>
+            </li>
+          ))}
+          </ol>
+        </div>
         <p className="about-more">
           Adım adım metin ve teslimat için{" "}
           <Link href="/revizyon/surec">süreç sayfasına</Link> bakın.
@@ -235,7 +299,7 @@ export default function Page() {
         <div className="scope-grid">
           {ilkeler.map((s, i) => (
             <article
-              className="scope-card rv"
+              className="scope-card" data-rise
               key={s.t}
               style={{ ["--d" as string]: `${i * 90}ms` }}
             >
@@ -276,17 +340,18 @@ export default function Page() {
         <div className="gallery-grid gallery-grid-3">
           {shots.map((s, i) => (
             <div
-              className="gallery-item rv-scale"
+              className="gallery-item" data-rise
               key={s.src}
               style={{ ["--d" as string]: `${i * 90}ms` }}
             >
               <Pic
                 src={s.src}
                 srcSet={s.srcSet}
+                avifSrcSet={s.avifSrcSet}
                 alt={s.alt}
                 width={1200}
                 height={900}
-                sizes="(max-width: 900px) 100vw, 33vw"
+                sizes="(max-width: 700px) 100vw, 33vw"
               />
             </div>
           ))}
@@ -335,15 +400,34 @@ export default function Page() {
               </a>
             </div>
           </div>
-          <div className="about-nap-map rv-r" aria-hidden="true">
-            <div className="about-map-art">
-              <span className="about-map-pin" />
-              <p>
-                <strong>İvedik OSB</strong>
-                <br />
-                Yenimahalle / Ankara
-              </p>
-            </div>
+          <div className="about-nap-map">
+            <svg className="about-map-svg" viewBox="0 0 480 420" role="img" aria-label="İvedik OSB konum şeması">
+              <g className="about-map-grid" aria-hidden="true">
+                {Array.from({ length: 8 }, (_, i) => (
+                  <line key={`h${i}`} x1="24" x2="456" y1={36 + i * 48} y2={36 + i * 48} />
+                ))}
+                {Array.from({ length: 9 }, (_, i) => (
+                  <line key={`v${i}`} y1="24" y2="396" x1={36 + i * 50} x2={36 + i * 50} />
+                ))}
+              </g>
+              <rect className="about-map-block" x="70" y="70" width="120" height="78" rx="10" />
+              <rect className="about-map-block" x="210" y="58" width="150" height="64" rx="10" />
+              <rect className="about-map-block" x="86" y="188" width="96" height="90" rx="10" />
+              <rect className="about-map-plot" x="214" y="168" width="168" height="112" rx="14" />
+              <path
+                className="about-map-route"
+                data-draw
+                d="M48 360 C 90 340, 120 300, 160 286 S 210 250, 250 230"
+                fill="none"
+              />
+              <circle className="about-map-dot" cx="250" cy="224" r="7" />
+              <text className="about-map-label" x="228" y="206">
+                2285. Sk. No:40
+              </text>
+              <text className="about-map-sub" x="228" y="312">
+                İvedik OSB · Yenimahalle
+              </text>
+            </svg>
           </div>
         </div>
       </Section>
@@ -353,6 +437,7 @@ export default function Page() {
       </Section>
 
       <QuoteCta />
+      </div>
     </>
   );
 }

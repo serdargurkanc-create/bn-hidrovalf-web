@@ -6,7 +6,7 @@
  * Yalnız transform/opacity/stroke animasyonu — CLS üretmez.
  */
 
-type P = { className?: string };
+type P = { className?: string; /** true: .anim (IO). false: hikâye .play */ live?: boolean };
 
 function Scene({
   children,
@@ -63,9 +63,9 @@ function Spool({ className = "" }: { className?: string }) {
 }
 
 /** 1 — Söküm: kapak kalkar, cıvatalar çıkar. */
-export function SceneSokum({ className }: P) {
+export function SceneSokum({ className, live }: P) {
   return (
-    <Scene story viewBox="0 0 240 150" className={`sc-sokum ${className || ""}`}>
+    <Scene story={!live} viewBox="0 0 240 150" className={`sc-sokum ${className || ""}`}>
       <ValveBody y={74} />
       <g className="sc-cap">
         <rect x="36" y="48" width="168" height="18" rx="6" className="sc-fill" />
@@ -85,9 +85,9 @@ export function SceneSokum({ className }: P) {
 }
 
 /** 2 — Ölçüm: spool dışarıda, mikrometre çenesi kapanır. */
-export function SceneOlcum({ className }: P) {
+export function SceneOlcum({ className, live }: P) {
   return (
-    <Scene story viewBox="0 0 240 150" className={`sc-olcum ${className || ""}`}>
+    <Scene story={!live} viewBox="0 0 240 150" className={`sc-olcum ${className || ""}`}>
       <g transform="translate(44 96)">
         <Spool />
       </g>
@@ -104,9 +104,9 @@ export function SceneOlcum({ className }: P) {
 }
 
 /** 3 — Taşlama: dönen taş + kıvılcım. */
-export function SceneTaslama({ className }: P) {
+export function SceneTaslama({ className, live }: P) {
   return (
-    <Scene story viewBox="0 0 240 150" className={`sc-taslama ${className || ""}`}>
+    <Scene story={!live} viewBox="0 0 240 150" className={`sc-taslama ${className || ""}`}>
       <g className="sc-wheel-g">
         <circle cx="150" cy="52" r="34" className="sc-fill" />
         <circle cx="150" cy="52" r="34" className="sc-wheel" pathLength={100} />
@@ -126,9 +126,9 @@ export function SceneTaslama({ className }: P) {
 }
 
 /** 4 — Montaj: spool gövdeye geri kayar. */
-export function SceneMontaj({ className }: P) {
+export function SceneMontaj({ className, live }: P) {
   return (
-    <Scene story viewBox="0 0 240 150" className={`sc-montaj ${className || ""}`}>
+    <Scene story={!live} viewBox="0 0 240 150" className={`sc-montaj ${className || ""}`}>
       <ValveBody y={64} />
       <rect x="36" y="76" width="168" height="24" rx="6" className="sc-bore" />
       <g transform="translate(52 76)">
@@ -141,9 +141,9 @@ export function SceneMontaj({ className }: P) {
 }
 
 /** 5 — Test: hortum, akış ve ibre. */
-export function SceneTest({ className }: P) {
+export function SceneTest({ className, live }: P) {
   return (
-    <Scene story viewBox="0 0 240 150" className={`sc-test ${className || ""}`}>
+    <Scene story={!live} viewBox="0 0 240 150" className={`sc-test ${className || ""}`}>
       <rect x="22" y="84" width="92" height="36" rx="8" className="sc-fill" />
       <line x1="34" y1="102" x2="102" y2="102" className="sc-dash" />
       <path d="M114 102h34c12 0 16-6 16-16V74" className="sc-line" />
