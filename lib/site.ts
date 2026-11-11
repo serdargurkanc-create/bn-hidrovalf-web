@@ -40,6 +40,7 @@ export const nav = [
   { href: "/imalat", label: "CNC ve özel imalat" },
   { href: "/yedek-parca", label: "Yedek parça" },
   { href: "/hakkimizda", label: "Hakkımızda" },
+  { href: "/blog", label: "Blog" },
   { href: "/sss", label: "SSS" },
   { href: "/iletisim", label: "İletişim" },
 ] as const;
@@ -165,6 +166,7 @@ export const routes = [
   "/imalat",
   "/yedek-parca",
   "/hakkimizda",
+  "/blog",
   "/sss",
   "/iletisim",
 ] as const;
