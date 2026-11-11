@@ -7,7 +7,16 @@ export function Footer() {
     <footer className="footer">
       <div className="wrap footer-grid">
         <div>
-          <p className="brand-name">{site.name}</p>
+          <Link href="/" className="footer-brand" aria-label="BN Hidrovalf Makina">
+            <img
+              src={asset("/logo/bn-hidrovalf-logo-112.webp")}
+              srcSet={`${asset("/logo/bn-hidrovalf-logo-112.webp")} 112w, ${asset("/logo/bn-hidrovalf-logo-160.webp")} 160w`}
+              sizes="140px"
+              alt="BN Hidrovalf Makina"
+              width={240}
+              height={112}
+            />
+          </Link>
           <p>
             20+ yıllık tecrübeye sahip kurumsal çözüm ortağı. Her marka iş makinasında
             valf ve pompa revizyonu. İvedik OSB, Ankara.
