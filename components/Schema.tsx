@@ -20,12 +20,15 @@ export function SchemaLd({
   service,
   faqs,
   videoList,
+  about,
 }: {
   path: string;
   crumbs: Crumb[];
   service?: { name: string; description: string };
   faqs?: readonly Faq[];
   videoList?: readonly Video[];
+  /** Hakkımızda: AboutPage + LocalBusiness (NAP / GEO). */
+  about?: boolean;
 }) {
   const pageUrl = abs(path);
   const graph: Record<string, unknown>[] = [
@@ -40,6 +43,47 @@ export function SchemaLd({
       })),
     },
   ];
+
+  if (about) {
+    graph.push({
+      "@type": "AboutPage",
+      "@id": `${pageUrl}#webpage`,
+      url: pageUrl,
+      name: `Hakkımızda — ${site.legalName}`,
+      description: site.description,
+      isPartOf: { "@type": "WebSite", name: site.name, url: `${site.url}/` },
+      about: { "@id": `${site.url}/#localbusiness` },
+      inLanguage: "tr-TR",
+    });
+    graph.push({
+      "@type": "LocalBusiness",
+      "@id": `${site.url}/#localbusiness`,
+      name: site.legalName,
+      legalName: site.legalName,
+      url: `${site.url}/`,
+      telephone: site.phoneTel,
+      email: site.email,
+      image: `${site.url}/images/logo.png`,
+      description: site.description,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: site.address.street,
+        postalCode: site.address.postalCode,
+        addressLocality: site.address.locality,
+        addressRegion: site.address.region,
+        addressCountry: site.address.country,
+      },
+      hasMap: site.maps,
+      areaServed: { "@type": "Country", name: "Türkiye" },
+      knowsAbout: [
+        "iş makinası valf revizyonu",
+        "iş makinası pompa revizyonu",
+        "spool imalatı",
+        "iç grup yüzey taşlama",
+        "videolu hidrolik test",
+      ],
+    });
+  }
 
   if (service) {
     graph.push({
