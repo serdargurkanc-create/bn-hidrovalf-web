@@ -1513,6 +1513,8 @@ main { overflow-x: clip; }
   gap: 0.55rem;
 }
 .faq-help-actions a {
+  position: relative;
+  overflow: hidden;
   min-height: 46px;
   display: inline-flex;
   align-items: center;
@@ -1525,6 +1527,25 @@ main { overflow-x: clip; }
   background: var(--ink);
   color: #fff;
   border: 1px solid var(--ink);
+}
+.faq-help-actions a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+.faq-help-actions a:hover::after { animation: faq-shine 0.7s ease; }
+.faq-help-actions a:last-child::after {
+  background: linear-gradient(100deg, transparent, rgba(208, 120, 37, 0.35), transparent);
+}
+@keyframes faq-shine { to { left: 130%; } }
+@media (prefers-reduced-motion: reduce) {
+  .faq-help-actions a:hover::after { animation: none; }
 }
 .faq-help-actions a svg { width: 18px; height: 18px; flex: none; }
 .faq-help-actions a.is-wa {
