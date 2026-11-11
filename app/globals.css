@@ -957,7 +957,11 @@ a { color: inherit; }
   font-weight: 700;
   border-radius: 12px;
 }
-.dock a:first-child { background: var(--bg-soft); }
+.dock a:first-child {
+  background: var(--nav-cta);
+  color: #fff;
+}
+.dock a:first-child:active { background: #000; }
 .dock a:last-child { background: var(--accent-2); color: var(--on-accent); }
 @media (min-width: 800px) {
   .dock { display: none; }
