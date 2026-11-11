@@ -132,41 +132,106 @@ function runGaugeCount(el: HTMLElement) {
   requestAnimationFrame(tick);
 }
 
-/** Ana sayfa blog şeridi: ortadaki net, yanlar soluk, 3,5 sn, hover’da durur. */
+/** Ana sayfa blog şeridi: tam 3 kart, ortadaki net, yanlar küçük ve soluk. */
 function bindBlogSlider(reduced: boolean) {
   const root = document.querySelector<HTMLElement>("[data-blog-slider]");
   if (!root) return;
   const viewport = root.querySelector<HTMLElement>(".blog-slider-viewport");
   const track = root.querySelector<HTMLElement>(".blog-slider-track");
   if (!viewport || !track) return;
-  const slides = [...track.children] as HTMLElement[];
-  const n = slides.length;
+  const originals = [...track.children] as HTMLElement[];
+  const n = originals.length;
   if (!n) return;
+
+  if (reduced) {
+    originals.forEach((slide) => slide.classList.add("is-active"));
+    viewport.style.overflowX = "auto";
+    return;
+  }
+
+  const muteClone = (node: HTMLElement) => {
+    node.classList.remove("is-active");
+    node.setAttribute("data-clone", "");
+    node.setAttribute("aria-hidden", "true");
+    node.querySelectorAll("a").forEach((link) => link.setAttribute("tabindex", "-1"));
+    return node;
+  };
+  const head = muteClone(originals[n - 1].cloneNode(true) as HTMLElement);
+  const tail = muteClone(originals[0].cloneNode(true) as HTMLElement);
+  track.insertBefore(head, originals[0]);
+  track.appendChild(tail);
 
   let index = 0;
   let timer = 0;
   let paused = false;
+  let lock = false;
 
-  const layout = (animate: boolean) => {
-    slides.forEach((slide, i) => slide.classList.toggle("is-active", i === index));
-    const slide = slides[index];
-    const left = slide.offsetLeft - (viewport.clientWidth - slide.offsetWidth) / 2;
-    track.style.transition = !animate || reduced ? "none" : "";
-    track.style.transform = `translate3d(${-Math.round(left)}px,0,0)`;
+  const gap = () => {
+    const raw = getComputedStyle(track).columnGap || getComputedStyle(track).gap || "0";
+    const value = parseFloat(raw);
+    return Number.isFinite(value) ? value : 0;
   };
 
-  const go = (next: number) => {
-    const prev = index;
-    index = (next + n) % n;
-    const wrapped = (next > prev && index < prev) || (next < prev && index > prev);
-    layout(!wrapped);
+  const place = (node: HTMLElement, animate: boolean) => {
+    const width = originals[0].offsetWidth;
+    const target = (viewport.clientWidth - width) / 2;
+    track.style.transition = animate ? "transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)" : "none";
+    track.style.transform = `translate3d(${Math.round(target - node.offsetLeft)}px,0,0)`;
+  };
+
+  const paint = () => {
+    originals.forEach((slide, i) => slide.classList.toggle("is-active", i === index));
+    head.classList.remove("is-active");
+    tail.classList.remove("is-active");
+  };
+
+  const jumpToReal = () => {
+    paint();
+    place(originals[index], false);
+    lock = false;
+  };
+
+  const step = (dir: number) => {
+    if (lock || !dir) return;
+    const next = index + dir;
+    if (next >= n) {
+      lock = true;
+      index = 0;
+      originals.forEach((slide) => slide.classList.remove("is-active"));
+      tail.classList.add("is-active");
+      place(tail, true);
+      const done = () => {
+        track.removeEventListener("transitionend", done);
+        jumpToReal();
+      };
+      track.addEventListener("transitionend", done);
+      window.setTimeout(done, 700);
+      return;
+    }
+    if (next < 0) {
+      lock = true;
+      index = n - 1;
+      originals.forEach((slide) => slide.classList.remove("is-active"));
+      head.classList.add("is-active");
+      place(head, true);
+      const done = () => {
+        track.removeEventListener("transitionend", done);
+        jumpToReal();
+      };
+      track.addEventListener("transitionend", done);
+      window.setTimeout(done, 700);
+      return;
+    }
+    index = next;
+    paint();
+    place(originals[index], true);
   };
 
   const stop = () => window.clearInterval(timer);
   const start = () => {
     stop();
-    if (reduced || paused) return;
-    timer = window.setInterval(() => go(index + 1), 3500);
+    if (paused) return;
+    timer = window.setInterval(() => step(1), 3500);
   };
 
   root.addEventListener("mouseenter", () => {
@@ -177,42 +242,24 @@ function bindBlogSlider(reduced: boolean) {
     paused = false;
     start();
   });
-  root.addEventListener("focusin", () => {
-    paused = true;
-    stop();
-  });
-  root.addEventListener("focusout", (e) => {
-    if (root.contains(e.relatedTarget as Node)) return;
-    paused = false;
-    start();
-  });
 
-  root.querySelector<HTMLButtonElement>("[data-blog-prev]")?.addEventListener("click", () => go(index - 1));
-  root.querySelector<HTMLButtonElement>("[data-blog-next]")?.addEventListener("click", () => go(index + 1));
-
-  let x0 = 0;
-  viewport.addEventListener("pointerdown", (e) => {
-    if (e.pointerType === "mouse" && e.button !== 0) return;
-    x0 = e.clientX;
-  });
-  viewport.addEventListener("pointerup", (e) => {
-    const dx = e.clientX - x0;
-    if (Math.abs(dx) > 48) go(index + (dx < 0 ? 1 : -1));
+  root.addEventListener("click", (event) => {
+    const button = (event.target as HTMLElement | null)?.closest("button");
+    if (!button || !root.contains(button)) return;
+    if (button.hasAttribute("data-blog-prev")) step(-1);
+    else if (button.hasAttribute("data-blog-next")) step(1);
+    else return;
+    event.preventDefault();
   });
 
   let resizeT = 0;
   addEventListener("resize", () => {
     window.clearTimeout(resizeT);
-    resizeT = window.setTimeout(() => layout(false), 80);
+    resizeT = window.setTimeout(() => place(originals[index], false), 80);
   });
 
-  if (reduced) {
-    slides.forEach((slide) => slide.classList.add("is-active"));
-    viewport.style.overflowX = "auto";
-    return;
-  }
-
-  layout(false);
+  paint();
+  place(originals[0], false);
   start();
 }
 
