@@ -117,8 +117,24 @@ export function Footer() {
       </div>
       <div className="wrap footer-legal">
         <span>© {new Date().getFullYear()} {site.name}</span>
-        <Link href="/gizlilik">KVKK ve gizlilik</Link>
-        <Link href="/cerez-politikasi">Çerez politikası</Link>
+        <a
+          className="footer-credit"
+          href="https://somdijital.com/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Som Dijital"
+        >
+          <img
+            src={asset("/logo/som-dijital.webp")}
+            alt="Som Dijital"
+            width={168}
+            height={41}
+          />
+        </a>
+        <nav aria-label="Yasal">
+          <Link href="/gizlilik">KVKK ve gizlilik</Link>
+          <Link href="/cerez-politikasi">Çerez politikası</Link>
+        </nav>
       </div>
     </footer>
   );
