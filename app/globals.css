@@ -1639,7 +1639,11 @@ html.js:not(.reduced) .anim.in .bn-rec-dot { animation: sc-blink 1.2s ease infin
   }
   .story-step .story-scene {
     border-radius: var(--r);
-    padding: 1rem 0.85rem 0.85rem;
+    padding: 0.65rem 0.55rem;
+  }
+  .story-step .story-scene svg {
+    max-height: 132px;
+    margin-inline: auto;
   }
   .story-step .story-no {
     display: inline-flex;
