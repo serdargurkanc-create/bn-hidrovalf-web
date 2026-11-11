@@ -1166,9 +1166,9 @@ a { color: inherit; }
 .footer-services a { align-items: flex-start; line-height: 1.35; padding-top: 0.45rem; }
 .footer a { text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
 .footer a:hover { color: var(--accent-ink); }
-.footer-contact {
+.footer .footer-contact {
   list-style: none;
-  margin: 1.75rem 0 0;
+  margin: 3.25rem 0 0;
   padding: 0;
   display: grid;
   gap: 0.35rem;
