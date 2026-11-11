@@ -326,26 +326,64 @@ export const valveStorySteps = [
   { id: "05", title: "Test", note: "Tezgâhta çalıştırılır, kayıt alınır.", Scene: SceneTest },
 ] as const;
 
+/** Mercek/viewfinder: tek sahneli panel; kaydırma + imleç glow ile 1→5. */
 export function ValveStory() {
   return (
-    <div className="story-rail" data-story-rail data-steps={valveStorySteps.length}>
-      {/* Kutular arası renkli akış; --story-p (0–1) kaydırmayla dolar */}
-      <div className="story-pipe" aria-hidden="true">
-        <span className="story-pipe-fill" />
+    <div
+      className="story-rail process-lens"
+      data-story-rail
+      data-steps={valveStorySteps.length}
+    >
+      <div className="pl-stage" data-process-lens>
+        <div className="pl-glow" aria-hidden="true" />
+        <div className="pl-grid" aria-hidden="true" />
+        <div className="pl-sprockets" aria-hidden="true">
+          {Array.from({ length: 8 }, (_, i) => (
+            <span key={i} />
+          ))}
+        </div>
+        <div className="pl-chrome">
+          <span className="pl-hint">
+            <i aria-hidden="true" />
+            Atölyeye yaklaşın
+          </span>
+          <span className="pl-rec">
+            <i aria-hidden="true" />
+            REC
+          </span>
+        </div>
+        <div className="pl-rings" aria-hidden="true">
+          <span className="pl-ring pl-ring-outer" />
+          <span className="pl-ring pl-ring-dash" />
+          <span className="pl-orbit" />
+        </div>
+        <div className="pl-viewport">
+          {valveStorySteps.map((s, i) => (
+            <div
+              key={s.id}
+              className="pl-frame"
+              data-story-step={i}
+              data-step-id={s.id}
+            >
+              <s.Scene />
+            </div>
+          ))}
+        </div>
+        <p className="pl-quote">
+          <span className="serif-accent">Her valf tezgâhta kanıtlanır.</span>
+        </p>
       </div>
-      <ol className="story-grid">
+
+      <ol className="pl-steps">
         {valveStorySteps.map((s, i) => (
-          <li
-            key={s.id}
-            className="story-step rv"
-            data-story-step={i}
-            style={{ ["--d" as string]: `${i * 80}ms` }}
-          >
-            <s.Scene />
-            <h3>
-              <span className="story-no">{s.id}</span> {s.title}
-            </h3>
-            <p>{s.note}</p>
+          <li key={s.id} data-story-step={i}>
+            <button type="button" data-story-goto={i}>
+              <span className="story-no">{s.id}</span>
+              <span className="pl-step-copy">
+                <strong>{s.title}</strong>
+                <em>{s.note}</em>
+              </span>
+            </button>
           </li>
         ))}
       </ol>

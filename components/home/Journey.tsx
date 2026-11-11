@@ -47,13 +47,21 @@ export function Journey() {
 
       <section className="process" aria-labelledby="surec-title">
         <div className="wrap">
-          <div className="cards-head rv">
-            <p className="badge">Süreç</p>
-            <h2 id="surec-title">
-              Revizyon <span className="serif-accent">nasıl yapılır?</span>
-            </h2>
+          <div className="process-who">
+            <div className="process-copy rv-l">
+              <p className="badge">Süreç</p>
+              <h2 id="surec-title">
+                Revizyon <span className="serif-accent">nasıl yapılır?</span>
+              </h2>
+              <p>
+                Sökümden videolu teste kadar beş adım. Merceğe yaklaşın; kaydırdıkça
+                veya adımı seçtikçe atölye sahnesi ilerler.
+              </p>
+            </div>
+            <div className="process-lens-wrap rv-r">
+              <ValveStory />
+            </div>
           </div>
-          <ValveStory />
         </div>
       </section>
     </>
