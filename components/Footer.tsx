@@ -83,9 +83,6 @@ export function Footer() {
         <span>© {new Date().getFullYear()} {site.name}</span>
         <Link href="/gizlilik">KVKK ve gizlilik</Link>
         <Link href="/cerez-politikasi">Çerez politikası</Link>
-        <a href={asset("/llms.txt")} type="text/markdown" rel="alternate">
-          llms.txt
-        </a>
       </div>
     </footer>
   );
