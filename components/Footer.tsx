@@ -15,6 +15,9 @@ export function Footer() {
               alt="BN Hidrovalf Makina"
               width={240}
               height={112}
+              loading="lazy"
+              decoding="async"
+              fetchPriority="low"
             />
           </Link>
           <p>

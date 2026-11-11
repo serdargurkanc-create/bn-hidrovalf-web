@@ -70,15 +70,14 @@ const bootScript = [
   "function runNext(){if(next)return;next=true;document.querySelectorAll('script[data-defer-next]').forEach(function(old){var s=document.createElement('script');var src=old.getAttribute('data-src');if(src){s.src=src;s.async=false;}else s.textContent=old.textContent;if(old.hasAttribute('nomodule'))s.noModule=true;if(old.id)s.id=old.id;old.replaceWith(s);});}",
   "function onFirst(){bootMotion();runNext();}",
   "ev.forEach(function(e){addEventListener(e,onFirst,{once:true,passive:true});});",
-  // İlk viewport: motion yüklenmeden önce görünür alandaki reveal'ları aç
-  // (idle'da opacity:0'da kalmasın). 'reduced' eklenmez → gösterge animasyonu bozulmaz.
-  "function revealFold(){document.querySelectorAll('.rv,.rv-l,.rv-r,.rv-scale,.anim,.timeline').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)el.classList.add('in');});}",
+  // İlk viewport: sync getBoundingClientRect döngüsü yok (forced-reflow).
+  // IO ile görünür reveal'ları aç; 'reduced' eklenmez.
+  "function revealFold(){var sel='.rv,.rv-l,.rv-r,.rv-scale,.anim,.timeline';var nodes=document.querySelectorAll(sel);if(!nodes.length)return;if(!('IntersectionObserver' in window)){nodes.forEach(function(el){el.classList.add('in');});return;}var io=new IntersectionObserver(function(ents){ents.forEach(function(e){if(!e.isIntersecting)return;e.target.classList.add('in');io.unobserve(e.target);});},{root:null,rootMargin:'0px',threshold:0});nodes.forEach(function(el){io.observe(el);});}",
   "if(document.readyState==='loading')addEventListener('DOMContentLoaded',revealFold,{once:true});else revealFold();",
   "setTimeout(function(){if(!motion){revealFold();bootMotion();}},2500);",
   "})();",
-  // Kalan font ağırlıkları ilk boyamadan hemen sonra (DOMContentLoaded) devreye girer;
-  // 'load' beklenirse takas geç olur ve görünür CLS üretir.
-  `(function(){function f(){var l=document.querySelector('link[data-fonts-deferred]');if(l)l.media='all';}if(document.readyState==='loading')addEventListener('DOMContentLoaded',f,{once:true});else f();})();`,
+  // Font + mercek CSS: ilk boyamadan hemen sonra (DOMContentLoaded).
+  `(function(){function f(){document.querySelectorAll('link[data-fonts-deferred],link[data-lens-deferred]').forEach(function(l){l.media='all';});}if(document.readyState==='loading')addEventListener('DOMContentLoaded',f,{once:true});else f();})();`,
 ].join("");
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -93,24 +92,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           crossOrigin="anonymous"
           fetchPriority="high"
         />
-        {/* Tam aile: LCP alt kümesiyle karışmasın diye ayrı aile; istatistik/başlık
-            kalınlıkları tek dosyadan gelsin diye düşük öncelikli preload. */}
-        <link
-          rel="preload"
-          href={asset("/fonts/plus-jakarta-sans-normal-400800-latin.woff2")}
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-          fetchPriority="low"
-        />
-        <link
-          rel="preload"
-          href={asset("/fonts/plus-jakarta-sans-normal-400800-latin-ext.woff2")}
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-          fetchPriority="low"
-        />
+        {/* Latin aileler fonts-deferred ile gelir — LCP bant genişliğini paylaşmasın. */}
         <style dangerouslySetInnerHTML={{ __html: criticalFontCss }} />
         <link
           rel="alternate"
@@ -123,6 +105,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           href={asset("/fonts-deferred.css")}
           media="print"
           data-fonts-deferred
+        />
+        {/* Mercek süsü: below-fold; kritik iskelet globals’ta (CLS yok). */}
+        <link
+          rel="stylesheet"
+          href={asset("/process-lens.css")}
+          media="print"
+          data-lens-deferred
         />
         <script dangerouslySetInnerHTML={{ __html: bootScript }} />
       </head>

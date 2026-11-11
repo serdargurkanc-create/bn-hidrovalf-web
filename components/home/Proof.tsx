@@ -7,7 +7,7 @@ const works = [
     tag: "Ana hizmet",
     src: "/images/foto-valf-revizyonu-spool-sira-02-600.webp",
     srcSet: "/images/foto-valf-revizyonu-spool-sira-02-600.webp 600w, /images/foto-valf-revizyonu-spool-sira-02-800.webp 800w",
-    avifSrcSet: "/images/foto-valf-revizyonu-spool-sira-02-800.avif 800w, /images/foto-valf-revizyonu-spool-sira-02.avif 1600w",
+    avifSrcSet: "/images/foto-valf-revizyonu-spool-sira-02-600.avif 600w, /images/foto-valf-revizyonu-spool-sira-02-800.avif 800w",
     w: 800,
     h: 600,
     alt: "Tezgâh üzerinde sıra halinde hidrolik valf spool’ları",
@@ -29,7 +29,7 @@ const works = [
     tag: "Ana hizmet",
     src: "/images/foto-pompa-ic-grup-logo-fon-01-600.webp",
     srcSet: "/images/foto-pompa-ic-grup-logo-fon-01-600.webp 600w, /images/foto-pompa-ic-grup-logo-fon-01-800.webp 800w",
-    avifSrcSet: "/images/foto-pompa-ic-grup-logo-fon-01-800.avif 800w, /images/foto-pompa-ic-grup-logo-fon-01.avif 1600w",
+    avifSrcSet: "/images/foto-pompa-ic-grup-logo-fon-01-600.avif 600w, /images/foto-pompa-ic-grup-logo-fon-01-800.avif 800w",
     w: 800,
     h: 600,
     alt: "Logo fonu önünde pompa iç grubu parçaları",
@@ -40,7 +40,7 @@ const works = [
     tag: "Teslimat",
     src: "/images/valf-testi-pakens-01-600.webp",
     srcSet: "/images/valf-testi-pakens-01-600.webp 600w, /images/valf-testi-pakens-01-800.webp 800w, /images/valf-testi-pakens-01.webp 1200w",
-    avifSrcSet: "/images/valf-testi-pakens-01-800.avif 800w, /images/valf-testi-pakens-01.avif 1600w",
+    avifSrcSet: "/images/valf-testi-pakens-01-600.avif 600w, /images/valf-testi-pakens-01-800.avif 800w",
     w: 480,
     h: 848,
     alt: "Pakkens manometreli valf test düzeneği",
@@ -76,7 +76,7 @@ export function Proof() {
                   alt={w.alt}
                   width={w.w}
                   height={w.h}
-                  sizes="(max-width: 700px) 100vw, (max-width: 1080px) 50vw, 25vw"
+                  sizes="(max-width: 700px) 92vw, (max-width: 1080px) 45vw, 260px"
                 />
               </div>
               <div className="work-meta">

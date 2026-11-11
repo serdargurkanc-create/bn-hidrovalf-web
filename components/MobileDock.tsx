@@ -4,7 +4,9 @@ export function MobileDock() {
   return (
     <nav className="dock" aria-label="Hızlı iletişim">
       <a href={`tel:${site.phoneTel}`}>Ara</a>
-      <a href={whatsappQuote}>WhatsApp</a>
+      <a href={whatsappQuote} aria-label="WhatsApp ile yazın">
+        WhatsApp
+      </a>
     </nav>
   );
 }

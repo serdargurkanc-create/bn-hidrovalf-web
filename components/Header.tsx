@@ -110,6 +110,7 @@ export function Header() {
             style={{ marginTop: "0.65rem", width: "100%" }}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="WhatsApp ile yazın"
           >
             <WhatsAppIcon />
             WhatsApp
