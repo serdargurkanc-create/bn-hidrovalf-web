@@ -22,11 +22,16 @@ export function BlogStrip() {
           Atölyeden valf, pompa ve test notları. İvedik OSB’de ölçülen işin kısa hali.
         </p>
       </div>
-      <div className="blog-slider" data-blog-slider>
+      <div className="blog-slider" id="blog-slider" data-blog-slider>
         <div className="blog-slider-viewport">
           <div className="blog-slider-track">
             {posts.map((post, i) => (
-              <article className={`blog-slide${i === 0 ? " is-active" : ""}`} key={post.slug}>
+              <article
+                className={`blog-slide${
+                  i === 0 ? " is-active" : i === 1 ? " is-next" : i === posts.length - 1 ? " is-prev" : ""
+                }`}
+                key={post.slug}
+              >
                 <Link href={`/blog/${post.slug}`} className="blog-slide-card">
                   <span className="blog-slide-media">
                     <Pic
@@ -64,6 +69,11 @@ export function BlogStrip() {
           </button>
         </div>
       </div>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `(function(){var root=document.getElementById("blog-slider");if(!root||root.dataset.ready)return;root.dataset.ready="1";var slides=[].slice.call(root.querySelectorAll(".blog-slide"));var n=slides.length,i=0,timer=0,paused=false,reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;function show(k){i=(k+n)%n;var p=(i-1+n)%n,nx=(i+1)%n;slides.forEach(function(s,idx){s.classList.remove("is-active","is-prev","is-next");if(idx===i)s.classList.add("is-active");else if(idx===p)s.classList.add("is-prev");else if(idx===nx)s.classList.add("is-next");});}function step(d){show(i+d);}function stop(){clearInterval(timer);}function start(){stop();if(reduced||paused)return;timer=setInterval(function(){step(1);},3500);}root.addEventListener("click",function(e){var b=e.target&&e.target.closest&&e.target.closest("button");if(!b||!root.contains(b))return;if(b.hasAttribute("data-blog-prev")){e.preventDefault();step(-1);}else if(b.hasAttribute("data-blog-next")){e.preventDefault();step(1);}});root.addEventListener("mouseenter",function(){paused=true;stop();});root.addEventListener("mouseleave",function(){paused=false;start();});show(0);start();})();`,
+        }}
+      />
     </section>
   );
 }
