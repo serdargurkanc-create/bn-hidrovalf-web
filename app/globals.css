@@ -2457,17 +2457,24 @@ html.js:not(.reduced) .about-map-dot { transform-box: fill-box; transform-origin
 .blog-slider { position: relative; }
 .blog-slider-viewport {
   padding: 0.85rem 0 1rem;
+  overflow: hidden;
 }
 .blog-slider-track {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr) minmax(0, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
   align-items: stretch;
 }
 .blog-slide { display: none; min-width: 0; }
-.blog-slide.is-prev { display: block; order: 1; opacity: 0.42; }
-.blog-slide.is-active { display: block; order: 2; opacity: 1; }
-.blog-slide.is-next { display: block; order: 3; opacity: 0.42; }
+.blog-slide.is-prev,
+.blog-slide.is-next,
+.blog-slide.is-active {
+  display: block;
+  transition: opacity 0.45s var(--ease);
+}
+.blog-slide.is-prev { order: 1; opacity: 0.55; }
+.blog-slide.is-active { order: 2; opacity: 1; }
+.blog-slide.is-next { order: 3; opacity: 0.55; }
 .blog-slide-card {
   display: flex;
   flex-direction: column;
@@ -2479,19 +2486,11 @@ html.js:not(.reduced) .about-map-dot { transform-box: fill-box; transform-origin
   border-radius: 22px;
   overflow: hidden;
   box-shadow: var(--sh-sm);
-  transform: scale(0.92);
-  transform-origin: center center;
-  transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease), border-color 0.45s var(--ease);
+  transition: box-shadow 0.45s var(--ease), border-color 0.45s var(--ease);
 }
 .blog-slide.is-active .blog-slide-card {
-  transform: none;
   border-color: color-mix(in srgb, var(--accent) 50%, var(--line));
   box-shadow: 0 18px 40px rgba(175, 99, 43, 0.16);
-  animation: blog-center 0.45s var(--ease);
-}
-@keyframes blog-center {
-  from { transform: translateX(36px) scale(0.96); }
-  to { transform: none; }
 }
 .blog-slide-media { position: relative; display: block; background: var(--bg-soft); }
 .blog-slide-media img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; }
@@ -2521,6 +2520,7 @@ html.js:not(.reduced) .about-map-dot { transform-box: fill-box; transform-origin
   font-size: 1.12rem;
   letter-spacing: -0.03em;
   line-height: 1.3;
+  min-height: calc(1.3em * 2);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -2531,6 +2531,7 @@ html.js:not(.reduced) .about-map-dot { transform-box: fill-box; transform-origin
   color: var(--ink-soft);
   font-size: 0.92rem;
   line-height: 1.5;
+  min-height: calc(1.5em * 3);
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -2569,12 +2570,11 @@ html.js:not(.reduced) .about-map-dot { transform-box: fill-box; transform-origin
 @media (max-width: 799px) {
   .blog-strip { padding-bottom: 5.2rem; }
   .blog-slide-card h3 { font-size: 0.95rem; }
-  .blog-slide-card p { -webkit-line-clamp: 2; font-size: 0.82rem; }
+  .blog-slide-card p { -webkit-line-clamp: 2; font-size: 0.82rem; min-height: calc(1.5em * 2); }
   .blog-slide-meta { padding-inline: 0.7rem; }
   .blog-slide-card h3, .blog-slide-card p, .blog-slide-more { margin-inline: 0.7rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .blog-slider-track, .blog-slide, .blog-slide-card { transition: none !important; }
   .blog-slide { opacity: 1; }
-  .blog-slide-card { transform: none; }
 }
