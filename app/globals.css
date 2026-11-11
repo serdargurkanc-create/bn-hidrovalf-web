@@ -1194,13 +1194,11 @@ a { color: inherit; }
   transition: background 0.25s var(--ease), color 0.25s var(--ease);
 }
 .footer-ico svg { width: 18px; height: 18px; }
-.footer-contact a:hover {
-  background: var(--accent-2);
-  color: var(--on-accent);
-}
+.footer-contact a:hover { color: inherit; background: none; }
+.footer-ico:hover,
 .footer-contact a:hover .footer-ico {
-  background: #fff;
-  color: var(--accent-2);
+  background: var(--accent-2);
+  color: #fff;
 }
 .footer-legal {
   display: grid;
