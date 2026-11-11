@@ -1437,16 +1437,110 @@ html.js:not(.reduced) .anim.in .lt-spin { animation: sc-slide-dash 0.5s linear i
 .bn-rec-dot { fill: #c2452c; }
 html.js:not(.reduced) .anim.in .bn-rec-dot { animation: sc-blink 1.2s ease infinite; }
 
-/* --- Hikâye ızgarası (ana sayfa + valf) --- */
+/* --- Hikâye rayı: kaydırmayla 1→5 + kutular arası akış --- */
+.story-rail {
+  position: relative;
+  --story-p: 0;
+  isolation: isolate;
+}
+.story-pipe {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  background: color-mix(in srgb, var(--line) 90%, var(--ink));
+  border-radius: 999px;
+  overflow: hidden;
+  /* JS konumlar; varsayılan: mobil dikey */
+  left: 22px;
+  top: 12px;
+  bottom: 12px;
+  width: 3px;
+  height: auto;
+}
+.story-pipe-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-2) 55%, var(--teal) 100%);
+  transform: scaleY(var(--story-p));
+  transform-origin: top center;
+  will-change: transform;
+  transition: transform 0.08s linear;
+}
+.story-rail[data-dir="h"] .story-pipe {
+  top: auto;
+  bottom: auto;
+  left: 0;
+  width: auto;
+  height: 3px;
+}
+.story-rail[data-dir="h"] .story-pipe-fill {
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 55%, var(--teal) 100%);
+  transform: scaleX(var(--story-p));
+  transform-origin: left center;
+}
 .story-grid {
   list-style: none; margin: 0; padding: 0;
-  display: grid; gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  display: grid; gap: 1.35rem;
+  grid-template-columns: 1fr;
+  position: relative;
+  z-index: 1;
 }
-.story-step { display: grid; gap: 0.5rem; align-content: start; }
+@media (min-width: 900px) {
+  .story-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .story-pipe {
+    /* yatay mod JS ile data-dir=h */
+    left: 0;
+  }
+}
+.story-step {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+  padding-left: 2rem;
+}
+@media (min-width: 900px) {
+  .story-step { padding-left: 0; }
+}
+.story-step .story-scene {
+  transition: border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+.story-step.is-on .story-scene {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent-2) 25%, transparent);
+}
 .story-step h3 { font-size: 1rem; margin: 0.35rem 0 0; display: flex; gap: 0.5rem; align-items: baseline; }
 .story-no { font-family: var(--serif); color: var(--accent-ink); font-size: 1.05rem; }
 .story-step p { margin: 0; color: var(--ink-soft); font-size: 0.92rem; line-height: 1.5; }
+
+/* Hikâye sahneleri: başlangıç karesi → .play ile son kare (kaydırma) */
+html.js:not(.reduced) .story-scene:not(.play) .sc-cap,
+html.js:not(.reduced) .story-scene:not(.play) .sc-bolt-a,
+html.js:not(.reduced) .story-scene:not(.play) .sc-bolt-b,
+html.js:not(.reduced) .story-scene:not(.play) .sc-anvil,
+html.js:not(.reduced) .story-scene:not(.play) .sc-slide,
+html.js:not(.reduced) .story-scene:not(.play) .px-plate,
+html.js:not(.reduced) .story-scene:not(.play) .px-piston,
+html.js:not(.reduced) .story-scene:not(.play) .px-vplate { transform: none; }
+html.js:not(.reduced) .story-scene:not(.play) .sc-measure,
+html.js:not(.reduced) .story-scene:not(.play) .sc-check,
+html.js:not(.reduced) .story-scene:not(.play) .li-draw { stroke-dashoffset: 100; }
+html.js:not(.reduced) .story-scene:not(.play) .sc-needle-g { transform: rotate(-30deg); }
+html.js:not(.reduced) .story-scene.play .sc-needle-g { transition: transform 1.6s var(--ease) 0.2s; }
+html.js:not(.reduced) .story-scene.play .sc-check { transition-delay: 1s; }
+html.js:not(.reduced) .story-scene.play .sc-wheel { animation: sc-spin 0.9s linear infinite; }
+html.js:not(.reduced) .story-scene.play .sc-spark { animation: sc-spark 0.7s linear infinite; }
+html.js:not(.reduced) .story-scene.play .sc-spark:nth-child(2) { animation-delay: 0.18s; }
+html.js:not(.reduced) .story-scene.play .sc-spark:nth-child(3) { animation-delay: 0.36s; }
+html.js:not(.reduced) .story-scene.play .sc-spark:nth-child(4) { animation-delay: 0.5s; }
+html.js:not(.reduced) .story-scene.play .sc-flow { animation: sc-slide-dash 0.8s linear infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .story-pipe-fill { transition: none !important; }
+  .story-scene .sc-wheel, .story-scene .sc-spark, .story-scene .sc-flow { animation: none !important; }
+}
 
 /* --- Hizmet kartı çizgi ikonları --- */
 .line-icon {
