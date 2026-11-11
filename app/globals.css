@@ -144,6 +144,17 @@ a { color: inherit; }
   color: #fff;
 }
 .btn-ink:hover { transform: translateY(-2px); box-shadow: var(--sh-md); background: #000; }
+.btn-whatsapp {
+  background: #25d366;
+  color: #fff;
+  border-color: #1ebe57;
+}
+.btn-whatsapp:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sh-md);
+  background: #1ebe57;
+  color: #fff;
+}
 .btn-outline {
   background: transparent;
   color: var(--ink);
