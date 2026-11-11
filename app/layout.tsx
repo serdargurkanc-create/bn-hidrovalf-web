@@ -70,9 +70,11 @@ const bootScript = [
   "function runNext(){if(next)return;next=true;document.querySelectorAll('script[data-defer-next]').forEach(function(old){var s=document.createElement('script');var src=old.getAttribute('data-src');if(src){s.src=src;s.async=false;}else s.textContent=old.textContent;if(old.hasAttribute('nomodule'))s.noModule=true;if(old.id)s.id=old.id;old.replaceWith(s);});}",
   "function onFirst(){bootMotion();runNext();}",
   "ev.forEach(function(e){addEventListener(e,onFirst,{once:true,passive:true});});",
-  // Emniyet: etkileşim gelmezse motion yine yüklenir. 'reduced' EKLENMEZ —
-  // aksi halde gösterge/ibres animasyonları da kapanıyordu (yalnız prefers-reduced-motion).
-  "setTimeout(function(){if(!motion)bootMotion();},2500);",
+  // İlk viewport: motion yüklenmeden önce görünür alandaki reveal'ları aç
+  // (idle'da opacity:0'da kalmasın). 'reduced' eklenmez → gösterge animasyonu bozulmaz.
+  "function revealFold(){document.querySelectorAll('.rv,.rv-l,.rv-r,.rv-scale,.anim,.timeline').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)el.classList.add('in');});}",
+  "if(document.readyState==='loading')addEventListener('DOMContentLoaded',revealFold,{once:true});else revealFold();",
+  "setTimeout(function(){if(!motion){revealFold();bootMotion();}},2500);",
   "})();",
   // Kalan font ağırlıkları ilk boyamadan hemen sonra (DOMContentLoaded) devreye girer;
   // 'load' beklenirse takas geç olur ve görünür CLS üretir.
