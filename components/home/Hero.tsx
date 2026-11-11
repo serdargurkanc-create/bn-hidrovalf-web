@@ -34,7 +34,11 @@ export function Hero() {
             Fotoğrafla Teklif Alın
             <Arrow />
           </Link>
-          <a href={whatsappQuote} className="btn btn-outline">
+          <a
+            href={whatsappQuote}
+            className="btn btn-outline"
+            aria-label="WhatsApp ile fotoğraf gönderin"
+          >
             WhatsApp ile fotoğraf gönderin
           </a>
         </div>

@@ -32,7 +32,11 @@ export function Faq() {
                 Fotoğrafla Teklif Alın
                 <Arrow />
               </Link>
-              <a href={whatsappQuote} className="btn btn-outline">
+              <a
+                href={whatsappQuote}
+                className="btn btn-outline"
+                aria-label="WhatsApp ile yazın"
+              >
                 WhatsApp
               </a>
             </div>

@@ -34,11 +34,11 @@ export function Journey() {
               <Pic
                 src="/images/foto-valf-revizyonu-spool-logo-fon-01-600.webp"
                 srcSet="/images/foto-valf-revizyonu-spool-logo-fon-01-600.webp 600w, /images/foto-valf-revizyonu-spool-logo-fon-01-800.webp 800w, /images/foto-valf-revizyonu-spool-logo-fon-01-1200.webp 1200w"
-                avifSrcSet="/images/foto-valf-revizyonu-spool-logo-fon-01-600.avif 600w, /images/foto-valf-revizyonu-spool-logo-fon-01-800.avif 800w, /images/foto-valf-revizyonu-spool-logo-fon-01-1200.avif 1200w"
+                avifSrcSet="/images/foto-valf-revizyonu-spool-logo-fon-01-600.avif 600w, /images/foto-valf-revizyonu-spool-logo-fon-01-800.avif 800w"
                 alt="Logo fonu önünde sökülmüş valf gövdeleri ve yaylı spool’lar"
                 width={1200}
                 height={900}
-                sizes="(max-width: 900px) 100vw, 480px"
+                sizes="(max-width: 900px) 92vw, 480px"
               />
             </div>
           </div>

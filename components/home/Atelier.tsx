@@ -7,6 +7,8 @@ const shots = [
     src: "/images/gallery/galeri-01-spool-600.webp",
     srcSet:
       "/images/gallery/galeri-01-spool-600.webp 600w, /images/gallery/galeri-01-spool-800.webp 800w, /images/gallery/galeri-01-spool-1200.webp 1200w",
+    avifSrcSet:
+      "/images/gallery/galeri-01-spool-600.avif 600w, /images/gallery/galeri-01-spool-800.avif 800w",
     full: "/images/gallery/galeri-01-spool-1200.webp",
     w: 1200,
     h: 900,
@@ -17,6 +19,8 @@ const shots = [
     src: "/images/gallery/galeri-02-mikrometre-600.webp",
     srcSet:
       "/images/gallery/galeri-02-mikrometre-600.webp 600w, /images/gallery/galeri-02-mikrometre-800.webp 800w, /images/gallery/galeri-02-mikrometre-1200.webp 1200w",
+    avifSrcSet:
+      "/images/gallery/galeri-02-mikrometre-600.avif 600w, /images/gallery/galeri-02-mikrometre-800.avif 800w",
     full: "/images/gallery/galeri-02-mikrometre-1200.webp",
     w: 1200,
     h: 900,
@@ -27,6 +31,8 @@ const shots = [
     src: "/images/gallery/galeri-03-blok-600.webp",
     srcSet:
       "/images/gallery/galeri-03-blok-600.webp 600w, /images/gallery/galeri-03-blok-800.webp 800w, /images/gallery/galeri-03-blok-1200.webp 1200w",
+    avifSrcSet:
+      "/images/gallery/galeri-03-blok-600.avif 600w, /images/gallery/galeri-03-blok-800.avif 800w",
     full: "/images/gallery/galeri-03-blok-1200.webp",
     w: 1200,
     h: 900,
@@ -37,6 +43,8 @@ const shots = [
     src: "/images/gallery/galeri-04-kayar-plaka-600.webp",
     srcSet:
       "/images/gallery/galeri-04-kayar-plaka-600.webp 600w, /images/gallery/galeri-04-kayar-plaka-800.webp 800w, /images/gallery/galeri-04-kayar-plaka-1200.webp 1200w",
+    avifSrcSet:
+      "/images/gallery/galeri-04-kayar-plaka-600.avif 600w, /images/gallery/galeri-04-kayar-plaka-800.avif 800w",
     full: "/images/gallery/galeri-04-kayar-plaka-1200.webp",
     w: 1200,
     h: 900,
@@ -47,6 +55,8 @@ const shots = [
     src: "/images/gallery/galeri-05-disli-600.webp",
     srcSet:
       "/images/gallery/galeri-05-disli-600.webp 600w, /images/gallery/galeri-05-disli-800.webp 800w, /images/gallery/galeri-05-disli-1200.webp 1200w",
+    avifSrcSet:
+      "/images/gallery/galeri-05-disli-600.avif 600w, /images/gallery/galeri-05-disli-800.avif 800w",
     full: "/images/gallery/galeri-05-disli-1200.webp",
     w: 1200,
     h: 900,
@@ -57,6 +67,8 @@ const shots = [
     src: "/images/gallery/galeri-06-dortlu-600.webp",
     srcSet:
       "/images/gallery/galeri-06-dortlu-600.webp 600w, /images/gallery/galeri-06-dortlu-800.webp 800w, /images/gallery/galeri-06-dortlu-1200.webp 1200w",
+    avifSrcSet:
+      "/images/gallery/galeri-06-dortlu-600.avif 600w, /images/gallery/galeri-06-dortlu-800.avif 800w",
     full: "/images/gallery/galeri-06-dortlu-1200.webp",
     w: 1200,
     h: 900,
@@ -92,10 +104,11 @@ export function Atelier() {
               <Pic
                 src={s.src}
                 srcSet={s.srcSet}
+                avifSrcSet={s.avifSrcSet}
                 alt={s.alt}
                 width={s.w}
                 height={s.h}
-                sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 360px"
+                sizes="(max-width: 700px) 46vw, (max-width: 1100px) 30vw, 340px"
               />
               <span className="gallery-cap">{s.label}</span>
             </a>
