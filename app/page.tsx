@@ -1,4 +1,5 @@
 import { Atelier } from "@/components/home/Atelier";
+import { BlogStrip } from "@/components/home/BlogStrip";
 import { Contact } from "@/components/home/Contact";
 import { Facts } from "@/components/home/Facts";
 import { Faq } from "@/components/home/Faq";
@@ -21,6 +22,7 @@ export default function HomePage() {
       <TestProof />
       <Atelier />
       <Faq />
+      <BlogStrip />
       <Contact />
     </>
   );
