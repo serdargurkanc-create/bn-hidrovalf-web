@@ -17,6 +17,8 @@ export const site = {
     short: "İvedik OSB, Ankara",
   },
   maps: "https://www.google.com/maps/search/?api=1&query=Gen%C3%A7%20Karde%C5%9Fler%20Sanayi%20Sitesi%202285.%20Sk.%20No:40%20Yenimahalle%20Ankara",
+  mapsEmbed:
+    "https://maps.google.com/maps?q=Gen%C3%A7%20Karde%C5%9Fler%20Sanayi%20Sitesi%2C%202285.%20Sk.%20No%3A40%2C%20%C4%B0vedik%20OSB%2C%20Yenimahalle%2C%20Ankara&z=16&hl=tr&output=embed",
   description:
     "BN Hidrovalf Makina, Ankara İvedik OSB’de 20+ yıllık tecrübeye sahip kurumsal çözüm ortağıdır. Her marka iş makinasında valf ve pompa revizyonu, spool imalatı, iç grup yüzey taşlama ve videolu test kaydı.",
   heroTitle: "İş makinalarında valf ve pompa revizyonu.",

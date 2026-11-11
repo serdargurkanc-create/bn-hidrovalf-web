@@ -22,6 +22,7 @@ export function SchemaLd({
   videoList,
   about,
   howTo,
+  contact,
 }: {
   path: string;
   crumbs: Crumb[];
@@ -31,6 +32,8 @@ export function SchemaLd({
   /** Hakkımızda: AboutPage + LocalBusiness (NAP / GEO). */
   about?: boolean;
   howTo?: { name: string; description: string; steps: readonly { name: string; text: string }[] };
+  /** İletişim: ContactPage + NAP. */
+  contact?: boolean;
 }) {
   const pageUrl = abs(path);
   const graph: Record<string, unknown>[] = [
@@ -85,6 +88,32 @@ export function SchemaLd({
         "iç grup yüzey taşlama",
         "videolu hidrolik test",
       ],
+    });
+  }
+
+  if (contact) {
+    graph.push({
+      "@type": "ContactPage",
+      "@id": `${pageUrl}#webpage`,
+      url: pageUrl,
+      name: `İletişim — ${site.legalName}`,
+      inLanguage: "tr-TR",
+      mainEntity: {
+        "@type": "LocalBusiness",
+        name: site.legalName,
+        telephone: site.phoneTel,
+        email: site.email,
+        url: `${site.url}/`,
+        hasMap: site.maps,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: site.address.street,
+          postalCode: site.address.postalCode,
+          addressLocality: site.address.locality,
+          addressRegion: site.address.region,
+          addressCountry: site.address.country,
+        },
+      },
     });
   }
 

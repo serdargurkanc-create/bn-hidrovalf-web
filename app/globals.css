@@ -884,6 +884,121 @@ a { color: inherit; }
   .contact-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
+/* İletişim sayfası */
+.reach { padding: 0.5rem 0 3.5rem; }
+.reach-actions {
+  display: grid;
+  gap: 0.85rem;
+}
+.reach-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto auto;
+  column-gap: 0.9rem;
+  align-items: center;
+  min-height: 112px;
+  padding: 1.05rem 1.1rem;
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  box-shadow: var(--sh-sm);
+  transition: transform 0.35s var(--ease), border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+.reach-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  box-shadow: var(--sh-md);
+}
+.reach-ico {
+  grid-row: 1 / span 3;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+.reach-ico svg { width: 26px; height: 26px; }
+.reach-wa .reach-ico { background: #157347; color: #fff; }
+.reach-k {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.reach-card strong {
+  font-size: 1.05rem;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  word-break: break-word;
+}
+.reach-card em {
+  font-style: normal;
+  color: var(--accent-ink);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.reach-place {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.reach-address {
+  display: grid;
+  align-content: start;
+  gap: 0.45rem;
+  padding: 1.25rem 1.2rem 1.35rem;
+  background:
+    radial-gradient(90% 80% at 100% 0%, var(--accent-soft), transparent 60%),
+    #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-sm);
+}
+.reach-address .reach-ico { margin-bottom: 0.35rem; }
+.reach-address h2 {
+  margin: 0.15rem 0 0.2rem;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  letter-spacing: -0.04em;
+}
+.reach-address address {
+  font-style: normal;
+  font-weight: 650;
+  line-height: 1.5;
+}
+.reach-address p { margin: 0.2rem 0 0; color: var(--ink-soft); }
+.reach-note { font-size: 0.92rem; }
+.reach-note a { color: var(--accent-ink); }
+.reach-map {
+  position: relative;
+  min-height: 280px;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-md);
+  background: var(--bg-soft);
+}
+.reach-map iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+@media (min-width: 800px) {
+  .reach-actions { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .reach-place { grid-template-columns: 0.85fr 1.15fr; align-items: stretch; gap: 1rem; }
+  .reach-map { aspect-ratio: auto; min-height: 100%; height: 100%; }
+}
+@media (max-width: 799px) {
+  .reach { padding-bottom: 5rem; }
+}
+
 /* Footer */
 .footer {
   background: var(--bg-tint);
