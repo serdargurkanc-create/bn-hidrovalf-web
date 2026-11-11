@@ -21,6 +21,7 @@ export function SchemaLd({
   faqs,
   videoList,
   about,
+  howTo,
 }: {
   path: string;
   crumbs: Crumb[];
@@ -29,6 +30,7 @@ export function SchemaLd({
   videoList?: readonly Video[];
   /** Hakkımızda: AboutPage + LocalBusiness (NAP / GEO). */
   about?: boolean;
+  howTo?: { name: string; description: string; steps: readonly { name: string; text: string }[] };
 }) {
   const pageUrl = abs(path);
   const graph: Record<string, unknown>[] = [
@@ -109,6 +111,22 @@ export function SchemaLd({
           addressCountry: site.address.country,
         },
       },
+    });
+  }
+
+  if (howTo && howTo.steps.length) {
+    graph.push({
+      "@type": "HowTo",
+      "@id": `${pageUrl}#howto`,
+      name: howTo.name,
+      description: howTo.description,
+      inLanguage: "tr-TR",
+      step: howTo.steps.map((step, index) => ({
+        "@type": "HowToStep",
+        position: index + 1,
+        name: step.name,
+        text: step.text,
+      })),
     });
   }
 
