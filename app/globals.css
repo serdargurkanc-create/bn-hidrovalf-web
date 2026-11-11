@@ -51,6 +51,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   font-weight: 400;
+  font-synthesis: none;
   color: var(--ink);
   background: var(--bg);
   min-height: 100%;
@@ -330,6 +331,7 @@ a { color: inherit; }
 .hero .badge { margin-bottom: 1.25rem; }
 .hero h1 {
   margin: 0;
+  font-family: "Plus Jakarta Sans LCP", var(--font);
   font-weight: 800;
   font-size: clamp(2.35rem, 7.2vw, 5.375rem);
   line-height: 1.02;
