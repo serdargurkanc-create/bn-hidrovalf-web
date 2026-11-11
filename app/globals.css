@@ -2354,23 +2354,18 @@ html.js:not(.reduced) .about-map-dot { transform-box: fill-box; transform-origin
 .blog-strip-head p { margin: 0.8rem 0 0; color: var(--ink-soft); }
 .blog-slider { position: relative; }
 .blog-slider-viewport {
-  overflow: hidden;
   padding: 0.85rem 0 1rem;
-  container-type: inline-size;
 }
 .blog-slider-track {
-  display: flex;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr) minmax(0, 1fr);
   gap: 1rem;
-  will-change: transform;
+  align-items: stretch;
 }
-.blog-slide {
-  flex: 0 0 calc((100cqw - 2rem) / 3);
-  min-width: 0;
-  opacity: 0.42;
-  transition: opacity 0.45s var(--ease);
-}
-.blog-slide.is-active { opacity: 1; }
+.blog-slide { display: none; min-width: 0; }
+.blog-slide.is-prev { display: block; order: 1; opacity: 0.42; }
+.blog-slide.is-active { display: block; order: 2; opacity: 1; }
+.blog-slide.is-next { display: block; order: 3; opacity: 0.42; }
 .blog-slide-card {
   display: flex;
   flex-direction: column;
@@ -2382,7 +2377,7 @@ html.js:not(.reduced) .about-map-dot { transform-box: fill-box; transform-origin
   border-radius: 22px;
   overflow: hidden;
   box-shadow: var(--sh-sm);
-  transform: scale(0.9);
+  transform: scale(0.92);
   transform-origin: center center;
   transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease), border-color 0.45s var(--ease);
 }
@@ -2390,6 +2385,11 @@ html.js:not(.reduced) .about-map-dot { transform-box: fill-box; transform-origin
   transform: none;
   border-color: color-mix(in srgb, var(--accent) 50%, var(--line));
   box-shadow: 0 18px 40px rgba(175, 99, 43, 0.16);
+  animation: blog-center 0.45s var(--ease);
+}
+@keyframes blog-center {
+  from { transform: translateX(36px) scale(0.96); }
+  to { transform: none; }
 }
 .blog-slide-media { position: relative; display: block; background: var(--bg-soft); }
 .blog-slide-media img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; }
