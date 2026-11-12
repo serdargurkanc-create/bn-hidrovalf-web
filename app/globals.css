@@ -1051,7 +1051,17 @@ a { color: inherit; }
 }
 
 /* Blog — liste: öne çıkan + iki sütun; detay: kapak, gövde, yazar, sonraki */
+.blog-hero {
+  padding: 1.75rem 0 2.35rem;
+  background:
+    radial-gradient(ellipse 58% 90% at 8% -20%, rgba(208, 120, 37, 0.18), transparent 62%),
+    radial-gradient(ellipse 36% 80% at 96% 0%, rgba(22, 122, 98, 0.07), transparent 58%),
+    linear-gradient(180deg, #fff6ee 0%, #fffdfb 72%, #fff 100%);
+  border-bottom: 1px solid var(--line);
+}
+.blog-hero .blog-header > p { margin-bottom: 0; }
 .blog-page, .blog-detail { padding: 1.25rem 0 4rem; }
+.blog-page { padding-top: 2.25rem; }
 .blog-header h1, .blog-detail h1, .blog-feature h2, .blog-card h2 {
   letter-spacing: -0.04em;
   line-height: 1.15;

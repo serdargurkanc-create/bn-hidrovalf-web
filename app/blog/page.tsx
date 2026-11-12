@@ -21,17 +21,20 @@ export default function Page() {
   return (
     <>
       <SchemaLd path="/blog" crumbs={crumbs} />
-      <section className="blog-page">
+      <header className="blog-hero">
         <div className="wrap">
           <Crumbs crumbs={crumbs} />
-          <header className="blog-header">
+          <div className="blog-header">
             <h1>Son yazılan blog içerikleri.</h1>
             <p>
               Valf, pompa, spool ve test tezgâhı. Atölyede görülen arıza, ölçü ve teslim.
               Abartısız, işin içinden notlar.
             </p>
-          </header>
-
+          </div>
+        </div>
+      </header>
+      <section className="blog-page">
+        <div className="wrap">
           <article className="blog-feature">
             <div>
               <span className="blog-kicker">Öne çıkan makale</span>
