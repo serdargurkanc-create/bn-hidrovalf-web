@@ -70,7 +70,7 @@ export function Footer() {
               <Link href="/iletisim">İletişim</Link>
             </li>
             <li>
-              <Link href="/teklif">Fotoğrafla teklif al</Link>
+              <Link href="/teklif">Revizyon teklifi</Link>
             </li>
           </ul>
         </div>
