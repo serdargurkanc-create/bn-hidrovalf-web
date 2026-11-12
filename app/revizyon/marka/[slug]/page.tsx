@@ -9,7 +9,7 @@ import {
   Section,
 } from "@/components/Inner";
 import { SchemaLd } from "@/components/Schema";
-import { brands, getBrand } from "@/lib/brands";
+import { brandBlurb, brands, getBrand } from "@/lib/brands";
 import { videos } from "@/lib/media";
 import { pageMeta } from "@/lib/meta";
 import { PhotoBand, RevFacts, RevLinks, VideoBand, shots } from "@/components/revizyon/Frame";
@@ -27,8 +27,8 @@ export async function generateMetadata({
   const brand = getBrand(slug);
   if (!brand) return {};
   return pageMeta({
-    title: `${brand.name} valf ve pompa revizyonu`,
-    description: `${brand.scope} Test sonucu videolu kayıttır. Gereken parça tedarik edilir veya atölyede imal edilir. BN Hidrovalf Makina, İvedik OSB, Ankara.`,
+    title: `${brand.slug === "cat" ? "CAT" : brand.name} valf ve pompa revizyonu`,
+    description: brandBlurb(brand.slug),
     path: `/revizyon/marka/${brand.slug}`,
   });
 }
@@ -117,8 +117,8 @@ export default async function Page({
         <BrandChips slugs={digerleri} />
       </Section>
 
-      <PhotoBand shots={shots.marka} title={`${brand.name} işinden`} accent="kareler" lead="Görseller atölyedeki genel işlerdir. Bu markaya özel kareler sonra değiştirilebilir." />
-      <VideoBand clips={[videos.spoolLogo, videos.govdeHazirlik]} title={`${brand.name}`} accent="kayıt yeri" lead="Kayıt yer tutucudur. Markaya özel video sonra bağlanır." />
+      <PhotoBand shots={shots.marka} title={`${brand.name} işinden`} accent="kareler" lead="Atölyedeki valf ve pompa işlerinden kareler." />
+      <VideoBand clips={[videos.spoolLogo, videos.govdeHazirlik]} title={`${brand.name}`} accent="kayıtları" lead="Tezgâh kayıtları. Tıklayınca oynar." />
       <RevLinks current={`/revizyon/marka/${brand.slug}`} />
       <QuoteCta />
     </>

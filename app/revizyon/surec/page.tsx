@@ -125,7 +125,7 @@ export default function Page() {
         <FaqList items={faqItems} idPrefix="surec-soru" />
       </Section>
 
-      <PhotoBand shots={shots.hub} title="Sürecin" accent="kareleri" lead="Söküm, ölçü ve iç grup. Görseller yer tutucudur." />
+      <PhotoBand shots={shots.hub} title="Sürecin" accent="kareleri" lead="Söküm, ölçü ve iç grup." />
       <RevLinks current="/revizyon/surec" />
       <QuoteCta />
     </>

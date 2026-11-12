@@ -113,7 +113,7 @@ export function Footer() {
         </div>
       </div>
       <div className="wrap footer-legal">
-        <span>© {new Date().getFullYear()} {site.name}</span>
+        <span suppressHydrationWarning>© {new Date().getFullYear()} {site.name}</span>
         <a
           className="footer-credit"
           href="https://sumdijital.com/"

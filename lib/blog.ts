@@ -12,6 +12,8 @@ export type BlogBlock =
 export type BlogPost = {
   slug: string;
   title: string;
+  /** Belge başlığı 60 karakteri aşmasın diye; görünür H1 `title` kalır. */
+  seoTitle?: string;
   excerpt: string;
   category: string;
   date: string;
@@ -43,6 +45,7 @@ export const posts: BlogPost[] = [
   {
     slug: "valf-revizyonu-ne-zaman-gerekir",
     title: "İş makinası valf revizyonu ne zaman gerekir?",
+    seoTitle: "Valf revizyonu ne zaman gerekir?",
     excerpt:
       "Kol boşta hareket, tek fonksiyonun durması veya basıncın tutmaması valf kaynaklı olabilir. Kesin karar söküm ve ölçümdedir; bu yazı o eşiği anlatır.",
     category: "Valf",
@@ -85,6 +88,7 @@ export const posts: BlogPost[] = [
   {
     slug: "spool-imalati-neden-atolyede",
     title: "Spool bulunamıyorsa imalat neden atölyede yapılır?",
+    seoTitle: "Spool imalatı neden atölyede?",
     excerpt:
       "Aşınmış spool her zaman rafta bekleyen bir yedek değildir. Ölçü mevcut parçadan alınır; taşlama ve talaşlı imalat aynı çatı altında yürür.",
     category: "İmalat",
@@ -123,6 +127,7 @@ export const posts: BlogPost[] = [
   {
     slug: "videolu-test-kaydi",
     title: "Valf testi neden videolu kayıt olarak verilir?",
+    seoTitle: "Valf testi neden videolu kayıt?",
     excerpt:
       "Yazılı bir basınç listesi, tezgâhtaki manometrenin yerini tutmaz. Kayıt o işe aittir; 240 ve 320 bar yalnızca örnek videolardaki değerlerdir.",
     category: "Test",
@@ -157,6 +162,7 @@ export const posts: BlogPost[] = [
   {
     slug: "pompa-ic-grup-yuzey-taslama",
     title: "Pompa iç grup yüzey taşlama neyi düzeltir?",
+    seoTitle: "Pompa yüzey taşlama neyi düzeltir?",
     excerpt:
       "Pistonlu pompada silindir bloğu, ayna ve kayar plaka çizilince verim düşer. Yüzey taşlama, yeni iç grup beklemeden bu yüzeyleri ölçüye çekmeyi hedefler.",
     category: "Pompa",

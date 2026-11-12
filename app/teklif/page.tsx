@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { KvkkConsent, MailFallback } from "@/components/FormConsent";
 import { FaqList, PageHero, Section } from "@/components/Inner";
 import { SchemaLd } from "@/components/Schema";
 import { pageMeta } from "@/lib/meta";
@@ -7,9 +8,9 @@ import { asset } from "@/lib/paths";
 import { site, whatsappQuote } from "@/lib/site";
 
 export const metadata: Metadata = pageMeta({
-  title: "İş makinası valf ve pompa revizyon teklifi",
+  title: "Valf ve pompa revizyon teklifi",
   description:
-    "Ankara İvedik OSB’de valf ve pompa revizyon teklifi. Makine markası, arıza belirtisi ve bir fotoğraf yeter. Ön değerlendirme ücretsizdir; kesin fiyat sökümden sonra yazılı gelir. BN Hidrovalf Makina, Yenimahalle.",
+    "Valf ve pompa revizyon teklifi, İvedik OSB. Marka, belirti ve fotoğraf yeter. Kesin fiyat sökümden sonra yazılı gelir.",
   path: "/teklif",
 });
 
@@ -50,7 +51,7 @@ export default function Page() {
         service={{
           name: "İş makinası valf ve pompa revizyon teklifi",
           description:
-            "Ankara İvedik OSB’de her marka iş makinası için valf ve pompa revizyon teklifi. Ön değerlendirme fotoğraf ve belirtiyle başlar; kesin fiyat sökümden sonra yazılıdır.",
+            "İvedik OSB’de valf ve pompa revizyon teklifi. Ön değerlendirme fotoğraf ve belirtiyle başlar; kesin fiyat sökümden sonra yazılıdır.",
         }}
         faqs={faqs}
       />
@@ -124,6 +125,7 @@ export default function Page() {
                 <input name="eposta" type="email" autoComplete="email" placeholder="İsteğe bağlı" />
               </label>
             </div>
+            <KvkkConsent />
             <p className="form-note">
               Fotoğrafı veya kısa videoyu açılan WhatsApp sohbetine ekleyin. Garanti koşulları yazılı teklifte belirtilir.
             </p>
@@ -134,6 +136,7 @@ export default function Page() {
               WhatsApp penceresi açıldı. Açılmadıysa{" "}
               <a href={site.whatsapp}>bu bağlantıyı kullanın</a>.
             </p>
+            <MailFallback />
           </form>
 
           <aside className="quote-aside" aria-labelledby="teklif-aside-title">

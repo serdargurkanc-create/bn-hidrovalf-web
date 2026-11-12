@@ -125,7 +125,7 @@ export default function Page() {
         <FaqList items={faqItems} idPrefix="teslimat-soru" />
       </Section>
 
-      <PhotoBand shots={shots.teslimat} title="Paket ve" accent="tezgâh" lead="Gönderiye giden parçaların atölyedeki hâli. Görseller yer tutucudur." />
+      <PhotoBand shots={shots.teslimat} title="Paket ve" accent="tezgâh" lead="Gönderiye giden parçaların atölyedeki hâli." />
       <VideoBand clips={[videos.govdeHazirlik, videos.test240]} title="Hazırlık ve" accent="test" />
       <RevLinks current="/revizyon/teslimat" />
       <QuoteCta />

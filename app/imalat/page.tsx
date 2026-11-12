@@ -11,7 +11,7 @@ import { pageMeta } from "@/lib/meta";
 export const metadata: Metadata = pageMeta({
   title: "CNC ve özel imalat",
   description:
-    "Spool imalatı, iç çap ve flanş yüzey işleme, silindirik taşlama. Torna, freze ve taşlama kabiliyeti valf ve pompa revizyonunu destekler. BN Hidrovalf Makina, İvedik OSB.",
+    "Spool imalatı, iç çap, flanş işleme ve silindirik taşlama. CNC ve taşlama, valf ve pompa revizyonunu destekler. İvedik OSB.",
   path: "/imalat",
 });
 

@@ -1,4 +1,5 @@
-@import "tailwindcss";
+/* Yalnızca preflight. Tema belirteçleri ve boş utility katmanı ilk boyamayı şişiriyordu. */
+@import "tailwindcss/preflight.css";
 
 :root {
   --font: "Plus Jakarta Sans", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
@@ -1927,6 +1928,29 @@ html.js:not(.reduced) .anim.in .ship-line { animation: flow-dash 3.2s linear inf
   font-weight: 800;
 }
 .form-note { color: var(--ink-soft); font-size: 0.95rem; margin: 0; }
+label.kvkk-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+label.kvkk-label input {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.15rem;
+  flex: none;
+  accent-color: var(--accent-ink);
+}
+label.kvkk-label a {
+  color: var(--accent-ink);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.form-error { color: #7a2614; font-size: 0.9rem; margin: 0.35rem 0 0; }
+.form-mail { margin: 0.35rem 0 0; color: var(--ink-soft); font-size: 0.92rem; }
+.form-mail a { color: var(--accent-ink); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
 .form-fallback { margin-top: 1.25rem; color: var(--ink-soft); font-size: 0.95rem; max-width: 46rem; }
 .form-fallback a { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 2px; }
 .form [role="status"] a { color: var(--accent-ink); text-decoration: underline; }
@@ -2575,9 +2599,11 @@ html.js:not(.reduced) .about-map-dot { transform-box: fill-box; transform-origin
   display: block;
   transition: opacity 0.45s var(--ease);
 }
-.blog-slide.is-prev { order: 1; opacity: 0.55; }
-.blog-slide.is-active { order: 2; opacity: 1; }
-.blog-slide.is-next { order: 3; opacity: 0.55; }
+.blog-slide.is-prev { order: 1; }
+.blog-slide.is-active { order: 2; }
+.blog-slide.is-next { order: 3; }
+.blog-slide.is-prev .blog-slide-media,
+.blog-slide.is-next .blog-slide-media { opacity: 0.72; }
 .blog-slide-card {
   display: flex;
   flex-direction: column;

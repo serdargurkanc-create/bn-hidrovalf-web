@@ -108,8 +108,22 @@ export function startMotion() {
   return () => close();
 }
 
-/** Gösterge sayısı: 0 → hedef bar, ibre süresiyle senkron. */
+/** Gösterge sayısı: 0 → hedef bar, ibre süresiyle senkron.
+ * Metin, React hidrasyonu bitmeden değişmez (aksi halde #418). */
 function runGaugeCount(el: HTMLElement) {
+  if (document.documentElement.dataset.hydrated !== "1") {
+    if (el.dataset.gaugeWait === "1") return;
+    el.dataset.gaugeWait = "1";
+    document.addEventListener(
+      "bn-hydrated",
+      () => {
+        delete el.dataset.gaugeWait;
+        runGaugeCount(el);
+      },
+      { once: true }
+    );
+    return;
+  }
   const target = Number(el.dataset.gaugeBar || 0);
   const num = el.querySelector<HTMLElement>("[data-gauge-num]");
   if (!num || !target) return;

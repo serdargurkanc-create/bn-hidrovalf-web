@@ -19,10 +19,11 @@ export default function Page() {
     >
       <h2>Kullanılan çerezler</h2>
       <p>
-        Bu web sitesi statik olarak yayınlanır; analitik, reklam veya izleme
-        çerezi kullanmaz, üçüncü taraf izleme komut dosyası yüklemez. Tarayıcı,
-        yalnızca sitenin teknik olarak çalışması için gereken kaynakları
-        (yazı tipi, görsel, video) indirir.
+        Bu web sitesi statik olarak yayınlanır. Ölçüm çerezi, yalnızca ölçüm
+        kimliği tanımlıysa ve siz onayladıktan sonra yüklenir; onay yoksa
+        hiçbir izleme çerezi yazılmaz. Reklam çerezi kullanılmaz. Tarayıcı,
+        sitenin çalışması için gereken kaynakları (yazı tipi, görsel, video)
+        indirir.
       </p>
       <h2>Üçüncü taraf bağlantılar</h2>
       <p>

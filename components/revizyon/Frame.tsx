@@ -64,8 +64,8 @@ export type Shot = {
 export function PhotoBand({
   kicker = "Atölyeden",
   title = "Görseller",
-  accent = "yer tutucu",
-  lead = "Bu kareler atölyedeki gerçek işlerdendir. Yerleri sabit; görseller sonra değiştirilebilir.",
+  accent = "kareler",
+  lead = "Atölyedeki valf, pompa ve ölçü işlerinden kareler.",
   shots,
 }: {
   kicker?: string;
@@ -109,7 +109,7 @@ export function VideoBand({
   kicker = "Kayıt",
   title = "Video",
   accent = "alanı",
-  lead = "Klipler tıklanınca yüklenir. Otomatik oynamaz. Yerleri sabit; kayıtlar sonra değiştirilebilir.",
+  lead = "Klipler tıklanınca yüklenir. Otomatik oynamaz.",
   clips,
 }: {
   kicker?: string;
