@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Crumbs } from "@/components/Inner";
+import { PageHero } from "@/components/Inner";
 import { Pic } from "@/components/Pic";
 import { SchemaLd } from "@/components/Schema";
 import { blogAuthor, formatBlogDate, posts } from "@/lib/blog";
@@ -21,18 +21,13 @@ export default function Page() {
   return (
     <>
       <SchemaLd path="/blog" crumbs={crumbs} />
-      <header className="blog-hero">
-        <div className="wrap">
-          <Crumbs crumbs={crumbs} />
-          <div className="blog-header">
-            <h1>Son yazılan blog içerikleri.</h1>
-            <p>
-              Valf, pompa, spool ve test tezgâhı. Atölyede görülen arıza, ölçü ve teslim.
-              Abartısız, işin içinden notlar.
-            </p>
-          </div>
-        </div>
-      </header>
+      <PageHero
+        kicker="Blog"
+        title="Son yazılan"
+        accent="blog içerikleri"
+        lead="Valf, pompa, spool ve test tezgâhı. Atölyede görülen arıza, ölçü ve teslim. Abartısız, işin içinden notlar."
+        crumbs={crumbs}
+      />
       <section className="blog-page">
         <div className="wrap">
           <article className="blog-feature">
