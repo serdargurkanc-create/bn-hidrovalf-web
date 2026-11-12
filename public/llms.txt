@@ -22,7 +22,7 @@ BN Hidrovalf Makina, iş makinaları hidrolik valf ve pompa revizyonunda kurumsa
 - [Arıza belirtileri rehberi](https://bnhidrovalf.com/revizyon/ariza-belirtileri): Güç kaybı, ısınma, iç kaçak, spool sıkışması gibi belirtiler ve olası nedenleri. Kesin tespit atölyede yapılır.
 - [Teslimat](https://bnhidrovalf.com/revizyon/teslimat): Türkiye geneline kargo ile adrese teslim; hızlı seçenek otobüs kurye. Şube ağı yoktur, tek atölye Ankara İvedik OSB'dedir.
 - [Marka sayfaları](https://bnhidrovalf.com/revizyon/marka): Komatsu, CAT, Hitachi, Volvo, JCB, Hyundai iş makinaları ile Rexroth, Kawasaki, Linde valf/pompa gruplarının revizyonu. Gereken parça tedarik edilir veya atölyede imal edilir.
-- [Revizyon teklifi](https://bnhidrovalf.com/teklif): Makine marka/model, valf veya pompa tipi, arıza belirtisi, fotoğraf/video ve teslimat tercihi (kargo, otobüs kurye) ile talep formu.
+- [Valf ve pompa revizyon teklifi](https://bnhidrovalf.com/teklif): Ankara İvedik OSB. Makine marka/model, arıza belirtisi ve fotoğraf yeter. Ön değerlendirme ücretsizdir; kesin fiyat sökümden sonra yazılıdır.
 - [CNC ve özel imalat](https://bnhidrovalf.com/imalat): Revizyonu destekleyen atölye kabiliyeti; torna, freze ve taşlama ile özel parça işleri.
 - [Yedek parça](https://bnhidrovalf.com/yedek-parca): Revizyona bağlı veya ayrı talepte parça tedariki.
 - [Hakkımızda](https://bnhidrovalf.com/hakkimizda): 20+ yıllık tecrübe, kurumsal çözüm ortaklığı ve İvedik OSB atölyesi.

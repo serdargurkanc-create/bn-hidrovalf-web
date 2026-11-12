@@ -1886,11 +1886,95 @@ html.js:not(.reduced) .anim.in .ship-line { animation: flow-dash 3.2s linear inf
   font-weight: 800;
 }
 .form-note { color: var(--ink-soft); font-size: 0.95rem; margin: 0; }
-.form-fallback { margin-top: 2rem; color: var(--ink-soft); font-size: 0.95rem; max-width: 36rem; }
+.form-fallback { margin-top: 1.25rem; color: var(--ink-soft); font-size: 0.95rem; max-width: 46rem; }
 .form-fallback a { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 2px; }
 .form [role="status"] a { color: var(--accent-ink); text-decoration: underline; }
 html.js:not(.reduced) .form-step { transition: box-shadow 0.35s var(--ease), border-color 0.35s var(--ease); }
 html.js:not(.reduced) .form-step:focus-within { border-color: var(--accent); box-shadow: var(--sh-md); }
+
+/* Teklif sayfası: tek form kartı + sağ sütun */
+.quote-page { padding: 0.25rem 0 3rem; }
+.quote-grid {
+  display: grid;
+  gap: 1.25rem;
+  align-items: start;
+}
+.quote-form {
+  max-width: none;
+  margin-top: 0;
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem 1.15rem 1.35rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: var(--sh-sm);
+}
+.quote-form-head h2 {
+  margin: 0 0 0.3rem;
+  font-size: 1.45rem;
+  letter-spacing: -0.03em;
+}
+.quote-form-head p { margin: 0; color: var(--ink-soft); }
+.quote-fields { display: grid; gap: 0.9rem; }
+.quote-form .btn { justify-self: start; }
+.quote-aside {
+  padding: 1.2rem 1.15rem 1.3rem;
+  background: linear-gradient(180deg, #fff8f1 0%, #fff 70%);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+}
+.quote-aside h2, .quote-aside h3 {
+  margin: 0 0 0.7rem;
+  font-size: 1.2rem;
+  letter-spacing: -0.03em;
+}
+.quote-aside h3 { margin-top: 1.15rem; }
+.quote-need, .quote-next {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+  color: var(--ink-soft);
+}
+.quote-need { list-style: none; }
+.quote-need li {
+  padding-left: 1.15rem;
+  position: relative;
+}
+.quote-need li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--accent-2);
+}
+.quote-next { padding-left: 1.15rem; }
+.quote-next li { padding-left: 0.2rem; }
+.quote-nap {
+  display: grid;
+  gap: 0.25rem;
+  margin-top: 1.15rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--line);
+}
+.quote-nap a { color: var(--accent-ink); font-weight: 700; text-decoration: none; }
+.quote-nap a:hover { text-decoration: underline; text-underline-offset: 2px; }
+.quote-nap p { margin: 0.35rem 0 0.15rem; color: var(--ink-soft); font-size: 0.92rem; }
+@media (min-width: 720px) {
+  .quote-fields { grid-template-columns: 1fr 1fr; }
+  .quote-fields .is-wide { grid-column: 1 / -1; }
+}
+@media (min-width: 980px) {
+  .quote-grid { grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.72fr); gap: 1.5rem 1.75rem; }
+  .quote-aside { position: sticky; top: calc(var(--header) + 1rem); }
+}
+@media (max-width: 799px) {
+  .quote-page { padding-bottom: 5.5rem; }
+}
 
 /* Quote CTA (iç sayfalar) — turuncu dolguda her zaman koyu metin */
 .quote-cta { padding: 1rem 0 3.5rem; }
