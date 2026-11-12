@@ -23,9 +23,9 @@ import { asset } from "@/lib/paths";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = pageMeta({
-  title: "Hakkımızda — İvedik OSB’de valf ve pompa revizyon atölyesi",
+  title: "Hakkımızda: İvedik OSB valf atölyesi",
   description:
-    "BN Hidrovalf Makina, Ankara İvedik OSB’de 20+ yıllık tecrübeye sahip bağımsız revizyon atölyesidir. Valf ve pompa revizyonu, spool imalatı, iç grup taşlama, videolu test. Adres, telefon ve çalışma biçimi.",
+    "BN Hidrovalf Makina, İvedik OSB’de valf ve pompa revizyon atölyesidir. Spool imalatı, iç grup taşlama, videolu test. 20+ yıl.",
   path: "/hakkimizda",
 });
 
@@ -184,7 +184,7 @@ export default function Page() {
             <div className="about-fact" data-rise key={f.l} style={{ ["--d" as string]: `${i * 70}ms` }}>
               <b>
                 {f.v === "20+" ? (
-                  <span data-count="20" data-suffix="+">
+                  <span data-count="20" data-suffix="+" suppressHydrationWarning>
                     20+
                   </span>
                 ) : (

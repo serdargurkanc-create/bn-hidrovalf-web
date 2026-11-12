@@ -1,0 +1,28 @@
+{
+  "name": "BN Hidrovalf Makina",
+  "short_name": "BN Hidrovalf",
+  "lang": "tr",
+  "start_url": "/bn-hidrovalf-web/",
+  "scope": "/bn-hidrovalf-web/",
+  "display": "standalone",
+  "background_color": "#FAF8F5",
+  "theme_color": "#FAF8F5",
+  "icons": [
+    {
+      "src": "/bn-hidrovalf-web/favicon.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/bn-hidrovalf-web/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/bn-hidrovalf-web/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

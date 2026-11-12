@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { ConsentAnalytics } from "@/components/ConsentAnalytics";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { MobileDock } from "@/components/MobileDock";
@@ -15,7 +16,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "BN Hidrovalf Makina — Valf ve pompa revizyonu, İvedik OSB Ankara",
+    default: "BN Hidrovalf Makina — valf ve pompa revizyonu, Ankara",
     template: "%s — BN Hidrovalf Makina",
   },
   description: site.description,
@@ -46,6 +47,10 @@ export const metadata: Metadata = {
     icon: [{ url: asset("/favicon.png"), type: "image/png" }],
     apple: [{ url: asset("/apple-touch-icon.png") }],
   },
+  manifest: asset("/manifest.webmanifest"),
+  ...(process.env.NEXT_PUBLIC_GSC_VERIFICATION
+    ? { verification: { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION } }
+    : {}),
 };
 
 /* LCP hero alt kümesi AYRI aile adında: aynı "Plus Jakarta Sans" adına
@@ -67,7 +72,7 @@ const bootScript = [
   `function bootMotion(){if(motion)return;motion=true;drop();var s=document.createElement('script');s.src='${asset(
     "/motion.js"
   )}';s.defer=true;document.head.appendChild(s);}`,
-  "function runNext(){if(next)return;next=true;document.querySelectorAll('script[data-defer-next]').forEach(function(old){var s=document.createElement('script');var src=old.getAttribute('data-src');if(src){s.src=src;s.async=false;}else s.textContent=old.textContent;if(old.hasAttribute('nomodule'))s.noModule=true;if(old.id)s.id=old.id;old.replaceWith(s);});}",
+  "function runNext(){if(next)return;next=true;var pending=[];document.querySelectorAll('script[data-defer-next]').forEach(function(old){var s=document.createElement('script');var src=old.getAttribute('data-src');if(src){s.src=src;s.async=false;pending.push(s);}else s.textContent=old.textContent;if(old.hasAttribute('nomodule'))s.noModule=true;if(old.id)s.id=old.id;old.replaceWith(s);});function mark(){if(document.documentElement.dataset.hydrated)return;document.documentElement.dataset.hydrated='1';document.dispatchEvent(new Event('bn-hydrated'));}if(!pending.length){mark();return;}var left=pending.length;pending.forEach(function(s){function done(){if(--left===0)mark();}s.addEventListener('load',done);s.addEventListener('error',done);});}",
   "function onFirst(){bootMotion();runNext();}",
   "ev.forEach(function(e){addEventListener(e,onFirst,{once:true,passive:true});});",
   // İlk viewport: sync getBoundingClientRect döngüsü yok (forced-reflow).
@@ -123,6 +128,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main id="icerik">{children}</main>
         <Footer />
         <MobileDock />
+        <ConsentAnalytics />
       </body>
     </html>
   );

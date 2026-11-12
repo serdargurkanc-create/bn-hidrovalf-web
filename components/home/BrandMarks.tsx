@@ -8,18 +8,20 @@ import { asset } from "@/lib/paths";
 type Mark = {
   slug: string;
   name: string;
+  w: number;
+  h: number;
 };
 
 export const brandMarks: Mark[] = [
-  { slug: "komatsu", name: "Komatsu" },
-  { slug: "cat", name: "Caterpillar" },
-  { slug: "hitachi", name: "Hitachi" },
-  { slug: "volvo", name: "Volvo" },
-  { slug: "jcb", name: "JCB" },
-  { slug: "hyundai", name: "Hyundai" },
-  { slug: "rexroth", name: "Rexroth" },
-  { slug: "kawasaki", name: "Kawasaki" },
-  { slug: "linde", name: "Linde" },
+  { slug: "komatsu", name: "Komatsu", w: 600, h: 116 },
+  { slug: "cat", name: "Caterpillar", w: 110, h: 18 },
+  { slug: "hitachi", name: "Hitachi", w: 534, h: 118 },
+  { slug: "volvo", name: "Volvo", w: 872, h: 120 },
+  { slug: "jcb", name: "JCB", w: 258, h: 68 },
+  { slug: "hyundai", name: "Hyundai", w: 933, h: 120 },
+  { slug: "rexroth", name: "Rexroth", w: 296, h: 78 },
+  { slug: "kawasaki", name: "Kawasaki", w: 176, h: 19 },
+  { slug: "linde", name: "Linde", w: 176, h: 48 },
 ];
 
 export function BrandMark({ mark }: { mark: Mark }) {
@@ -28,7 +30,8 @@ export function BrandMark({ mark }: { mark: Mark }) {
       <img
         src={asset(`/brands/${mark.slug}.png`)}
         alt=""
-        height={28}
+        width={mark.w}
+        height={mark.h}
         draggable={false}
       />
     </span>

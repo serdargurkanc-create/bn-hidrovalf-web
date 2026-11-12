@@ -19,7 +19,7 @@ import { pageMeta } from "@/lib/meta";
 export const metadata: Metadata = pageMeta({
   title: "İş makinası pompa revizyonu",
   description:
-    "Her marka iş makinası pompa revizyonu: iç grup yüzey taşlama, ölçü kontrolü ve pompa testi. Test sonucu videolu kayıttır. BN Hidrovalf Makina, İvedik OSB, Ankara.",
+    "İş makinası pompa revizyonu: iç grup yüzey taşlama, ölçü ve videolu test. BN Hidrovalf Makina, İvedik OSB, Ankara.",
   path: "/revizyon/pompa",
 });
 

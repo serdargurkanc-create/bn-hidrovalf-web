@@ -6,9 +6,9 @@ import { pageMeta } from "@/lib/meta";
 import { site, whatsappQuote } from "@/lib/site";
 
 export const metadata: Metadata = pageMeta({
-  title: "İletişim — telefon, WhatsApp, e-posta ve İvedik OSB adresi",
+  title: "İletişim: telefon, WhatsApp, adres",
   description:
-    "BN Hidrovalf Makina: +90 541 883 53 31, WhatsApp, bnhidro@gmail.com. Genç Kardeşler Sanayi Sitesi, 2285. Sk. No:40, İvedik OSB, Yenimahalle/Ankara. Harita sayfada.",
+    "BN Hidrovalf: +90 541 883 53 31, WhatsApp, bnhidro@gmail.com. 2285. Sk. No:40, İvedik OSB, Yenimahalle/Ankara.",
   path: "/iletisim",
 });
 

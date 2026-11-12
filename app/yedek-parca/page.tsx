@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { KvkkConsent, MailFallback } from "@/components/FormConsent";
 import { Crumbs, FaqList, QuoteCta, Section } from "@/components/Inner";
 import { SchemaLd } from "@/components/Schema";
 import { pageMeta } from "@/lib/meta";
@@ -9,7 +10,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = pageMeta({
   title: "Yedek parça",
   description:
-    "Revizyona bağlı veya ayrı talepte yedek parça tedariki. Parça talep formu ile marka, makine ve parça tipini iletin; WhatsApp üzerinden hızlı dönüş. BN Hidrovalf Makina.",
+    "Yedek parça talebi: marka, model ve parça tipi. Parça tedarik edilir veya atölyede imal edilir. BN Hidrovalf, Ankara.",
   path: "/yedek-parca",
 });
 
@@ -107,6 +108,7 @@ export default function Page() {
                 <span>Telefon</span>
                 <input name="telefon" type="tel" autoComplete="tel" required />
               </label>
+              <KvkkConsent />
               <button type="submit" className="btn btn-primary">
                 WhatsApp ile parça sor
               </button>
@@ -114,6 +116,7 @@ export default function Page() {
                 WhatsApp penceresi açıldı. Açılmadıysa{" "}
                 <a href={site.whatsapp}>bu bağlantıyı kullanın</a>.
               </p>
+              <MailFallback />
               <p className="form-note">
                 Form sunucuya veri göndermez; mesaj WhatsApp’ta sizin
                 cihazınızda açılır. Çalışmazsa{" "}

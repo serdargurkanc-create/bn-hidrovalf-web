@@ -25,9 +25,9 @@ import { pageMeta } from "@/lib/meta";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = pageMeta({
-  title: "İş makinası valf revizyonu — spool, arıza çözümü, videolu test",
+  title: "Valf revizyonu, spool ve videolu test",
   description:
-    "Ankara İvedik OSB’de her marka iş makinası valf revizyonu. Söküm, spool imalatı, arıza çözümü ve tezgâhta videolu valf testi. Bağımsız atölye: BN Hidrovalf Makina.",
+    "İş makinası valf revizyonu, İvedik OSB: söküm, spool imalatı, arıza çözümü ve videolu test. BN Hidrovalf Makina.",
   path: "/revizyon/valf",
 });
 

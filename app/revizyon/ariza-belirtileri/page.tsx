@@ -180,7 +180,7 @@ export default function Page() {
         </p>
       </Section>
 
-      <PhotoBand shots={shots.ariza} title="Belirtiye" accent="bakan parçalar" lead="Spool, kayar plaka ve dişli set. Görseller yer tutucudur." />
+      <PhotoBand shots={shots.ariza} title="Belirtiye" accent="bakan parçalar" lead="Spool, kayar plaka ve dişli set." />
       <VideoBand clips={[videos.spoolTaslama, videos.icCapTaslama]} title="Ölçüden" accent="sonra iş" />
       <Section id="sss" kicker="SSS" title="Arıza" accent="soruları" tone="soft">
         <FaqList items={faqItems} idPrefix="ariza-soru" />

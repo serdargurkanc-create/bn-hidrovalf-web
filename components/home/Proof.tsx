@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Pic } from "@/components/Pic";
 
 const works = [
@@ -62,7 +63,7 @@ export function Proof() {
         </div>
         <div className="cards-grid">
           {works.map((w, i) => (
-            <a
+            <Link
               key={w.href}
               href={w.href}
               className="work-card rv-scale"
@@ -83,7 +84,7 @@ export function Proof() {
                 {w.title}
                 <span className="tag">{w.tag}</span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

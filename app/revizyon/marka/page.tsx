@@ -10,7 +10,7 @@ import { PhotoBand, RevFacts, RevLinks, VideoBand, shots } from "@/components/re
 export const metadata: Metadata = pageMeta({
   title: "Marka bazlı valf ve pompa revizyonu",
   description:
-    "Komatsu, CAT, Hitachi, Volvo, JCB, Hyundai iş makinaları ile Rexroth, Kawasaki, Linde valf ve pompa gruplarının revizyonu. Gereken parça tedarik edilir veya atölyede imal edilir.",
+    "Komatsu, CAT, Hitachi, Volvo, JCB, Hyundai, Rexroth, Kawasaki ve Linde valf-pompa revizyonu. İvedik OSB, Ankara.",
   path: "/revizyon/marka",
 });
 

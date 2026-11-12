@@ -107,7 +107,7 @@ export default function Page() {
         <FaqList items={faqItems} idPrefix="test-soru" />
       </Section>
 
-      <PhotoBand shots={shots.test} title="Test öncesi" accent="parçalar" lead="Kaydın konusu olan parçalar. Görseller yer tutucudur." />
+      <PhotoBand shots={shots.test} title="Test öncesi" accent="parçalar" lead="Kaydın konusu olan parçalar." />
       <RevLinks current="/revizyon/videolu-test" />
       <QuoteCta />
     </>

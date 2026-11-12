@@ -99,3 +99,27 @@ export const brands: Brand[] = [
 export function getBrand(slug: string): Brand | undefined {
   return brands.find((b) => b.slug === slug);
 }
+
+/** SERP açıklaması: markaya özgü, 160 karakterin altında. */
+const brandBlurbs: Record<string, string> = {
+  komatsu:
+    "Komatsu valf ve pompa revizyonu: spool imalatı, arıza çözümü, iç grup taşlama ve videolu test. İvedik OSB, Ankara.",
+  cat: "CAT valf ve pompa revizyonu: spool imalatı, iç grup taşlama ve videolu test. BN Hidrovalf Makina, İvedik OSB, Ankara.",
+  hitachi:
+    "Hitachi valf ve pompa revizyonu: ana kumanda valfi, hidrolik pompa ve videolu test. İvedik OSB, Ankara.",
+  volvo:
+    "Volvo valf ve pompa revizyonu: ana kumanda valfi, hidrolik pompa ve videolu test. İvedik OSB, Ankara.",
+  jcb: "JCB valf ve pompa revizyonu: ana kumanda valfi, hidrolik pompa ve videolu test. İvedik OSB, Ankara.",
+  hyundai:
+    "Hyundai valf ve pompa revizyonu: ana kumanda valfi, hidrolik pompa ve videolu test. İvedik OSB, Ankara.",
+  rexroth:
+    "Rexroth valf ve pompa revizyonu: iç grup yüzey taşlama, spool imalatı ve videolu test. İvedik OSB, Ankara.",
+  kawasaki:
+    "Kawasaki pompa ve valf revizyonu: pistonlu pompa iç grup taşlama ve videolu test. İvedik OSB, Ankara.",
+  linde:
+    "Linde pompa ve motor revizyonu: iç grup yüzey taşlama ve tezgâhta videolu test. İvedik OSB, Ankara.",
+};
+
+export function brandBlurb(slug: string): string {
+  return brandBlurbs[slug] ?? "";
+}

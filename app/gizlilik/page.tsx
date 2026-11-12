@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "KVKK aydınlatma ve gizlilik",
   description:
-    "BN Hidrovalf Makina KVKK aydınlatma metni taslağı: işlenen veriler, amaçlar, saklama ve başvuru yolları.",
+    "BN Hidrovalf Makina KVKK aydınlatma metni: işlenen veriler, amaçlar, saklama ve başvuru yolları.",
   alternates: { canonical: "/gizlilik" },
   robots: { index: false, follow: true },
 };
@@ -14,7 +14,7 @@ export default function Page() {
   return (
     <Inner
       title="KVKK aydınlatma ve gizlilik"
-      lead="Bu metin, 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında hazırlanmış bir taslaktır; nihai hali hukuk incelemesinden sonra yayınlanacaktır."
+      lead="6698 sayılı KVKK kapsamında veri sorumlusu, işlenen veriler, saklama ve başvuru yolları."
       crumbs={[{ href: "/", label: "Ana sayfa" }, { label: "KVKK ve gizlilik" }]}
     >
       <h2>Veri sorumlusu</h2>
@@ -52,9 +52,6 @@ export default function Page() {
         KVKK’nın 11. maddesi kapsamındaki bilgi, düzeltme, silme ve itiraz
         taleplerinizi {site.email} adresine veya {site.phone} numarasına
         iletebilirsiniz.
-      </p>
-      <p>
-        <em>Not: Bu sayfa taslaktır; hukuk incelemesi beklenmektedir.</em>
       </p>
     </Inner>
   );

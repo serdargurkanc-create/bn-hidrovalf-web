@@ -142,13 +142,13 @@ export default function Page() {
         shots={shots.hub}
         title="Atölye"
         accent="kareleri"
-        lead="Valf, pompa ve ölçü. Kareler yer tutucudur; görseller sonra değiştirilebilir."
+        lead="Valf, pompa ve ölçü. Atölyedeki işlerden kareler."
       />
       <VideoBand
         clips={[videos.test240, videos.icCapTaslama]}
         title="Test ve"
         accent="taşlama"
-        lead="Solda valf test kaydı, sağda iç çap taşlama. Kayıtlar yer tutucudur."
+        lead="Solda valf test kaydı, sağda iç çap taşlama."
       />
       <RevLinks current="/revizyon" />
       <QuoteCta />

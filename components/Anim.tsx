@@ -67,7 +67,7 @@ export function Gauge({
         </g>
         <circle cx="60" cy="60" r="5" className="gauge-hub" />
         <text x="60" y="92" textAnchor="middle" className="gauge-value">
-          <tspan className="gauge-num" data-gauge-num>
+          <tspan className="gauge-num" data-gauge-num suppressHydrationWarning>
             {bar}
           </tspan>
           <tspan dx="3">bar</tspan>
