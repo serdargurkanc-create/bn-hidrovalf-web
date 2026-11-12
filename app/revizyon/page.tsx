@@ -5,7 +5,9 @@ import { BrandChips, PageHero, QuoteCta, Section } from "@/components/Inner";
 import { Pic } from "@/components/Pic";
 import { SchemaLd } from "@/components/Schema";
 import { brands } from "@/lib/brands";
+import { videos } from "@/lib/media";
 import { pageMeta } from "@/lib/meta";
+import { PhotoBand, RevFacts, RevLinks, VideoBand, shots } from "@/components/revizyon/Frame";
 
 export const metadata: Metadata = pageMeta({
   title: "Valf ve pompa revizyonu",
@@ -82,6 +84,7 @@ export default function Page() {
       >
         <FlowSvg />
       </PageHero>
+      <RevFacts />
 
       <Section
         id="hizmetler"
@@ -135,6 +138,19 @@ export default function Page() {
         <BrandChips slugs={brands} />
       </Section>
 
+      <PhotoBand
+        shots={shots.hub}
+        title="Atölye"
+        accent="kareleri"
+        lead="Valf, pompa ve ölçü. Kareler yer tutucudur; görseller sonra değiştirilebilir."
+      />
+      <VideoBand
+        clips={[videos.test240, videos.icCapTaslama]}
+        title="Test ve"
+        accent="taşlama"
+        lead="Solda valf test kaydı, sağda iç çap taşlama. Kayıtlar yer tutucudur."
+      />
+      <RevLinks current="/revizyon" />
       <QuoteCta />
     </>
   );

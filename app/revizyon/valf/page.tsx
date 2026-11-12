@@ -20,6 +20,7 @@ import { SchemaLd } from "@/components/Schema";
 import { VideoFigure } from "@/components/VideoFigure";
 import { brands } from "@/lib/brands";
 import { videos } from "@/lib/media";
+import { RevFacts, RevLinks } from "@/components/revizyon/Frame";
 import { pageMeta } from "@/lib/meta";
 import { site } from "@/lib/site";
 
@@ -240,6 +241,7 @@ export default function Page() {
           <li>Videolu valf testi</li>
         </ul>
       </PageHero>
+      <RevFacts />
 
       <Section
         id="nedir"
@@ -429,6 +431,7 @@ export default function Page() {
         <FaqList items={faqItems} idPrefix="valf-soru" />
       </Section>
 
+      <RevLinks current="/revizyon/valf" />
       <QuoteCta note="Makine markası, valf tipi ve bir fotoğraf yeter. Süre ve garanti, tespit sonrası yazılı teklifte belirtilir." />
     </>
   );

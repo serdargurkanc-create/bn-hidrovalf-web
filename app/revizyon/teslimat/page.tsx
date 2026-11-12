@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FaqList, PageHero, QuoteCta, Section } from "@/components/Inner";
 import { SchemaLd } from "@/components/Schema";
+import { PhotoBand, RevFacts, RevLinks, VideoBand, shots } from "@/components/revizyon/Frame";
+import { videos } from "@/lib/media";
 import { pageMeta } from "@/lib/meta";
 import { site } from "@/lib/site";
 
@@ -44,7 +46,16 @@ const faqItems = [
 export default function Page() {
   return (
     <>
-      <SchemaLd path="/revizyon/teslimat" crumbs={crumbs} faqs={faqItems} />
+      <SchemaLd
+        path="/revizyon/teslimat"
+        crumbs={crumbs}
+        faqs={faqItems}
+        service={{
+          name: "Valf ve pompa revizyon teslimatı",
+          description:
+            "Revize edilen valf ve pompalar Türkiye geneline kargo ile adrese teslim edilir. Hızlı seçenek otobüs kuryedir. Tek atölye Ankara İvedik OSB.",
+        }}
+      />
       <PageHero
         kicker="Teslimat"
         title="Kargoyla gelir,"
@@ -79,6 +90,7 @@ export default function Page() {
           </div>
         }
       />
+      <RevFacts />
 
       <Section
         id="secenekler"
@@ -113,6 +125,9 @@ export default function Page() {
         <FaqList items={faqItems} idPrefix="teslimat-soru" />
       </Section>
 
+      <PhotoBand shots={shots.teslimat} title="Paket ve" accent="tezgâh" lead="Gönderiye giden parçaların atölyedeki hâli. Görseller yer tutucudur." />
+      <VideoBand clips={[videos.govdeHazirlik, videos.test240]} title="Hazırlık ve" accent="test" />
+      <RevLinks current="/revizyon/teslimat" />
       <QuoteCta />
     </>
   );
