@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PageHero, QuoteCta, Section } from "@/components/Inner";
+import { FaqList, PageHero, QuoteCta, Section } from "@/components/Inner";
 import { SchemaLd } from "@/components/Schema";
+import { PhotoBand, RevFacts, RevLinks, VideoBand, shots } from "@/components/revizyon/Frame";
+import { videos } from "@/lib/media";
 import { pageMeta } from "@/lib/meta";
 
 export const metadata: Metadata = pageMeta({
@@ -86,6 +88,21 @@ const pompaBelirtileri: Symptom[] = [
   },
 ];
 
+const faqItems = [
+  {
+    q: "Belirti listesi kesin teşhis midir?",
+    a: "Hayır. Aynı belirti pompadan da valften de gelebilir. Liste, atölyede ilk bakılan olasılıkları gösterir. Kesin tespit söküm ve tezgâh testiyle yapılır.",
+  },
+  {
+    q: "Güç kaybı valf mi, pompa mı?",
+    a: "Tek fonksiyon yavaşsa valf dilimi düşünülür. Tüm hareketler yük altında zayıfsa pompa iç grubu da ölçülür. Ayrım fotoğraftan değil, atölyede yapılır.",
+  },
+  {
+    q: "Bu belirtiyle nasıl teklif isterim?",
+    a: "Makine markası, hangi hareketin etkilendiği ve bir fotoğraf yeter. Ön değerlendirme ücretsizdir. Kesin fiyat, parça söküldükten sonra yazılıdır. Atölye Ankara İvedik OSB’dedir.",
+  },
+];
+
 function SymptomList({ items, idPrefix }: { items: Symptom[]; idPrefix: string }) {
   return (
     <div className="wizard">
@@ -116,7 +133,16 @@ function SymptomList({ items, idPrefix }: { items: Symptom[]; idPrefix: string }
 export default function Page() {
   return (
     <>
-      <SchemaLd path="/revizyon/ariza-belirtileri" crumbs={crumbs} />
+      <SchemaLd
+        path="/revizyon/ariza-belirtileri"
+        crumbs={crumbs}
+        faqs={faqItems}
+        service={{
+          name: "İş makinası arıza belirtileri rehberi",
+          description:
+            "Güç kaybı, ısınma, iç kaçak ve gürültü için olası valf ve pompa nedenleri. Kesin tespit Ankara İvedik OSB’deki atölyede yapılır.",
+        }}
+      />
       <PageHero
         kicker="Rehber"
         title="Belirtiden"
@@ -124,6 +150,7 @@ export default function Page() {
         lead="Belirtinizi seçin; olası nedenleri ve atölyede ne yapıldığını görün. Buradaki eşleştirmeler ön bilgidir, kesin teşhis değildir: kesin tespit, parça atölyede söküldükten sonra yapılır."
         crumbs={crumbs}
       />
+      <RevFacts />
 
       <Section
         id="valf"
@@ -153,6 +180,12 @@ export default function Page() {
         </p>
       </Section>
 
+      <PhotoBand shots={shots.ariza} title="Belirtiye" accent="bakan parçalar" lead="Spool, kayar plaka ve dişli set. Görseller yer tutucudur." />
+      <VideoBand clips={[videos.spoolTaslama, videos.icCapTaslama]} title="Ölçüden" accent="sonra iş" />
+      <Section id="sss" kicker="SSS" title="Arıza" accent="soruları" tone="soft">
+        <FaqList items={faqItems} idPrefix="ariza-soru" />
+      </Section>
+      <RevLinks current="/revizyon/ariza-belirtileri" />
       <QuoteCta />
     </>
   );

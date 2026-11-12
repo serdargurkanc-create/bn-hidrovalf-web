@@ -10,7 +10,9 @@ import {
 } from "@/components/Inner";
 import { SchemaLd } from "@/components/Schema";
 import { brands, getBrand } from "@/lib/brands";
+import { videos } from "@/lib/media";
 import { pageMeta } from "@/lib/meta";
+import { PhotoBand, RevFacts, RevLinks, VideoBand, shots } from "@/components/revizyon/Frame";
 
 export function generateStaticParams() {
   return brands.map((b) => ({ slug: b.slug }));
@@ -84,6 +86,7 @@ export default async function Page({
         lead={brand.scope}
         crumbs={crumbs}
       />
+      <RevFacts />
 
       <Section id="kapsam" kicker="Kapsam" title="Bu markada" accent="yapılan iş">
         <div className="prose prose-wide">
@@ -114,6 +117,9 @@ export default async function Page({
         <BrandChips slugs={digerleri} />
       </Section>
 
+      <PhotoBand shots={shots.marka} title={`${brand.name} işinden`} accent="kareler" lead="Görseller atölyedeki genel işlerdir. Bu markaya özel kareler sonra değiştirilebilir." />
+      <VideoBand clips={[videos.spoolLogo, videos.govdeHazirlik]} title={`${brand.name}`} accent="kayıt yeri" lead="Kayıt yer tutucudur. Markaya özel video sonra bağlanır." />
+      <RevLinks current={`/revizyon/marka/${brand.slug}`} />
       <QuoteCta />
     </>
   );

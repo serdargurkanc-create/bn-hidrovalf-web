@@ -6,6 +6,7 @@ import { Pic } from "@/components/Pic";
 import { SchemaLd } from "@/components/Schema";
 import { VideoFigure } from "@/components/VideoFigure";
 import { videos } from "@/lib/media";
+import { PhotoBand, RevFacts, RevLinks, shots } from "@/components/revizyon/Frame";
 import { pageMeta } from "@/lib/meta";
 import { journey } from "@/lib/site";
 
@@ -89,6 +90,7 @@ export default function Page() {
         lead="Revizyon beş adımda ilerler. İlk adım bir fotoğraftır; son adım videolu test kaydıyla teslimdir. Süre vaadi verilmez; iş, onaylanan yazılı teklife göre yürür."
         crumbs={crumbs}
       />
+      <RevFacts />
 
       <Section
         id="adimlar"
@@ -123,6 +125,8 @@ export default function Page() {
         <FaqList items={faqItems} idPrefix="surec-soru" />
       </Section>
 
+      <PhotoBand shots={shots.hub} title="Sürecin" accent="kareleri" lead="Söküm, ölçü ve iç grup. Görseller yer tutucudur." />
+      <RevLinks current="/revizyon/surec" />
       <QuoteCta />
     </>
   );
