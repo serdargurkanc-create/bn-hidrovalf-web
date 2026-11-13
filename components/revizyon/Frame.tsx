@@ -159,7 +159,18 @@ function shot(
   srcSet: string,
   avif?: string
 ): Shot {
-  return { src: `${file}-600.webp`, srcSet, avif, alt, cap };
+  return { src: `${file}-600.webp`, srcSet, avif, alt, cap, w: 1200, h: 900 };
+}
+
+/** 4:3 atölye karesi: 600 / 800 / 1200 webp + avif. */
+function band(file: string, cap: string, alt: string): Shot {
+  return shot(
+    file,
+    cap,
+    alt,
+    `${file}-600.webp 600w, ${file}-800.webp 800w, ${file}-1200.webp 1200w`,
+    `${file}-600.avif 600w, ${file}-800.avif 800w, ${file}-1200.avif 1200w`
+  );
 }
 
 export const shots = {
@@ -253,6 +264,44 @@ export const shots = {
       "Silindirik taşlama tezgâhı",
       "/images/spool-silindirik-taslama-01-600.webp 600w, /images/spool-silindirik-taslama-01.webp 1600w",
       "/images/spool-silindirik-taslama-01-600.avif 600w, /images/spool-silindirik-taslama-01-800.avif 800w"
+    ),
+  ],
+  /** Dişli pompa: iç grup, işlenmiş gövde çifti, atölye sırası. */
+  pompa: [
+    band(
+      "/images/foto-disli-pompa-ic-grup-01",
+      "Dişli pompa iç grubu",
+      "Dişli pompa iç grubu: gerotor, port plakaları, gövde kesiti, dişli set ve kırmızı kapak. İvedik OSB atölyesi."
+    ),
+    band(
+      "/images/foto-pompa-govde-cift-01",
+      "İşlenmiş pompa gövdesi",
+      "Tezgâhta iki işlenmiş pompa gövdesi ve miller, İvedik OSB."
+    ),
+    band(
+      "/images/foto-pompa-govde-sira-atolye-01",
+      "Pompa gövde sırası",
+      "İvedik OSB atölyesinde tezgâh üzerinde dişli pompa gövdeleri; arkada torna tezgâhı."
+    ),
+  ],
+  /** Süreç başlığıyla aynı sıra: söküm, ölçü, iç grup. */
+  surec: [
+    band(
+      "/images/foto-valf-spool-yay-sokum-01",
+      "Spool ve yay sökümü",
+      "Sarı tezgahta sökülmüş iki hidrolik valf gövdesi ve yaylı spool’lar, İvedik OSB."
+    ),
+    shot(
+      "/images/gallery/galeri-02-mikrometre",
+      "Ölçü kontrolü",
+      "Pompa gövdesinde mikrometre ile ölçü kontrolü",
+      "/images/gallery/galeri-02-mikrometre-600.webp 600w, /images/gallery/galeri-02-mikrometre-800.webp 800w",
+      "/images/gallery/galeri-02-mikrometre-600.avif 600w, /images/gallery/galeri-02-mikrometre-800.avif 800w"
+    ),
+    band(
+      "/images/foto-disli-pompa-ic-grup-01",
+      "İç grup",
+      "Dişli pompa iç grubu parçaları tezgâh üzerinde, İvedik OSB atölyesi."
     ),
   ],
   test: [

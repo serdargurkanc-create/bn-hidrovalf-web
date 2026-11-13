@@ -13,7 +13,7 @@ import { PumpExploded } from "@/components/anim/Scenes";
 import { VideoFigure } from "@/components/VideoFigure";
 import { brands } from "@/lib/brands";
 import { videos } from "@/lib/media";
-import { RevFacts, RevLinks } from "@/components/revizyon/Frame";
+import { PhotoBand, RevFacts, RevLinks, shots } from "@/components/revizyon/Frame";
 import { pageMeta } from "@/lib/meta";
 
 export const metadata: Metadata = pageMeta({
@@ -196,6 +196,13 @@ export default function Page() {
           <Link href="/revizyon/teslimat">teslimat sayfası</Link> yardımcı olur.
         </p>
       </Section>
+
+      <PhotoBand
+        shots={shots.pompa}
+        title="Dişli pompa ve"
+        accent="gövde"
+        lead="Dişli pompa iç grubu, işlenmiş gövde ve atölyedeki gövde sırası."
+      />
 
       <Section id="sss" kicker="SSS" title="Pompa revizyonu" accent="soruları" tone="soft">
         <FaqList items={faqItems} idPrefix="pompa-soru" />
