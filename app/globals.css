@@ -757,8 +757,7 @@ a { color: inherit; }
 }
 
 /* Process */
-.process { padding: 2.5rem 0 3rem; content-visibility: auto; contain-intrinsic-size: 1px 900px; }
-.gallery, .faq, .cta-wrap, .cards-sec { content-visibility: auto; contain-intrinsic-size: 1px 800px; }
+.process { padding: 2.5rem 0 3rem; }
 .process-grid { grid-template-columns: 1fr; }
 .process-card {
   background: var(--bg-tint);
@@ -1389,17 +1388,26 @@ a { color: inherit; }
 .form textarea { min-height: 120px; resize: vertical; }
 .form button { justify-self: start; }
 
-/* Reveals — never applied to hero title */
+/* Reveals — never applied to hero title.
+   .in gelmezse (hidrasyon sınıfı siler, IO atlar) içerik boş kalmasın. */
+@keyframes rv-arrive { to { opacity: 1; transform: none; } }
 html.js:not(.reduced) .rv { opacity: 0; transform: translateY(28px); }
 html.js:not(.reduced) .rv-l { opacity: 0; transform: translateX(-32px); }
 html.js:not(.reduced) .rv-r { opacity: 0; transform: translateX(32px); }
 html.js:not(.reduced) .rv-scale { opacity: 0; transform: scale(0.96); }
+html.js:not(.reduced) .rv:not(.in),
+html.js:not(.reduced) .rv-l:not(.in),
+html.js:not(.reduced) .rv-r:not(.in),
+html.js:not(.reduced) .rv-scale:not(.in) {
+  animation: rv-arrive 0.65s var(--ease) 0.7s forwards;
+}
 html.js:not(.reduced) .rv.in,
 html.js:not(.reduced) .rv-l.in,
 html.js:not(.reduced) .rv-r.in,
 html.js:not(.reduced) .rv-scale.in {
   opacity: 1;
   transform: none;
+  animation: none;
   transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
   transition-delay: var(--d, 0ms);
 }
@@ -2183,7 +2191,8 @@ html.js:not(.reduced) .anim:not(.in) .px-piston,
 html.js:not(.reduced) .anim:not(.in) .px-vplate { transform: none; }
 html.js:not(.reduced) .anim:not(.in) .sc-measure,
 html.js:not(.reduced) .anim:not(.in) .sc-check,
-html.js:not(.reduced) .anim:not(.in) .li-draw { stroke-dashoffset: 100; }
+html.js:not(.reduced) .anim:not(.in) .li-draw { stroke-dashoffset: 100; animation: draw-arrive 0.7s var(--ease) 1s forwards; }
+@keyframes draw-arrive { to { stroke-dashoffset: 0; } }
 html.js:not(.reduced) .anim:not(.in) .sc-needle-g { transform: rotate(-30deg); }
 html.js:not(.reduced) .anim.in .sc-needle-g { transition: transform 1.6s var(--ease) 0.3s; }
 html.js:not(.reduced) .anim.in .sc-check { transition-delay: 1.2s; }
@@ -2274,6 +2283,8 @@ html.js:not(.reduced) .anim.in .bn-rec-dot { animation: sc-blink 1.2s ease infin
 .pl-viewport { position: absolute; inset: 14% 12% 22%; display: grid; }
 .pl-frame { grid-area: 1 / 1; opacity: 0; }
 .pl-frame.is-on { opacity: 1; }
+/* motion.js gelmeden mercek boş kutu kalmasın */
+.pl-viewport:not(:has(> .is-on)) > .pl-frame:first-child { opacity: 1; }
 .pl-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; }
 @media (max-width: 959px) {
   .process { padding-bottom: 4.5rem; }
@@ -2297,7 +2308,7 @@ html.js:not(.reduced) .story-scene:not(.play) .px-piston,
 html.js:not(.reduced) .story-scene:not(.play) .px-vplate { transform: none; }
 html.js:not(.reduced) .story-scene:not(.play) .sc-measure,
 html.js:not(.reduced) .story-scene:not(.play) .sc-check,
-html.js:not(.reduced) .story-scene:not(.play) .li-draw { stroke-dashoffset: 100; }
+html.js:not(.reduced) .story-scene:not(.play) .li-draw { stroke-dashoffset: 100; animation: draw-arrive 0.7s var(--ease) 1s forwards; }
 html.js:not(.reduced) .story-scene:not(.play) .sc-needle-g { transform: rotate(-30deg); }
 html.js:not(.reduced) .story-scene.play .sc-needle-g { transition: transform 1.6s var(--ease) 0.2s; }
 html.js:not(.reduced) .story-scene.play .sc-check { transition-delay: 1s; }

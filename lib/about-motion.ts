@@ -41,13 +41,14 @@ export function startAbout() {
   if (reduced) return;
 
   root.querySelectorAll<HTMLElement>("[data-rise]").forEach((el) => {
-    if (el.getBoundingClientRect().top < window.innerHeight * 0.9) return;
+    // autoAlpha kartı görünmez bırakabiliyor; kaydırma yalnızca yer değiştirir.
+    if (el.getBoundingClientRect().top < window.innerHeight * 0.92) return;
     gsap.from(el, {
-      y: 26,
-      autoAlpha: 0,
+      y: 22,
       duration: 0.65,
       ease: "power2.out",
-      scrollTrigger: { trigger: el, start: "top 90%", once: true },
+      immediateRender: false,
+      scrollTrigger: { trigger: el, start: "top 92%", once: true },
     });
   });
 
@@ -69,12 +70,32 @@ export function startAbout() {
 
   root.querySelectorAll<SVGGeometryElement>("[data-draw]").forEach((path) => {
     const len = path.getTotalLength();
+    if (!Number.isFinite(len) || len <= 0) return;
+    const draw = () => {
+      gsap.killTweensOf(path);
+      gsap.fromTo(
+        path,
+        { strokeDasharray: len, strokeDashoffset: len },
+        { strokeDashoffset: 0, duration: 1.35, ease: "power2.out" }
+      );
+    };
+    if (path.getBoundingClientRect().top < window.innerHeight * 0.9) {
+      draw();
+      return;
+    }
     gsap.set(path, { strokeDasharray: len, strokeDashoffset: len });
-    gsap.to(path, {
-      strokeDashoffset: 0,
-      duration: 1.35,
-      ease: "power2.out",
-      scrollTrigger: { trigger: path, start: "top 88%", once: true },
+    const st = ScrollTrigger.create({
+      trigger: path,
+      start: "top 88%",
+      once: true,
+      onEnter: draw,
     });
+    window.setTimeout(() => {
+      const off = Number.parseFloat(getComputedStyle(path).strokeDashoffset || "0");
+      if (off > 2) {
+        st.kill();
+        gsap.set(path, { strokeDashoffset: 0 });
+      }
+    }, 2800);
   });
 }

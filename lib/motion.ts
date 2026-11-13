@@ -3,80 +3,102 @@ export function startMotion() {
     document.documentElement.classList.contains("reduced") ||
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const reveals = document.querySelectorAll<HTMLElement>(
-    ".rv, .rv-l, .rv-r, .rv-scale, .anim, .timeline"
-  );
+  const revealSel =
+    ".rv:not(.in), .rv-l:not(.in), .rv-r:not(.in), .rv-scale:not(.in), .anim:not(.in), .timeline:not(.in)";
+  const pending = new Set<HTMLElement>();
+  let io: IntersectionObserver | null = null;
+  let sweepRaf = 0;
+  let failsafe = 0;
 
-  if (reduced) {
-    reveals.forEach((el) => el.classList.add("in"));
-  } else {
-    const pending = new Set<HTMLElement>(reveals);
-    const markIn = (el: HTMLElement) => {
-      io.unobserve(el);
-      pending.delete(el);
-      // Gösterge: başlangıç karesinin bir kez boyanması için çift rAF;
-      // aksi halde .in aynı karede gelince CSS transition atlanır.
-      if (el.classList.contains("gauge")) {
-        el.classList.remove("in");
-        void el.offsetWidth;
+  const markIn = (el: HTMLElement) => {
+    io?.unobserve(el);
+    pending.delete(el);
+    if (!el.isConnected) return;
+    // Gösterge: başlangıç karesinin bir kez boyanması için çift rAF;
+    // aksi halde .in aynı karede gelince CSS transition atlanır.
+    if (el.classList.contains("gauge") && !el.dataset.gaugePlayed) {
+      el.dataset.gaugePlayed = "1";
+      el.classList.remove("in");
+      void el.offsetWidth;
+      requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            el.classList.add("in");
-            runGaugeCount(el);
-          });
+          el.classList.add("in");
+          runGaugeCount(el);
         });
+      });
+      return;
+    }
+    el.classList.add("in");
+  };
+
+  const sweep = () => {
+    pending.forEach((el) => {
+      if (!el.isConnected) {
+        pending.delete(el);
         return;
       }
-      el.classList.add("in");
-    };
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          markIn(entry.target as HTMLElement);
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+      if (el.getBoundingClientRect().bottom < window.innerHeight + 80) markIn(el);
+    });
+  };
+
+  const armReveals = () => {
+    const reveals = [...document.querySelectorAll<HTMLElement>(revealSel)].filter(
+      (el) => !pending.has(el)
     );
-    // Hızlı kaydırmada IO'nun atladığı, viewport'u geçmiş öğeleri yakala.
-    let raf = 0;
-    const sweep = () => {
-      pending.forEach((el) => {
-        if (el.getBoundingClientRect().bottom < window.innerHeight) markIn(el);
-      });
-      if (!pending.size) removeEventListener("scroll", onScroll);
-    };
-    const onScroll = () => {
-      if (raf) return;
-      raf = requestAnimationFrame(() => {
-        raf = 0;
-        sweep();
-      });
-    };
-    addEventListener("scroll", onScroll, { passive: true });
-    // Güvenlik ağı: her durumda 3 sn sonra kalan tüm öğeler görünür.
-    setTimeout(() => {
-      [...pending].forEach((el) => markIn(el));
-      pending.clear();
-      removeEventListener("scroll", onScroll);
-    }, 3000);
-    reveals.forEach((el, i) => {
+    if (!reveals.length) return;
+    if (reduced) {
+      reveals.forEach((el) => el.classList.add("in"));
+      return;
+    }
+    if (!io) {
+      io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            markIn(entry.target as HTMLElement);
+          });
+        },
+        { threshold: 0.05, rootMargin: "0px 0px -4% 0px" }
+      );
+      const onScroll = () => {
+        if (sweepRaf) return;
+        sweepRaf = requestAnimationFrame(() => {
+          sweepRaf = 0;
+          sweep();
+        });
+      };
+      addEventListener("scroll", onScroll, { passive: true });
+    }
+    reveals.forEach((el) => {
       if (!el.style.getPropertyValue("--d")) {
         const siblings = el.parentElement
-          ? Array.from(el.parentElement.children).filter((c) =>
-              c.classList.contains("rv") ||
-              c.classList.contains("rv-l") ||
-              c.classList.contains("rv-r") ||
-              c.classList.contains("rv-scale")
+          ? Array.from(el.parentElement.children).filter(
+              (c) =>
+                c.classList.contains("rv") ||
+                c.classList.contains("rv-l") ||
+                c.classList.contains("rv-r") ||
+                c.classList.contains("rv-scale")
             )
           : [];
         const idx = Math.max(0, siblings.indexOf(el));
         el.style.setProperty("--d", `${Math.min(idx * 90, 540)}ms`);
       }
-      io.observe(el);
+      pending.add(el);
+      io?.observe(el);
     });
     sweep();
-  }
+    window.clearTimeout(failsafe);
+    failsafe = window.setTimeout(() => {
+      [...pending].forEach((el) => markIn(el));
+      pending.clear();
+    }, 1600);
+  };
+
+  armReveals();
+  document.addEventListener("bn-hydrated", () => {
+    armReveals();
+    bindStoryRails(reduced);
+  });
 
   /* Kaydırmayla 1→5 hikâye: akış çizgisi + sırayla .play */
   bindStoryRails(reduced);
@@ -145,9 +167,13 @@ function runGaugeCount(el: HTMLElement) {
   requestAnimationFrame(tick);
 }
 
+let storyScroll = false;
+
 /** Valf merceği: kaydırma/adım seçimi ile 1→5; imleç glow. */
 function bindStoryRails(reduced: boolean) {
-  const rails = document.querySelectorAll<HTMLElement>("[data-story-rail]");
+  const rails = [...document.querySelectorAll<HTMLElement>("[data-story-rail]")].filter(
+    (rail) => rail.dataset.railBound !== "1"
+  );
   if (!rails.length) return;
 
   const applyStep = (rail: HTMLElement, index: number, n: number) => {
@@ -167,7 +193,7 @@ function bindStoryRails(reduced: boolean) {
 
   const scrub = () => {
     const vh = window.innerHeight || 1;
-    rails.forEach((rail) => {
+    document.querySelectorAll<HTMLElement>("[data-story-rail]").forEach((rail) => {
       if (rail.dataset.locked === "1") return;
       const n = Number(rail.dataset.steps) || rail.querySelectorAll(".pl-frame").length;
       if (!n) return;
@@ -204,6 +230,7 @@ function bindStoryRails(reduced: boolean) {
   };
 
   rails.forEach((rail) => {
+    rail.dataset.railBound = "1";
     const stage = rail.querySelector<HTMLElement>("[data-process-lens]");
     const n = Number(rail.dataset.steps) || rail.querySelectorAll(".pl-frame").length;
 
@@ -259,6 +286,9 @@ function bindStoryRails(reduced: boolean) {
   });
 
   scrub();
-  addEventListener("scroll", onScroll, { passive: true });
-  addEventListener("resize", onScroll, { passive: true });
+  if (!storyScroll) {
+    storyScroll = true;
+    addEventListener("scroll", onScroll, { passive: true });
+    addEventListener("resize", onScroll, { passive: true });
+  }
 }

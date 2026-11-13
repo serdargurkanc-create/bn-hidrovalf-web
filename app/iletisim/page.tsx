@@ -121,7 +121,7 @@ export default function Page() {
               <iframe
                 title="BN Hidrovalf Makina konumu: İvedik OSB, 2285. Sokak No:40, Yenimahalle"
                 src={site.mapsEmbed}
-                loading="lazy"
+                loading="eager"
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen
               />

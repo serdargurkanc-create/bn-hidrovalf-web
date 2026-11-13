@@ -6,7 +6,13 @@
  * Yalnız transform/opacity/stroke animasyonu — CLS üretmez.
  */
 
-type P = { className?: string; /** true: .anim (IO). false: hikâye .play */ live?: boolean };
+type P = {
+  className?: string;
+  /** true: .anim (IO). false: hikâye .play */
+  live?: boolean;
+  /** İlk hikâye karesi: çizim JS beklemeden görünür. */
+  play?: boolean;
+};
 
 function Scene({
   children,
@@ -14,6 +20,7 @@ function Scene({
   className,
   label,
   story = false,
+  started = false,
 }: {
   children: React.ReactNode;
   viewBox: string;
@@ -21,10 +28,12 @@ function Scene({
   label?: string;
   /** Kaydırma ile .play alan hikâye sahneleri (IO .anim değil). */
   story?: boolean;
+  /** Sunucu HTML'inde .play — ilk kare boş kalmasın. */
+  started?: boolean;
 }) {
   return (
     <div
-      className={`scene ${story ? "story-scene" : "anim"} ${className}`}
+      className={`scene ${story ? "story-scene" : "anim"} ${started ? "play" : ""} ${className}`}
       aria-hidden="true"
     >
       <svg viewBox={viewBox} fill="none">
@@ -63,9 +72,9 @@ function Spool({ className = "" }: { className?: string }) {
 }
 
 /** 1 — Söküm: kapak kalkar, cıvatalar çıkar. */
-export function SceneSokum({ className, live }: P) {
+export function SceneSokum({ className, live, play }: P) {
   return (
-    <Scene story={!live} viewBox="0 0 240 150" className={`sc-sokum ${className || ""}`}>
+    <Scene story={!live} started={!!play} viewBox="0 0 240 150" className={`sc-sokum ${className || ""}`}>
       <ValveBody y={74} />
       <g className="sc-cap">
         <rect x="36" y="48" width="168" height="18" rx="6" className="sc-fill" />
@@ -85,9 +94,9 @@ export function SceneSokum({ className, live }: P) {
 }
 
 /** 2 — Ölçüm: spool dışarıda, mikrometre çenesi kapanır. */
-export function SceneOlcum({ className, live }: P) {
+export function SceneOlcum({ className, live, play }: P) {
   return (
-    <Scene story={!live} viewBox="0 0 240 150" className={`sc-olcum ${className || ""}`}>
+    <Scene story={!live} started={!!play} viewBox="0 0 240 150" className={`sc-olcum ${className || ""}`}>
       <g transform="translate(44 96)">
         <Spool />
       </g>
@@ -104,9 +113,9 @@ export function SceneOlcum({ className, live }: P) {
 }
 
 /** 3 — Taşlama: dönen taş + kıvılcım. */
-export function SceneTaslama({ className, live }: P) {
+export function SceneTaslama({ className, live, play }: P) {
   return (
-    <Scene story={!live} viewBox="0 0 240 150" className={`sc-taslama ${className || ""}`}>
+    <Scene story={!live} started={!!play} viewBox="0 0 240 150" className={`sc-taslama ${className || ""}`}>
       <g className="sc-wheel-g">
         <circle cx="150" cy="52" r="34" className="sc-fill" />
         <circle cx="150" cy="52" r="34" className="sc-wheel" pathLength={100} />
@@ -126,9 +135,9 @@ export function SceneTaslama({ className, live }: P) {
 }
 
 /** 4 — Montaj: spool gövdeye geri kayar. */
-export function SceneMontaj({ className, live }: P) {
+export function SceneMontaj({ className, live, play }: P) {
   return (
-    <Scene story={!live} viewBox="0 0 240 150" className={`sc-montaj ${className || ""}`}>
+    <Scene story={!live} started={!!play} viewBox="0 0 240 150" className={`sc-montaj ${className || ""}`}>
       <ValveBody y={64} />
       <rect x="36" y="76" width="168" height="24" rx="6" className="sc-bore" />
       <g transform="translate(52 76)">
@@ -141,9 +150,9 @@ export function SceneMontaj({ className, live }: P) {
 }
 
 /** 5 — Test: hortum, akış ve ibre. */
-export function SceneTest({ className, live }: P) {
+export function SceneTest({ className, live, play }: P) {
   return (
-    <Scene story={!live} viewBox="0 0 240 150" className={`sc-test ${className || ""}`}>
+    <Scene story={!live} started={!!play} viewBox="0 0 240 150" className={`sc-test ${className || ""}`}>
       <rect x="22" y="84" width="92" height="36" rx="8" className="sc-fill" />
       <line x1="34" y1="102" x2="102" y2="102" className="sc-dash" />
       <path d="M114 102h34c12 0 16-6 16-16V74" className="sc-line" />
@@ -361,11 +370,11 @@ export function ValveStory() {
           {valveStorySteps.map((s, i) => (
             <div
               key={s.id}
-              className="pl-frame"
+              className={i === 0 ? "pl-frame is-on" : "pl-frame"}
               data-story-step={i}
               data-step-id={s.id}
             >
-              <s.Scene />
+              <s.Scene play={i === 0} />
             </div>
           ))}
         </div>
@@ -376,7 +385,7 @@ export function ValveStory() {
 
       <ol className="pl-steps">
         {valveStorySteps.map((s, i) => (
-          <li key={s.id} data-story-step={i}>
+          <li key={s.id} data-story-step={i} className={i === 0 ? "is-on" : undefined}>
             <button type="button" data-story-goto={i}>
               <span className="story-no">{s.id}</span>
               <span className="pl-step-copy">
