@@ -164,6 +164,28 @@ export default function Page() {
             </p>
           </div>
         </div>
+        <div className="split" style={{ marginTop: "1.5rem" }}>
+          <div className="split-media">
+            <Pic
+              src="/images/foto-silindir-blok-torna-01-600.webp"
+              srcSet="/images/foto-silindir-blok-torna-01-600.webp 600w, /images/foto-silindir-blok-torna-01-800.webp 800w, /images/foto-silindir-blok-torna-01-1200.webp 1200w"
+              avifSrcSet="/images/foto-silindir-blok-torna-01-600.avif 600w, /images/foto-silindir-blok-torna-01-800.avif 800w, /images/foto-silindir-blok-torna-01-1200.avif 1200w"
+              alt="Atölyedeki torna aynasında piston pompa silindir bloğu ve yanında pirinç valf plakası"
+              width={1200}
+              height={900}
+              sizes="(max-width: 900px) 100vw, 480px"
+            />
+          </div>
+          <div className="split-copy">
+            <h3>
+              Silindir bloğu, <span className="serif-accent">tornada.</span>
+            </h3>
+            <p>
+              Piston pompanın silindir bloğu torna aynasında durur; yanında valf plakası.
+              Bu yüzeyler pompa revizyonunda ölçülür ve taşlanır.
+            </p>
+          </div>
+        </div>
       </Section>
 
       <Section id="sss" kicker="SSS" title="İmalat" accent="soruları">
