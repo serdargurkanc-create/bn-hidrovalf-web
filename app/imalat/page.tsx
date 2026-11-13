@@ -138,11 +138,32 @@ export default function Page() {
             <VideoFigure key={v.src} video={v} />
           ))}
         </div>
-        <p className="sec-note">
-          Bu kabiliyetin revizyondaki rolü için{" "}
-          <Link href="/revizyon/valf">valf</Link> ve{" "}
-          <Link href="/revizyon/pompa">pompa</Link> sayfalarına bakın.
-        </p>
+        <div className="split" style={{ marginTop: "1.5rem" }}>
+          <div className="split-media">
+            <Pic
+              src="/images/foto-pompa-govde-isleme-01-600.webp"
+              srcSet="/images/foto-pompa-govde-isleme-01-600.webp 600w, /images/foto-pompa-govde-isleme-01-800.webp 800w, /images/foto-pompa-govde-isleme-01-1200.webp 1200w"
+              avifSrcSet="/images/foto-pompa-govde-isleme-01-600.avif 600w, /images/foto-pompa-govde-isleme-01-800.avif 800w, /images/foto-pompa-govde-isleme-01-1200.avif 1200w"
+              alt="İşleme tezgâhında, soğutma hortumu yanında iki pompa gövdesi ve miller"
+              width={1200}
+              height={900}
+              sizes="(max-width: 900px) 100vw, 480px"
+            />
+          </div>
+          <div className="split-copy">
+            <h3>
+              Gövde, <span className="serif-accent">tezgâhta işlenir.</span>
+            </h3>
+            <p>
+              Pompa gövdesinin iç çapı ve mil yatakları atölyedeki işleme tezgâhında hazırlanır.
+              Bu iş valf ve pompa revizyonunun içindedir.
+            </p>
+            <p>
+              Kapsam için <Link href="/revizyon/valf">valf</Link> ve{" "}
+              <Link href="/revizyon/pompa">pompa</Link> sayfalarına bakın.
+            </p>
+          </div>
+        </div>
       </Section>
 
       <Section id="sss" kicker="SSS" title="İmalat" accent="soruları">

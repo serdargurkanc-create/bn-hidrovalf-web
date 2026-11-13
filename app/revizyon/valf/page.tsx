@@ -150,6 +150,38 @@ const shots = [
     alt: "Pakkens manometreli valf test düzeneği",
     cap: "Test tezgâhı",
   },
+  {
+    src: "/images/foto-valf-spool-yay-sokum-01-600.webp",
+    srcSet:
+      "/images/foto-valf-spool-yay-sokum-01-600.webp 600w, /images/foto-valf-spool-yay-sokum-01-800.webp 800w, /images/foto-valf-spool-yay-sokum-01-1200.webp 1200w",
+    avif: "/images/foto-valf-spool-yay-sokum-01-600.avif 600w, /images/foto-valf-spool-yay-sokum-01-800.avif 800w, /images/foto-valf-spool-yay-sokum-01-1200.avif 1200w",
+    alt: "Sarı tezgahta sökülmüş iki hidrolik valf gövdesi ve yaylı spool’lar, İvedik OSB",
+    cap: "Spool ve yay sökümü",
+  },
+  {
+    src: "/images/foto-valf-govde-spool-01-600.webp",
+    srcSet:
+      "/images/foto-valf-govde-spool-01-600.webp 600w, /images/foto-valf-govde-spool-01-800.webp 800w, /images/foto-valf-govde-spool-01-1200.webp 1200w",
+    avif: "/images/foto-valf-govde-spool-01-600.avif 600w, /images/foto-valf-govde-spool-01-800.avif 800w, /images/foto-valf-govde-spool-01-1200.avif 1200w",
+    alt: "YF14 damgalı valf gövdesinin alt flanşı ve sökülmüş iki spool",
+    cap: "Gövde ve spool",
+  },
+  {
+    src: "/images/foto-solenoid-valf-sokum-01-600.webp",
+    srcSet:
+      "/images/foto-solenoid-valf-sokum-01-600.webp 600w, /images/foto-solenoid-valf-sokum-01-800.webp 800w, /images/foto-solenoid-valf-sokum-01-1200.webp 1200w",
+    avif: "/images/foto-solenoid-valf-sokum-01-600.avif 600w, /images/foto-solenoid-valf-sokum-01-800.avif 800w, /images/foto-solenoid-valf-sokum-01-1200.avif 1200w",
+    alt: "Söküm tezgâhında solenoidli hidrolik yön kontrol valfi, İvedik OSB",
+    cap: "Solenoidli valf",
+  },
+  {
+    src: "/images/foto-ana-kontrol-valfi-01-600.webp",
+    srcSet:
+      "/images/foto-ana-kontrol-valfi-01-600.webp 600w, /images/foto-ana-kontrol-valfi-01-800.webp 800w, /images/foto-ana-kontrol-valfi-01-1200.webp 1200w",
+    avif: "/images/foto-ana-kontrol-valfi-01-600.avif 600w, /images/foto-ana-kontrol-valfi-01-800.avif 800w, /images/foto-ana-kontrol-valfi-01-1200.avif 1200w",
+    alt: "Sarı boyalı iş makinesi ana kontrol valfi, çok dilimli hidrolik blok",
+    cap: "Ana kontrol valfi",
+  },
 ];
 
 const starts = [

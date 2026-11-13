@@ -114,6 +114,33 @@ const shots = [
   alt,
 }));
 
+shots.push(
+  {
+    src: "/images/foto-ana-kontrol-valfi-01-600.webp",
+    srcSet:
+      "/images/foto-ana-kontrol-valfi-01-600.webp 600w, /images/foto-ana-kontrol-valfi-01-800.webp 800w, /images/foto-ana-kontrol-valfi-01-1200.webp 1200w",
+    avifSrcSet:
+      "/images/foto-ana-kontrol-valfi-01-600.avif 600w, /images/foto-ana-kontrol-valfi-01-800.avif 800w, /images/foto-ana-kontrol-valfi-01-1200.avif 1200w",
+    alt: "Sarı boyalı iş makinesi ana kontrol valfi, çok dilimli hidrolik blok",
+  },
+  {
+    src: "/images/foto-disli-pompa-ic-grup-01-600.webp",
+    srcSet:
+      "/images/foto-disli-pompa-ic-grup-01-600.webp 600w, /images/foto-disli-pompa-ic-grup-01-800.webp 800w, /images/foto-disli-pompa-ic-grup-01-1200.webp 1200w",
+    avifSrcSet:
+      "/images/foto-disli-pompa-ic-grup-01-600.avif 600w, /images/foto-disli-pompa-ic-grup-01-800.avif 800w, /images/foto-disli-pompa-ic-grup-01-1200.avif 1200w",
+    alt: "Dişli pompa iç grubu: gerotor, port plakaları, gövde kesiti ve dişli set",
+  },
+  {
+    src: "/images/foto-pompa-govde-sira-atolye-01-600.webp",
+    srcSet:
+      "/images/foto-pompa-govde-sira-atolye-01-600.webp 600w, /images/foto-pompa-govde-sira-atolye-01-800.webp 800w, /images/foto-pompa-govde-sira-atolye-01-1200.webp 1200w",
+    avifSrcSet:
+      "/images/foto-pompa-govde-sira-atolye-01-600.avif 600w, /images/foto-pompa-govde-sira-atolye-01-800.avif 800w, /images/foto-pompa-govde-sira-atolye-01-1200.avif 1200w",
+    alt: "İvedik OSB atölyesinde tezgâh üzerinde dişli pompa gövdeleri; arkada torna tezgâhı",
+  }
+);
+
 const chapters = [
   {
     n: "01",
