@@ -201,7 +201,7 @@ export default function Page() {
         shots={shots.pompa}
         title="Dişli pompa ve"
         accent="gövde"
-        lead="Dişli pompa iç grubu, işlenmiş gövde ve atölyedeki gövde sırası."
+        lead="Dişli iç grup, silindir bloğu, valf plakası, port yüzeyi ve sökülmüş gövde."
       />
 
       <Section id="sss" kicker="SSS" title="Pompa revizyonu" accent="soruları" tone="soft">

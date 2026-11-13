@@ -266,12 +266,37 @@ export const shots = {
       "/images/spool-silindirik-taslama-01-600.avif 600w, /images/spool-silindirik-taslama-01-800.avif 800w"
     ),
   ],
-  /** Dişli pompa: iç grup, işlenmiş gövde çifti, atölye sırası. */
+  /** Dişli ve pistonlu pompa: iç grup, port, gövde, söküm. */
   pompa: [
     band(
       "/images/foto-disli-pompa-ic-grup-01",
       "Dişli pompa iç grubu",
       "Dişli pompa iç grubu: gerotor, port plakaları, gövde kesiti, dişli set ve kırmızı kapak. İvedik OSB atölyesi."
+    ),
+    band(
+      "/images/foto-silindir-blok-valf-plakasi-01",
+      "Silindir bloğu ve valf plakası",
+      "Sarı tezgahta iki silindir bloğu ve iki valf plakası, piston pompa iç grubu."
+    ),
+    band(
+      "/images/foto-pompa-port-yuzey-01",
+      "Port yüzeyleri",
+      "Üç pompa gövdesinin port yüzeyi: böbrek kanallar, merkez delik ve flanş delikleri."
+    ),
+    band(
+      "/images/foto-pompa-govde-uclu-port-01",
+      "Port yüzeyi açık gövde",
+      "Üç pompa gövdesi; ortadaki gövdede böbrek kanallı port yüzeyi. İvedik OSB atölyesi."
+    ),
+    band(
+      "/images/foto-pompa-govde-koyu-cift-01",
+      "Çanak uçlu gövde çifti",
+      "İki koyu pompa gövdesi; soldakinin altında çanak uç, yanlarda dişli portlar."
+    ),
+    band(
+      "/images/foto-pompa-sokum-mavi-01",
+      "Mavi gövde sökümü",
+      "Sökülmüş mavi boyalı pompa: silindir bloğu, plaka ve gövde yüzeyi."
     ),
     band(
       "/images/foto-pompa-govde-cift-01",

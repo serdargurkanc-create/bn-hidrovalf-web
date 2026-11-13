@@ -138,6 +138,22 @@ shots.push(
     avifSrcSet:
       "/images/foto-pompa-govde-sira-atolye-01-600.avif 600w, /images/foto-pompa-govde-sira-atolye-01-800.avif 800w, /images/foto-pompa-govde-sira-atolye-01-1200.avif 1200w",
     alt: "İvedik OSB atölyesinde tezgâh üzerinde dişli pompa gövdeleri; arkada torna tezgâhı",
+  },
+  {
+    src: "/images/foto-pompa-govde-altili-01-600.webp",
+    srcSet:
+      "/images/foto-pompa-govde-altili-01-600.webp 600w, /images/foto-pompa-govde-altili-01-800.webp 800w, /images/foto-pompa-govde-altili-01-1200.webp 1200w",
+    avifSrcSet:
+      "/images/foto-pompa-govde-altili-01-600.avif 600w, /images/foto-pompa-govde-altili-01-800.avif 800w, /images/foto-pompa-govde-altili-01-1200.avif 1200w",
+    alt: "Sarı kenarlı tezgahta altı dişli pompa gövdesi ve milleri. İvedik OSB atölyesi.",
+  },
+  {
+    src: "/images/foto-pompa-govde-takim-duvari-01-600.webp",
+    srcSet:
+      "/images/foto-pompa-govde-takim-duvari-01-600.webp 600w, /images/foto-pompa-govde-takim-duvari-01-800.webp 800w, /images/foto-pompa-govde-takim-duvari-01-1200.webp 1200w",
+    avifSrcSet:
+      "/images/foto-pompa-govde-takim-duvari-01-600.avif 600w, /images/foto-pompa-govde-takim-duvari-01-800.avif 800w, /images/foto-pompa-govde-takim-duvari-01-1200.avif 1200w",
+    alt: "Takım panosu önünde dört pompa gövdesi ve milleri. İvedik OSB atölyesi.",
   }
 );
 
