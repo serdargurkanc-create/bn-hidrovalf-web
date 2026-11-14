@@ -1704,7 +1704,7 @@ main { overflow-x: clip; }
   font-weight: 600;
   color: var(--ink-soft);
 }
-.related-row { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+.related-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.55rem; }
 .valf-nap {
   display: grid;
   gap: 0.85rem;
