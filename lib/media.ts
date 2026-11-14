@@ -219,17 +219,29 @@ export const atelier = {
   ),
 } as const satisfies Record<string, AtelierClip>;
 
-/** VideoObject: masaüstü dosya kanonik adres. Eski kliplerle @id çakışmaz. */
-export function atelierVideo(clip: AtelierClip): Video {
+function atelierAsVideo(
+  clip: AtelierClip,
+  file: { mp4: string; poster: string; w: number; h: number }
+): Video {
   return {
-    src: clip.desktop.mp4,
-    poster: clip.desktop.poster,
-    w: clip.desktop.w,
-    h: clip.desktop.h,
+    src: file.mp4,
+    poster: file.poster,
+    w: file.w,
+    h: file.h,
     duration: clip.duration,
     sound: false,
     title: clip.name,
     desc: clip.desc,
     uploadDate: clip.uploadDate,
   };
+}
+
+/** 4:5 kart (masaüstü AtelierFigure) ve onun VideoObject kaydı. */
+export function atelierVideo(clip: AtelierClip): Video {
+  return atelierAsVideo(clip, clip.desktop);
+}
+
+/** 9:16 tıkla-oynat kartı ve onun VideoObject kaydı. */
+export function atelierPortrait(clip: AtelierClip): Video {
+  return atelierAsVideo(clip, clip.mobile);
 }

@@ -5,7 +5,7 @@ import { Pic } from "@/components/Pic";
 import { SchemaLd } from "@/components/Schema";
 import { AtelierFigure, AtelierScript } from "@/components/AtelierClip";
 import { VideoFigure } from "@/components/VideoFigure";
-import { atelier, atelierVideo, videos } from "@/lib/media";
+import { atelier, atelierPortrait, videos } from "@/lib/media";
 import { pageMeta } from "@/lib/meta";
 
 export const metadata: Metadata = pageMeta({
@@ -62,7 +62,7 @@ const pageVideos = [
   videos.flansIsleme,
   videos.spoolTaslama,
   videos.isleme,
-  atelierVideo(atelier.barelYakin),
+  atelierPortrait(atelier.barelYakin),
 ];
 
 export default function Page() {
