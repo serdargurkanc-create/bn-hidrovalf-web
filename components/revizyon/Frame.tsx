@@ -299,6 +299,16 @@ export const shots = {
       "Sökülmüş mavi boyalı pompa: silindir bloğu, plaka ve gövde yüzeyi."
     ),
     band(
+      "/images/foto-pompa-govde-plaka-01",
+      "Açık gövde ve plaka",
+      "Açık pompa gövdesi ve yanındaki yuvarlak port plakası."
+    ),
+    band(
+      "/images/foto-pompa-govde-flans-01",
+      "Flanşlı pompa gövdesi",
+      "Sarı tezgâhta flanşlı koyu pompa gövdesi, İvedik OSB atölyesi."
+    ),
+    band(
       "/images/foto-pompa-govde-cift-01",
       "İşlenmiş pompa gövdesi",
       "Tezgâhta iki işlenmiş pompa gövdesi ve miller, İvedik OSB."
