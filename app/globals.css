@@ -1910,6 +1910,52 @@ html.js:not(.reduced) .gauge.anim.in .gauge-hub {
   font-weight: 650;
   color: var(--ink-soft);
 }
+.shop-frame .shop-parts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+  padding: 1.05rem 1.2rem 1.2rem;
+  border-top: 1px solid var(--line);
+  background: linear-gradient(180deg, #ffffff 0%, var(--bg-soft) 100%);
+  font-weight: 500;
+}
+.shop-parts-item {
+  display: grid;
+  gap: 0.22rem;
+  align-content: start;
+}
+.shop-parts-no {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}
+.shop-parts-item strong {
+  font-size: 0.96rem;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.shop-parts-item span:last-child {
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+@media (min-width: 560px) {
+  .shop-frame .shop-parts { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.25rem; }
+}
+@media (min-width: 900px) {
+  .shop-frame .shop-parts {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.1rem;
+    padding: 1.15rem 1.4rem 1.3rem;
+  }
+  .shop-parts-item:not(:first-child) {
+    padding-left: 1.1rem;
+    border-left: 1px solid var(--line);
+  }
+}
 .split-copy h3 { font-size: clamp(1.4rem, 2.6vw, 2rem); letter-spacing: -0.04em; margin: 0 0 0.75rem; }
 .split-copy p { color: var(--ink-soft); margin: 0 0 0.85rem; }
 .split-copy a { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 2px; }
@@ -2249,8 +2295,7 @@ html.js:not(.reduced) .form-step:focus-within { border-color: var(--accent); box
 .sc-measure, .li-draw { stroke: var(--ink); }
 
 /* transform hazırlığı */
-.sc-cap, .sc-bolt, .sc-anvil, .sc-slide, .sc-measure, .sc-check,
-.px-plate, .px-piston, .px-vplate {
+.sc-cap, .sc-bolt, .sc-anvil, .sc-slide, .sc-measure, .sc-check {
   transition: transform 0.9s var(--ease), opacity 0.9s var(--ease), stroke-dashoffset 1s var(--ease);
 }
 .sc-anvil { transition-delay: 0.35s; }
@@ -2263,9 +2308,6 @@ html.js:not(.reduced) .form-step:focus-within { border-color: var(--accent); box
 .sc-slide { transform: translateX(26px); }
 .sc-measure { stroke-dasharray: 100; stroke-dashoffset: 0; }
 .sc-check { stroke-dasharray: 100; stroke-dashoffset: 0; fill: none; }
-.px-plate { transform: translateX(-14px); }
-.px-piston { transform: translateX(-6px); }
-.px-vplate { transform: translateX(14px); }
 .sc-needle-g { transform: rotate(118deg); transform-origin: center; transform-box: fill-box; }
 .li-draw { stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 100; stroke-dashoffset: 0; }
 
@@ -2274,10 +2316,7 @@ html.js:not(.reduced) .anim:not(.in) .sc-cap,
 html.js:not(.reduced) .anim:not(.in) .sc-bolt-a,
 html.js:not(.reduced) .anim:not(.in) .sc-bolt-b,
 html.js:not(.reduced) .anim:not(.in) .sc-anvil,
-html.js:not(.reduced) .anim:not(.in) .sc-slide,
-html.js:not(.reduced) .anim:not(.in) .px-plate,
-html.js:not(.reduced) .anim:not(.in) .px-piston,
-html.js:not(.reduced) .anim:not(.in) .px-vplate { transform: none; }
+html.js:not(.reduced) .anim:not(.in) .sc-slide { transform: none; }
 html.js:not(.reduced) .anim:not(.in) .sc-measure,
 html.js:not(.reduced) .anim:not(.in) .sc-check,
 html.js:not(.reduced) .anim:not(.in) .li-draw { stroke-dashoffset: 100; animation: draw-arrive 0.7s var(--ease) 1s forwards; }
@@ -2289,9 +2328,6 @@ html.js:not(.reduced) .anim.in .li-draw { transition: stroke-dashoffset 0.9s var
 html.js:not(.reduced) .anim.in .li-d2 { transition-delay: 0.15s; }
 html.js:not(.reduced) .anim.in .li-d3 { transition-delay: 0.3s; }
 html.js:not(.reduced) .anim.in .li-d4 { transition-delay: 0.45s; }
-html.js:not(.reduced) .anim.in .px-piston:nth-child(2) { transition-delay: 0.08s; }
-html.js:not(.reduced) .anim.in .px-piston:nth-child(3) { transition-delay: 0.16s; }
-html.js:not(.reduced) .anim.in .px-piston:nth-child(4) { transition-delay: 0.24s; }
 
 /* döngü animasyonları: yalnız .in iken */
 @keyframes sc-spin { to { stroke-dashoffset: -18; } }
@@ -2390,10 +2426,7 @@ html.js:not(.reduced) .story-scene:not(.play) .sc-cap,
 html.js:not(.reduced) .story-scene:not(.play) .sc-bolt-a,
 html.js:not(.reduced) .story-scene:not(.play) .sc-bolt-b,
 html.js:not(.reduced) .story-scene:not(.play) .sc-anvil,
-html.js:not(.reduced) .story-scene:not(.play) .sc-slide,
-html.js:not(.reduced) .story-scene:not(.play) .px-plate,
-html.js:not(.reduced) .story-scene:not(.play) .px-piston,
-html.js:not(.reduced) .story-scene:not(.play) .px-vplate { transform: none; }
+html.js:not(.reduced) .story-scene:not(.play) .sc-slide { transform: none; }
 html.js:not(.reduced) .story-scene:not(.play) .sc-measure,
 html.js:not(.reduced) .story-scene:not(.play) .sc-check,
 html.js:not(.reduced) .story-scene:not(.play) .li-draw { stroke-dashoffset: 100; animation: draw-arrive 0.7s var(--ease) 1s forwards; }
