@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { FlowSvg } from "@/components/Anim";
 import { BrandChips, PageHero, QuoteCta, Section } from "@/components/Inner";
 import { Pic } from "@/components/Pic";
 import { SchemaLd } from "@/components/Schema";
 import { brands } from "@/lib/brands";
 import { videos } from "@/lib/media";
+import { VideoFigure } from "@/components/VideoFigure";
 import { pageMeta } from "@/lib/meta";
 import { PhotoBand, RevFacts, RevLinks, VideoBand, shots } from "@/components/revizyon/Frame";
 
@@ -81,8 +81,16 @@ export default function Page() {
         accent="revizyonu"
         lead="BN Hidrovalf Makina'nın ana işi budur: her marka iş makinasında valf ve pompa revizyonu. Her iş, tezgâhta yapılan videolu test kaydıyla teslim edilir."
         crumbs={crumbs}
+        media={<VideoFigure video={videos.test240} />}
       >
-        <FlowSvg />
+        <div className="hero-cta">
+          <Link href="/revizyon/valf" className="btn btn-primary">
+            Valf revizyonu
+          </Link>
+          <Link href="/revizyon/pompa" className="btn btn-outline">
+            Pompa revizyonu
+          </Link>
+        </div>
       </PageHero>
       <RevFacts />
 
@@ -145,10 +153,10 @@ export default function Page() {
         lead="Valf, pompa ve ölçü. Atölyedeki işlerden kareler."
       />
       <VideoBand
-        clips={[videos.test240, videos.icCapTaslama]}
+        clips={[videos.test320, videos.icCapTaslama]}
         title="Test ve"
         accent="taşlama"
-        lead="Solda valf test kaydı, sağda iç çap taşlama."
+        lead="Solda 320 bar valf testi, sağda iç çap taşlama."
       />
       <RevLinks current="/revizyon" />
       <QuoteCta />

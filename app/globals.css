@@ -1499,6 +1499,7 @@ main { overflow-x: clip; }
 }
 .page-hero h1 .serif-accent { display: block; }
 .page-hero .lead { color: var(--ink-soft); font-size: 1.1rem; max-width: 40rem; margin: 0; }
+.page-hero .hero-cta { justify-content: flex-start; margin-top: 1.5rem; }
 .page-hero-media { max-width: 340px; justify-self: center; width: 100%; }
 .page-hero-form { max-width: 520px; }
 .hero-chips {
@@ -1785,13 +1786,6 @@ html.js:not(.reduced) .gauge.anim.in .gauge-hub {
   .gauge-row-2 { grid-template-columns: auto auto; justify-content: center; gap: 3rem; }
 }
 
-/* Akış SVG */
-.flow-svg { margin-top: 1.75rem; max-width: 560px; }
-.flow-svg svg { width: 100%; height: auto; }
-.flow-pipe { stroke: var(--line); stroke-width: 7; stroke-linecap: round; }
-.flow-oil { stroke: var(--accent-2); stroke-width: 3.5; stroke-linecap: round; stroke-dasharray: 14 22; }
-.flow-node { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
-html.js:not(.reduced) .anim.in .flow-oil { animation: flow-dash 2.6s linear infinite; }
 @keyframes flow-dash { to { stroke-dashoffset: -72; } }
 
 /* Zaman çizelgesi */
@@ -2147,7 +2141,7 @@ html.js:not(.reduced) .form-step:focus-within { border-color: var(--accent); box
 
 /* Reduced motion: v5 animasyonları son karede durur */
 @media (prefers-reduced-motion: reduce) {
-  .flow-oil, .ship-line { animation: none !important; }
+  .ship-line { animation: none !important; }
   .gauge-needle { transform: rotate(var(--gauge-angle, 0deg)) !important; transition: none !important; }
   .gauge-arc { stroke-dashoffset: var(--gauge-arc, 0) !important; transition: none !important; }
   .gauge-hub { animation: none !important; }
