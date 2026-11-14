@@ -4,10 +4,111 @@ import { notFound } from "next/navigation";
 import { Crumbs } from "@/components/Inner";
 import { Pic } from "@/components/Pic";
 import { SchemaLd } from "@/components/Schema";
-import { blogAuthor, formatBlogDate, getPost, nextPost, posts } from "@/lib/blog";
+import { blogAuthor, formatBlogDate, getPost, nextPost, posts, type BlogBlock } from "@/lib/blog";
 import { pageMeta } from "@/lib/meta";
 import { asset } from "@/lib/paths";
 import { site } from "@/lib/site";
+
+function headingId(text: string) {
+  const map: Record<string, string> = {
+    ç: "c",
+    ğ: "g",
+    ı: "i",
+    ö: "o",
+    ş: "s",
+    ü: "u",
+    î: "i",
+    â: "a",
+    û: "u",
+  };
+  return text
+    .toLocaleLowerCase("tr")
+    .replace(/[çğıöşüîâû]/g, (ch) => map[ch] ?? ch)
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+function Rich({ text }: { text: string }) {
+  const bits = text.split(/(\[\[[^\]]+\]\])/g);
+  return bits.map((bit, i) => {
+    const match = /^\[\[([^|\]]+)\|([^\]]+)\]\]$/.exec(bit);
+    if (!match) return bit;
+    return (
+      <Link key={i} href={match[1]}>
+        {match[2]}
+      </Link>
+    );
+  });
+}
+
+function PostBody({
+  blocks,
+  related,
+}: {
+  blocks: readonly BlogBlock[];
+  related: { href: string; label: string };
+}) {
+  const used = new Set<string>();
+  const headings = blocks.flatMap((block) => {
+    if (block.type !== "h2") return [];
+    let id = headingId(block.text) || "bolum";
+    let n = 2;
+    while (used.has(id)) {
+      id = `${headingId(block.text) || "bolum"}-${n}`;
+      n += 1;
+    }
+    used.add(id);
+    return [{ id, text: block.text }];
+  });
+  const idOf = new Map(headings.map((h) => [h.text, h.id]));
+
+  return (
+    <>
+      {headings.length > 1 ? (
+        <nav className="blog-toc" aria-label="İçindekiler">
+          <strong>İçindekiler</strong>
+          <ol>
+            {headings.map((h) => (
+              <li key={h.id}>
+                <a href={`#${h.id}`}>{h.text}</a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      ) : null}
+      <div className="blog-body">
+        {blocks.map((block, i) => {
+          if (block.type === "h2") {
+            return (
+              <h2 key={i} id={idOf.get(block.text)}>
+                {block.text}
+              </h2>
+            );
+          }
+          if (block.type === "ul") {
+            return (
+              <ul key={i}>
+                {block.items.map((item) => (
+                  <li key={item}>
+                    <Rich text={item} />
+                  </li>
+                ))}
+              </ul>
+            );
+          }
+          return (
+            <p key={i}>
+              <Rich text={block.text} />
+            </p>
+          );
+        })}
+        <p>
+          <Link href={related.href}>{related.label}</Link>
+        </p>
+      </div>
+    </>
+  );
+}
 
 export function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }));
@@ -92,24 +193,7 @@ export default async function Page({ params }: PageProps<"/blog/[slug]">) {
             </div>
           </header>
 
-          <div className="blog-body">
-            {post.blocks.map((block, i) => {
-              if (block.type === "h2") return <h2 key={i}>{block.text}</h2>;
-              if (block.type === "ul") {
-                return (
-                  <ul key={i}>
-                    {block.items.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                );
-              }
-              return <p key={i}>{block.text}</p>;
-            })}
-            <p>
-              <Link href={post.related.href}>{post.related.label}</Link>
-            </p>
-          </div>
+          <PostBody blocks={post.blocks} related={post.related} />
 
           <p className="blog-back">
             <Link href="/blog" className="btn btn-outline">

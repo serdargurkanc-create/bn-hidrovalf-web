@@ -10,7 +10,7 @@ import { asset } from "@/lib/paths";
 export const metadata: Metadata = pageMeta({
   title: "Blog — valf, pompa ve atölye notları",
   description:
-    "BN Hidrovalf Makina blogu: valf revizyonu ne zaman gerekir, spool imalatı, videolu test, pompa yüzey taşlama ve parçanın atölyeye gelişi. İvedik OSB, Ankara.",
+    "BN Hidrovalf Makina blogu: valf ve pompa revizyonu, spool ölçüsü, iç grup, videolu test, teklif ve teslim. İvedik OSB, Ankara.",
   path: "/blog",
 });
 
@@ -25,7 +25,7 @@ export default function Page() {
         kicker="Blog"
         title="Son yazılan"
         accent="blog içerikleri"
-        lead="Valf, pompa, spool ve test tezgâhı. Atölyede görülen arıza, ölçü ve teslim. Abartısız, işin içinden notlar."
+        lead="Valf, pompa, spool, iç grup, test ve teslim. Her yazının başında içindekiler var; metin atölyedeki işe dayanır."
         crumbs={crumbs}
       />
       <section className="blog-page">
