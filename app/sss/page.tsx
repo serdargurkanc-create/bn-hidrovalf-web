@@ -20,10 +20,6 @@ const extraFaqs = [
     a: "Garanti koşulları, işin kapsamına göre tespit sonrası gönderilen yazılı teklifte belirtilir. Sitede kanıtlanamayan genel bir garanti süresi yayınlanmaz.",
   },
   {
-    q: "Çalışma saatleriniz nedir?",
-    a: "Saat bilgisi bu sitede yayınlanmaz; gün ve saat planlaması için +90 541 883 53 31 numarasını arayabilir veya WhatsApp’tan yazabilirsiniz.",
-  },
-  {
     q: "Fiyatı görmeden parça göndermek istemiyorum; nasıl ilerleyebilirim?",
     a: "Fotoğraf ve belirti ile ücretsiz ön değerlendirme yapılır; yaklaşık kapsam telefonda konuşulur. Kesin teklif, parça söküldükten sonra yazılı verilir ve onaysız işe başlanmaz.",
   },

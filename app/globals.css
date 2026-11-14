@@ -2641,11 +2641,6 @@ html.js:not(.reduced) .timeline.in::after { opacity: 0.85; animation: tl-flow 1s
 .nap-list dd { margin: 0; font-weight: 600; }
 .nap-list a { color: inherit; text-decoration: underline; text-underline-offset: 2px; text-decoration-color: var(--line); }
 .nap-list a:hover { text-decoration-color: var(--accent-ink); color: var(--accent-ink); }
-.nap-note {
-  margin: 1.15rem 0 1.25rem;
-  color: var(--ink-soft);
-  font-size: 0.9rem;
-}
 .about-nap-map {
   border-radius: var(--r-lg);
   overflow: hidden;

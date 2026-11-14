@@ -423,9 +423,6 @@ export default function Page() {
                 </dd>
               </div>
             </dl>
-            <p className="nap-note">
-              Çalışma saatleri sitede yayınlanmaz; planlama için telefon önerilir.
-            </p>
             <div className="page-cta">
               <Link href="/iletisim" className="btn btn-outline">
                 İletişim
