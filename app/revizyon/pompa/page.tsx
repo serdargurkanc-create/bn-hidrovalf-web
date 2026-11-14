@@ -9,7 +9,6 @@ import {
 } from "@/components/Inner";
 import { SchemaLd } from "@/components/Schema";
 import { Pic } from "@/components/Pic";
-import { PumpExploded } from "@/components/anim/Scenes";
 import { AtelierFigure, AtelierScript } from "@/components/AtelierClip";
 import { VideoFigure } from "@/components/VideoFigure";
 import { brands } from "@/lib/brands";
@@ -136,13 +135,45 @@ export default function Page() {
 
       <Section
         id="cizimle"
-        kicker="Çizimle anlatım"
+        kicker="İç grup dizilimi"
         title="İç grup"
         accent="nasıl çalışır?"
-        lead="Şematik çizim pistonlu pompanın iç grubunu açılmış hâlde gösterir: kayar plaka, pistonlar, silindir bloğu ve valf plakası. Revizyonda bu parçaların yüzeyleri ölçülür ve taşlanır."
+        lead="Pistonlu pompanın iç grubu soldan sağa çalışma sırasıyla dizilir: kayar plaka, bronz pabuçlu piston takımı, silindir bloğu ve böbrek kanallı valf plakası. Revizyonda bu yüzeyler mikrometreyle ölçülür, taşlanır ve alıştırılır."
         tone="soft"
       >
-        <PumpExploded />
+        <figure className="shop-frame rv">
+          <Pic
+            src="/images/pompa-ic-grup-dizilim-01-600.webp"
+            srcSet="/images/pompa-ic-grup-dizilim-01-600.webp 600w, /images/pompa-ic-grup-dizilim-01-800.webp 800w, /images/pompa-ic-grup-dizilim-01-1200.webp 1200w"
+            avifSrcSet="/images/pompa-ic-grup-dizilim-01-600.avif 600w, /images/pompa-ic-grup-dizilim-01-800.avif 800w, /images/pompa-ic-grup-dizilim-01-1200.avif 1200w"
+            alt="Tezgâh üzerinde soldan sağa dizilmiş pistonlu pompa iç grubu: kayar plaka, bronz pabuçlu piston takımı, silindir bloğu ve böbrek kanallı pirinç valf plakası"
+            width={1200}
+            height={900}
+            sizes="(max-width: 900px) 100vw, 1080px"
+          />
+          <figcaption className="shop-parts">
+            <span className="shop-parts-item">
+              <span className="shop-parts-no">01 · Sol</span>
+              <strong>Kayar ve baskı plakası</strong>
+              <span>Piston pabuçlarının üzerinde kaydığı taşlanmış çelik yüzey.</span>
+            </span>
+            <span className="shop-parts-item">
+              <span className="shop-parts-no">02 · Orta sol</span>
+              <strong>Piston ve pabuç takımı</strong>
+              <span>Bronz pabuçlu pistonlar; silindir yuvalarında eksenel çalışır.</span>
+            </span>
+            <span className="shop-parts-item">
+              <span className="shop-parts-no">03 · Orta sağ</span>
+              <strong>Silindir bloğu (barel)</strong>
+              <span>Piston yuvalı çelik gövde; alın yüzeyi taşlama ve alıştırmaya girer.</span>
+            </span>
+            <span className="shop-parts-item">
+              <span className="shop-parts-no">04 · Sağ</span>
+              <strong>Valf plakası (ayna)</strong>
+              <span>Emiş ve basma hattını ayıran böbrek kanallı sızdırmazlık yüzeyi.</span>
+            </span>
+          </figcaption>
+        </figure>
       </Section>
 
       <Section

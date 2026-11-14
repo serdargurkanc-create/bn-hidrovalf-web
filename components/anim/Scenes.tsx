@@ -167,46 +167,6 @@ export function SceneTest({ className, live, play }: P) {
   );
 }
 
-/* ---------- Pompa: patlatılmış iç grup ---------- */
-
-/** Pistonlu pompa iç grubu: kayar plaka, pistonlar, silindir bloğu, valf plakası. */
-export function PumpExploded({ className }: P) {
-  const pistons = [0, 1, 2, 3];
-  return (
-    <Scene viewBox="0 0 300 170" className={`sc-pump ${className || ""}`}>
-      {/* kayar plaka (eğik) */}
-      <g className="px-plate">
-        <rect x="34" y="38" width="14" height="94" rx="5" className="sc-fill" transform="rotate(-12 41 85)" />
-      </g>
-      {/* pistonlar + pabuçlar */}
-      <g className="px-pistons">
-        {pistons.map((i) => (
-          <g key={i} className={`px-piston px-p${i}`}>
-            <circle cx="64" cy={52 + i * 22} r="5" className="sc-accent" />
-            <line x1="69" y1={52 + i * 22} x2="108" y2={52 + i * 22} className="sc-line" />
-            <rect x="108" y={45 + i * 22} width="18" height="14" rx="4" className="sc-accent-fill" />
-          </g>
-        ))}
-      </g>
-      {/* silindir bloğu */}
-      <g className="px-block">
-        <rect x="140" y="34" width="66" height="102" rx="12" className="sc-fill" />
-        {pistons.map((i) => (
-          <line key={i} x1="148" y1={52 + i * 22} x2="198" y2={52 + i * 22} className="sc-dash" />
-        ))}
-      </g>
-      {/* valf plakası: böbrek kanallı */}
-      <g className="px-vplate">
-        <rect x="224" y="40" width="16" height="90" rx="7" className="sc-fill" />
-        <path d="M232 54v26" className="sc-kidney" />
-        <path d="M232 90v26" className="sc-kidney" />
-      </g>
-      {/* eksen çizgisi */}
-      <line x1="20" y1="85" x2="280" y2="85" className="sc-axis" />
-    </Scene>
-  );
-}
-
 /* ---------- Videolu test: tezgah şeması ---------- */
 
 export function TestBenchScene({ className }: P) {
