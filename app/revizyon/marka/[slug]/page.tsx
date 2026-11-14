@@ -12,7 +12,7 @@ import { SchemaLd } from "@/components/Schema";
 import { brandBlurb, brands, getBrand } from "@/lib/brands";
 import { videos } from "@/lib/media";
 import { pageMeta } from "@/lib/meta";
-import { PhotoBand, RevFacts, RevLinks, VideoBand, shots } from "@/components/revizyon/Frame";
+import { PhotoBand, RevFacts, VideoBand, shots } from "@/components/revizyon/Frame";
 
 export function generateStaticParams() {
   return brands.map((b) => ({ slug: b.slug }));
@@ -119,7 +119,6 @@ export default async function Page({
 
       <PhotoBand shots={shots.marka} title={`${brand.name} işinden`} accent="kareler" lead="Atölyedeki valf ve pompa işlerinden kareler." />
       <VideoBand clips={[videos.spoolLogo, videos.govdeHazirlik]} title={`${brand.name}`} accent="kayıtları" lead="Tezgâh kayıtları. Tıklayınca oynar." />
-      <RevLinks current={`/revizyon/marka/${brand.slug}`} />
       <QuoteCta />
     </>
   );

@@ -1,19 +1,7 @@
-import Link from "next/link";
 import { Pic } from "@/components/Pic";
 import { VideoFigure } from "@/components/VideoFigure";
 import type { Video } from "@/lib/media";
 import { site } from "@/lib/site";
-
-const links = [
-  { href: "/revizyon", label: "Tüm revizyon" },
-  { href: "/revizyon/valf", label: "Valf revizyonu" },
-  { href: "/revizyon/pompa", label: "Pompa revizyonu" },
-  { href: "/revizyon/surec", label: "Süreç" },
-  { href: "/revizyon/videolu-test", label: "Videolu test" },
-  { href: "/revizyon/ariza-belirtileri", label: "Arıza belirtileri" },
-  { href: "/revizyon/teslimat", label: "Teslimat" },
-  { href: "/revizyon/marka", label: "Markalar" },
-] as const;
 
 /** Her revizyon sayfasında aynı kısa cevap: nerede, kanıt, başlangıç. */
 export function RevFacts() {
@@ -135,20 +123,6 @@ export function VideoBand({
         </div>
       </div>
     </section>
-  );
-}
-
-export function RevLinks({ current }: { current: string }) {
-  return (
-    <nav className="rev-links wrap" aria-label="Revizyon sayfaları">
-      {links
-        .filter((l) => l.href !== current)
-        .map((l) => (
-          <Link key={l.href} href={l.href}>
-            {l.label}
-          </Link>
-        ))}
-    </nav>
   );
 }
 

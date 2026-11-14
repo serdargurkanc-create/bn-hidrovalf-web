@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FaqList, PageHero, QuoteCta, Section } from "@/components/Inner";
 import { SchemaLd } from "@/components/Schema";
-import { PhotoBand, RevFacts, RevLinks, VideoBand, shots } from "@/components/revizyon/Frame";
+import { PhotoBand, RevFacts, VideoBand, shots } from "@/components/revizyon/Frame";
 import { videos } from "@/lib/media";
 import { pageMeta } from "@/lib/meta";
 import { site } from "@/lib/site";
@@ -127,7 +127,6 @@ export default function Page() {
 
       <PhotoBand shots={shots.teslimat} title="Paket ve" accent="tezgâh" lead="Gönderiye giden parçaların atölyedeki hâli." />
       <VideoBand clips={[videos.govdeHazirlik, videos.test240]} title="Hazırlık ve" accent="test" />
-      <RevLinks current="/revizyon/teslimat" />
       <QuoteCta />
     </>
   );

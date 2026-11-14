@@ -13,7 +13,7 @@ import { PumpExploded } from "@/components/anim/Scenes";
 import { VideoFigure } from "@/components/VideoFigure";
 import { brands } from "@/lib/brands";
 import { videos } from "@/lib/media";
-import { PhotoBand, RevFacts, RevLinks, shots } from "@/components/revizyon/Frame";
+import { PhotoBand, RevFacts, shots } from "@/components/revizyon/Frame";
 import { pageMeta } from "@/lib/meta";
 
 export const metadata: Metadata = pageMeta({
@@ -208,7 +208,6 @@ export default function Page() {
         <FaqList items={faqItems} idPrefix="pompa-soru" />
       </Section>
 
-      <RevLinks current="/revizyon/pompa" />
       <QuoteCta />
     </>
   );

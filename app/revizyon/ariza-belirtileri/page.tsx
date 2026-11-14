@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FaqList, PageHero, QuoteCta, Section } from "@/components/Inner";
 import { SchemaLd } from "@/components/Schema";
-import { PhotoBand, RevFacts, RevLinks, VideoBand, shots } from "@/components/revizyon/Frame";
+import { PhotoBand, RevFacts, VideoBand, shots } from "@/components/revizyon/Frame";
 import { videos } from "@/lib/media";
 import { pageMeta } from "@/lib/meta";
 
@@ -185,7 +185,6 @@ export default function Page() {
       <Section id="sss" kicker="SSS" title="Arıza" accent="soruları" tone="soft">
         <FaqList items={faqItems} idPrefix="ariza-soru" />
       </Section>
-      <RevLinks current="/revizyon/ariza-belirtileri" />
       <QuoteCta />
     </>
   );

@@ -7,7 +7,7 @@ import { brands } from "@/lib/brands";
 import { videos } from "@/lib/media";
 import { VideoFigure } from "@/components/VideoFigure";
 import { pageMeta } from "@/lib/meta";
-import { PhotoBand, RevFacts, RevLinks, VideoBand, shots } from "@/components/revizyon/Frame";
+import { PhotoBand, RevFacts, VideoBand, shots } from "@/components/revizyon/Frame";
 
 export const metadata: Metadata = pageMeta({
   title: "Valf ve pompa revizyonu",
@@ -158,7 +158,6 @@ export default function Page() {
         accent="taşlama"
         lead="Solda 320 bar valf testi, sağda iç çap taşlama."
       />
-      <RevLinks current="/revizyon" />
       <QuoteCta />
     </>
   );
