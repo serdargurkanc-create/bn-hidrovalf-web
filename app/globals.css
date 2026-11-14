@@ -1794,50 +1794,97 @@ main { overflow-x: clip; }
   .valf-nap { grid-template-columns: 0.7fr 1.8fr 0.7fr; gap: 1.25rem; align-items: start; }
 }
 
-/* Basınç göstergesi */
-.gauge { max-width: 230px; text-align: center; }
-.gauge svg { width: 100%; height: auto; display: block; }
-.gauge-face { fill: #fff; stroke: var(--line); stroke-width: 2; }
-.gauge-tick { stroke: var(--ink-soft); stroke-width: 2; stroke-linecap: round; }
-.gauge-arc-track {
-  stroke: var(--line);
-  stroke-width: 5;
-  stroke-linecap: round;
+/* Basınç göstergesi: tezgâh manometresi */
+.gauge { max-width: 250px; width: 100%; text-align: center; }
+.gauge svg { width: 100%; height: auto; display: block; overflow: visible; }
+.gauge-glow { fill: var(--accent-2); opacity: 0; filter: blur(14px); }
+.gauge-inner-shade { fill: none; stroke: rgba(26, 22, 18, 0.12); stroke-width: 3; }
+.gauge-tick { stroke: #9a8f82; stroke-width: 1.1; stroke-linecap: round; }
+.gauge-tick-major { stroke: var(--ink); stroke-width: 2.2; }
+.gauge-scale { font: 800 10.5px var(--font); fill: var(--ink); letter-spacing: -0.02em; }
+.gauge-unit-top {
+  font: 600 8.5px var(--font);
+  fill: #8a8178;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
 }
+.gauge-arc-track { stroke: #e3dcd1; stroke-width: 6; stroke-linecap: round; }
 .gauge-arc {
-  stroke: var(--accent-2);
-  stroke-width: 5;
+  stroke-width: 6;
   stroke-linecap: round;
   stroke-dasharray: 100;
   stroke-dashoffset: var(--gauge-arc, 0);
 }
+.gauge-redline { stroke: #c2452c; stroke-width: 2.2; stroke-linecap: round; opacity: 0.85; }
 .gauge-needle { transform-origin: 0 0; transform: rotate(var(--gauge-angle, 0deg)); }
-.gauge-needle line { stroke: var(--accent-2); stroke-width: 3.5; stroke-linecap: round; }
-.gauge-needle-dot { fill: var(--accent-2); }
+.gauge-needle-shadow { fill: rgba(26, 22, 18, 0.22); filter: blur(1.2px); }
+.gauge-needle-body { fill: #c2452c; }
+.gauge-needle-dot { fill: #c2452c; }
 .gauge-hub { fill: var(--ink); }
-.gauge-value { font: 800 15px var(--font); fill: var(--ink); letter-spacing: -0.02em; }
-.gauge-label { margin: 0.5rem 0 0; font-size: 0.88rem; color: var(--ink-soft); }
+.gauge-hub-pin { fill: #d9d1c5; }
+.gauge-readout { fill: rgba(26, 22, 18, 0.05); stroke: rgba(26, 22, 18, 0.08); stroke-width: 1; }
+.gauge-value {
+  font: 800 23px var(--font);
+  fill: var(--ink);
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.gauge-value-unit { font: 700 10px var(--font); fill: var(--accent-ink); letter-spacing: 0.06em; }
+.gauge-glass { pointer-events: none; }
+.gauge-label {
+  margin: 0.8rem 0 0;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  letter-spacing: -0.01em;
+}
 
-/* Başlangıç: ibre solda (0 bar), yay boş — görünür olunca hedefe */
+/* Başlangıç: ibre solda (0 bar), yay boş — görünür olunca basınç yükselir */
 html.js:not(.reduced) .gauge.anim:not(.in) .gauge-needle { transform: rotate(-120deg); }
 html.js:not(.reduced) .gauge.anim:not(.in) .gauge-arc { stroke-dashoffset: 100; }
 html.js:not(.reduced) .gauge.anim.in .gauge-needle {
-  transform: rotate(var(--gauge-angle, 0deg));
-  transition: transform 1.55s var(--ease);
-  transition-delay: var(--d, 0ms);
+  animation:
+    gauge-sweep 2.6s cubic-bezier(0.3, 0.85, 0.3, 1) var(--d, 0ms) both,
+    gauge-tremble 1.6s ease-in-out calc(var(--d, 0ms) + 2.6s) infinite;
 }
 html.js:not(.reduced) .gauge.anim.in .gauge-arc {
-  stroke-dashoffset: var(--gauge-arc, 0);
-  transition: stroke-dashoffset 1.55s var(--ease);
-  transition-delay: var(--d, 0ms);
+  animation: gauge-fill 2.6s cubic-bezier(0.3, 0.85, 0.3, 1) var(--d, 0ms) both;
+}
+html.js:not(.reduced) .gauge.anim.in .gauge-glow {
+  animation: gauge-glow 1.4s var(--ease) calc(var(--d, 0ms) + 1.5s) both;
 }
 html.js:not(.reduced) .gauge.anim.in .gauge-hub {
-  animation: gauge-hub-pulse 0.55s var(--ease) calc(var(--d, 0ms) + 1.4s) 1 both;
+  animation: gauge-hub-pulse 0.6s var(--ease) calc(var(--d, 0ms) + 2.3s) 1 both;
+}
+@keyframes gauge-sweep {
+  0% { transform: rotate(-120deg); }
+  16% { transform: rotate(-113deg); }
+  62% { transform: rotate(calc(var(--gauge-angle, 0deg) + 9deg)); }
+  78% { transform: rotate(calc(var(--gauge-angle, 0deg) - 3.5deg)); }
+  90% { transform: rotate(calc(var(--gauge-angle, 0deg) + 1.4deg)); }
+  100% { transform: rotate(var(--gauge-angle, 0deg)); }
+}
+@keyframes gauge-tremble {
+  0%, 100% { transform: rotate(calc(var(--gauge-angle, 0deg) - 0.45deg)); }
+  38% { transform: rotate(calc(var(--gauge-angle, 0deg) + 0.55deg)); }
+  72% { transform: rotate(calc(var(--gauge-angle, 0deg) - 0.15deg)); }
+}
+@keyframes gauge-fill {
+  0% { stroke-dashoffset: 100; }
+  16% { stroke-dashoffset: 97; }
+  62% { stroke-dashoffset: calc(var(--gauge-arc, 0) - 3.75); }
+  78% { stroke-dashoffset: calc(var(--gauge-arc, 0) + 1.45); }
+  90% { stroke-dashoffset: calc(var(--gauge-arc, 0) - 0.6); }
+  100% { stroke-dashoffset: var(--gauge-arc, 0); }
+}
+@keyframes gauge-glow {
+  0% { opacity: 0; }
+  100% { opacity: 0.22; }
 }
 @keyframes gauge-hub-pulse {
-  0% { transform-origin: 60px 60px; transform: scale(1); }
-  45% { transform-origin: 60px 60px; transform: scale(1.28); fill: var(--accent-2); }
-  100% { transform-origin: 60px 60px; transform: scale(1); }
+  0% { transform-origin: 100px 100px; transform: scale(1); }
+  45% { transform-origin: 100px 100px; transform: scale(1.3); fill: var(--accent-2); }
+  100% { transform-origin: 100px 100px; transform: scale(1); }
 }
 .gauge-row { display: grid; gap: 1.5rem; margin-top: 2rem; align-items: center; justify-items: center; }
 .gauge-copy h3 { margin: 0 0 0.5rem; font-size: 1.2rem; letter-spacing: -0.03em; }
@@ -2204,7 +2251,8 @@ html.js:not(.reduced) .form-step:focus-within { border-color: var(--accent); box
 .test-proof { padding: 3rem 0 1rem; }
 .test-proof .cards-head { text-align: center; margin-inline: auto; }
 .test-proof-grid { display: grid; gap: 2rem; align-items: center; justify-items: center; }
-.gauge-pair { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
+.gauge-pair { display: flex; flex-wrap: wrap; gap: 1.75rem 2.25rem; justify-content: center; }
+.gauge-pair .gauge { flex: 1 1 200px; max-width: 250px; }
 .test-proof-media { width: min(100%, 280px); }
 @media (min-width: 900px) {
   .test-proof-grid { grid-template-columns: 1.2fr 0.8fr; }
@@ -2250,8 +2298,9 @@ html.js:not(.reduced) .form-step:focus-within { border-color: var(--accent); box
 /* Reduced motion: v5 animasyonları son karede durur */
 @media (prefers-reduced-motion: reduce) {
   .ship-line { animation: none !important; }
-  .gauge-needle { transform: rotate(var(--gauge-angle, 0deg)) !important; transition: none !important; }
-  .gauge-arc { stroke-dashoffset: var(--gauge-arc, 0) !important; transition: none !important; }
+  .gauge-needle { transform: rotate(var(--gauge-angle, 0deg)) !important; transition: none !important; animation: none !important; }
+  .gauge-arc { stroke-dashoffset: var(--gauge-arc, 0) !important; transition: none !important; animation: none !important; }
+  .gauge-glow { opacity: 0.22 !important; animation: none !important; }
   .gauge-hub { animation: none !important; }
   html.js .anim, html.js .timeline { opacity: 1 !important; transform: none !important; }
 }

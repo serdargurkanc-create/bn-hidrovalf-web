@@ -150,7 +150,28 @@ function runGaugeCount(el: HTMLElement) {
   const num = el.querySelector<HTMLElement>("[data-gauge-num]");
   if (!num || !target) return;
   const delay = parseFloat(getComputedStyle(el).getPropertyValue("--d")) || 0;
-  const dur = 1550;
+  // CSS gauge-sweep ile aynı anahtar kareler: 9° = 15 bar, 3.5° ≈ 5.8 bar, 1.4° ≈ 2.3 bar.
+  const dur = 2600;
+  const keys: [number, number][] = [
+    [0, 0],
+    [0.16, (7 / 240) * 400],
+    [0.62, target + 15],
+    [0.78, target - 5.8],
+    [0.9, target + 2.3],
+    [1, target],
+  ];
+  const smooth = (x: number) => x * x * (3 - 2 * x);
+  const valueAt = (t: number) => {
+    for (let i = 1; i < keys.length; i++) {
+      const [t0, v0] = keys[i - 1];
+      const [t1, v1] = keys[i];
+      if (t <= t1) {
+        const k = smooth((t - t0) / (t1 - t0));
+        return v0 + (v1 - v0) * k;
+      }
+    }
+    return target;
+  };
   num.textContent = "0";
   const startAt = performance.now() + delay;
   const tick = (now: number) => {
@@ -159,8 +180,7 @@ function runGaugeCount(el: HTMLElement) {
       return;
     }
     const t = Math.min(1, (now - startAt) / dur);
-    const eased = 1 - Math.pow(1 - t, 3);
-    num.textContent = String(Math.round(target * eased));
+    num.textContent = String(Math.max(0, Math.round(valueAt(t))));
     if (t < 1) requestAnimationFrame(tick);
     else num.textContent = String(target);
   };
