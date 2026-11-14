@@ -3,8 +3,9 @@ import Link from "next/link";
 import { FaqList, PageHero, QuoteCta, Section } from "@/components/Inner";
 import { Pic } from "@/components/Pic";
 import { SchemaLd } from "@/components/Schema";
+import { AtelierFigure, AtelierScript } from "@/components/AtelierClip";
 import { VideoFigure } from "@/components/VideoFigure";
-import { videos } from "@/lib/media";
+import { atelier, atelierVideo, videos } from "@/lib/media";
 import { pageMeta } from "@/lib/meta";
 
 export const metadata: Metadata = pageMeta({
@@ -57,7 +58,12 @@ const faqItems = [
   },
 ];
 
-const pageVideos = [videos.flansIsleme, videos.spoolTaslama, videos.isleme];
+const pageVideos = [
+  videos.flansIsleme,
+  videos.spoolTaslama,
+  videos.isleme,
+  atelierVideo(atelier.barelYakin),
+];
 
 export default function Page() {
   return (
@@ -148,6 +154,10 @@ export default function Page() {
             <VideoFigure key={v.src} video={v} />
           ))}
         </div>
+        <p className="sec-note">Barel yüzeyinin yakın planı sessizdir ve görünürken oynar.</p>
+        <div className="video-grid">
+          <AtelierFigure clip={atelier.barelYakin} />
+        </div>
         <div className="split" style={{ marginTop: "1.5rem" }}>
           <div className="split-media">
             <Pic
@@ -180,6 +190,7 @@ export default function Page() {
         <FaqList items={faqItems} idPrefix="imalat-soru" />
       </Section>
 
+      <AtelierScript />
       <QuoteCta title="Özel imalat teklifi al" />
     </>
   );

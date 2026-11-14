@@ -4,8 +4,9 @@ import { Timeline } from "@/components/Anim";
 import { FaqList, PageHero, QuoteCta, Section } from "@/components/Inner";
 import { Pic } from "@/components/Pic";
 import { SchemaLd } from "@/components/Schema";
+import { AtelierFigure, AtelierScript } from "@/components/AtelierClip";
 import { VideoFigure } from "@/components/VideoFigure";
-import { videos } from "@/lib/media";
+import { atelier, atelierVideo, videos } from "@/lib/media";
 import { PhotoBand, RevFacts, shots } from "@/components/revizyon/Frame";
 import { pageMeta } from "@/lib/meta";
 import { journey } from "@/lib/site";
@@ -81,7 +82,7 @@ export default function Page() {
         path="/revizyon/surec"
         crumbs={crumbs}
         faqs={faqItems}
-        videoList={[videos.icCapIsleme, videos.spoolTaslama, videos.test320]}
+        videoList={[videos.icCapIsleme, videos.spoolTaslama, videos.test320, atelierVideo(atelier.sariTezgah)]}
       />
       <PageHero
         kicker="Süreç"
@@ -106,9 +107,12 @@ export default function Page() {
         kicker="Test ve teslimat"
         title="Kayıtla biter,"
         accent="kuryeyle döner"
-        lead="Test adımının ayrıntısı ve örnek kayıtlar için videolu test sayfasına, gönderim seçenekleri için teslimat sayfasına bakın."
+        lead="Test adımının ayrıntısı ve örnek kayıtlar için videolu test sayfasına, gönderim seçenekleri için teslimat sayfasına bakın. Alttaki sessiz klip, sarı valf bloğunun tezgâha bağlı hâlidir."
         tone="soft"
       >
+        <div className="video-grid">
+          <AtelierFigure clip={atelier.sariTezgah} />
+        </div>
         <div className="support-grid">
           <Link href="/revizyon/videolu-test" className="support-card rv">
             <strong>Videolu test</strong>
@@ -126,6 +130,7 @@ export default function Page() {
       </Section>
 
       <PhotoBand shots={shots.surec} title="Sürecin" accent="kareleri" lead="Söküm, ölçü ve iç grup." />
+      <AtelierScript />
       <QuoteCta />
     </>
   );

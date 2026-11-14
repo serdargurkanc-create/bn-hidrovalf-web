@@ -1525,6 +1525,14 @@ main { overflow-x: clip; }
 .page-hero .lead { color: var(--ink-soft); font-size: 1.1rem; max-width: 40rem; margin: 0; }
 .page-hero .hero-cta { justify-content: flex-start; margin-top: 1.5rem; }
 .page-hero-media { max-width: 340px; justify-self: center; width: 100%; }
+.page-hero-media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 406 / 720;
+  object-fit: cover;
+  border-radius: var(--r);
+  box-shadow: var(--sh-md);
+}
 .page-hero-form { max-width: 520px; }
 .hero-chips {
   display: flex;
@@ -1663,6 +1671,23 @@ main { overflow-x: clip; }
   box-shadow: var(--sh-md);
   object-fit: cover;
 }
+.video-figure-lazy { display: grid; }
+.video-figure-lazy img,
+.video-figure-lazy video {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 406 / 720;
+  object-fit: cover;
+  border-radius: var(--r);
+}
+.video-figure-lazy img { box-shadow: var(--sh-md); }
+.video-figure-lazy video {
+  height: 100%;
+  background: transparent;
+  box-shadow: none;
+}
+.video-figure-lazy figcaption { grid-area: 2 / 1; }
 .video-figure figcaption {
   margin-top: 0.6rem;
   font-size: 0.9rem;
@@ -1670,6 +1695,37 @@ main { overflow-x: clip; }
   color: var(--ink);
 }
 .video-note { color: var(--accent-ink); font-weight: 500; }
+.atelier-frame {
+  position: relative;
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--ink);
+  box-shadow: var(--sh-md);
+}
+.atelier-frame picture,
+.atelier-frame img,
+.atelier-clip .atelier-frame video {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 404 / 720;
+  object-fit: cover;
+  display: block;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+}
+.atelier-clip .atelier-frame video {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  opacity: 0;
+}
+.atelier-clip.is-playing .atelier-frame video { opacity: 1; }
+@media (min-width: 768px) {
+  .atelier-frame picture,
+  .atelier-frame img,
+  .atelier-clip .atelier-frame video { aspect-ratio: 576 / 720; }
+}
 .video-grid { display: grid; gap: 1.25rem; justify-content: center; grid-template-columns: minmax(0, 300px); }
 .video-grid-fill { justify-content: stretch; grid-template-columns: 1fr; }
 @media (min-width: 700px) {

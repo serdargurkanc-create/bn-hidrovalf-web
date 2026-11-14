@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FaqList, PageHero, QuoteCta, Section } from "@/components/Inner";
 import { SchemaLd } from "@/components/Schema";
+import { AtelierFigure, AtelierScript } from "@/components/AtelierClip";
 import { PhotoBand, RevFacts, VideoBand, shots } from "@/components/revizyon/Frame";
-import { videos } from "@/lib/media";
+import { atelier, atelierVideo, videos } from "@/lib/media";
 import { pageMeta } from "@/lib/meta";
 
 export const metadata: Metadata = pageMeta({
@@ -142,6 +143,7 @@ export default function Page() {
           description:
             "Güç kaybı, ısınma, iç kaçak ve gürültü için olası valf ve pompa nedenleri. Kesin tespit Ankara İvedik OSB’deki atölyede yapılır.",
         }}
+        videoList={[atelierVideo(atelier.portSizinti)]}
       />
       <PageHero
         kicker="Rehber"
@@ -159,6 +161,19 @@ export default function Page() {
         accent="belirtiler"
       >
         <SymptomList items={valfBelirtileri} idPrefix="valf-belirti" />
+      </Section>
+
+      <Section
+        id="tespit"
+        kicker="Arıza tespiti"
+        title="Port çevresinde"
+        accent="sızıntı"
+        lead="Sessiz klip, tezgâhtaki kontrol valfinin port çevresini gösterir. Görünürken oynar."
+        tone="soft"
+      >
+        <div className="video-grid">
+          <AtelierFigure clip={atelier.portSizinti} />
+        </div>
       </Section>
 
       <Section
@@ -185,6 +200,7 @@ export default function Page() {
       <Section id="sss" kicker="SSS" title="Arıza" accent="soruları" tone="soft">
         <FaqList items={faqItems} idPrefix="ariza-soru" />
       </Section>
+      <AtelierScript />
       <QuoteCta />
     </>
   );

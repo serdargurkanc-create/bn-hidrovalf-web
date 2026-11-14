@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { preload } from "react-dom";
 import { Gauge } from "@/components/Anim";
 import {
   BrandChips,
@@ -9,10 +10,12 @@ import {
   Section,
 } from "@/components/Inner";
 import { Pic } from "@/components/Pic";
+import { asset } from "@/lib/paths";
 import { SchemaLd } from "@/components/Schema";
+import { AtelierFigure, AtelierScript } from "@/components/AtelierClip";
 import { VideoFigure } from "@/components/VideoFigure";
 import { brands } from "@/lib/brands";
-import { videos } from "@/lib/media";
+import { atelier, atelierVideo, videos } from "@/lib/media";
 import { RevFacts } from "@/components/revizyon/Frame";
 import { pageMeta } from "@/lib/meta";
 import { site } from "@/lib/site";
@@ -299,9 +302,19 @@ const faqItems = [
   },
 ];
 
-const pageVideos = [videos.spoolLogo, videos.spoolTaslama, videos.test240, videos.test320];
+const pageVideos = [
+  videos.spoolLogo,
+  videos.spoolTaslama,
+  videos.test240,
+  videos.test320,
+  atelierVideo(atelier.ayarKontrol),
+  atelierVideo(atelier.griTest),
+  atelierVideo(atelier.akisKontrol),
+  atelierVideo(atelier.kontrolValfi),
+];
 
 export default function Page() {
+  preload(asset(videos.spoolLogo.poster), { as: "image", fetchPriority: "high" });
   return (
     <>
       <SchemaLd
@@ -327,7 +340,17 @@ export default function Page() {
         accent="valf revizyonu"
         lead="Her marka iş makinasının ana kumanda valfi bu atölyede revize edilir. Kapsam spool imalatı, arıza çözümü ve tezgâhta videolu testtir. İş tek adreste biter."
         crumbs={crumbs}
-        media={<VideoFigure video={videos.spoolLogo} />}
+        media={
+          <Pic
+            src={videos.spoolLogo.poster}
+            srcSet={`${videos.spoolLogo.poster} 406w`}
+            alt={videos.spoolLogo.title}
+            width={videos.spoolLogo.w}
+            height={videos.spoolLogo.h}
+            sizes="(max-width: 900px) 70vw, 340px"
+            priority
+          />
+        }
       >
         <ul className="hero-chips" aria-label="Kapsam">
           <li>Spool imalatı</li>
@@ -455,16 +478,32 @@ export default function Page() {
       </Section>
 
       <Section
+        id="tezgah"
+        kicker="Tezgâh"
+        title="Arıza, akış"
+        accent="ve test"
+        lead="Dört sessiz klip görünürken oynar. Bu kayıtlarda bar değeri okunmaz; manometre örnekleri alttaki tıklamalı kayıtlardadır."
+      >
+        <div className="video-grid">
+          <AtelierFigure clip={atelier.ayarKontrol} />
+          <AtelierFigure clip={atelier.griTest} />
+          <AtelierFigure clip={atelier.akisKontrol} />
+          <AtelierFigure clip={atelier.kontrolValfi} />
+        </div>
+      </Section>
+
+      <Section
         id="kayit"
         kicker="Kanıt"
         title="Taşlama ve test"
         accent="kayıtta"
         lead="Klipler gerçek işlerdendir. Tıklayınca yüklenir; kendiliğinden oynamaz. Bardaki sayılar yalnızca o kayıtların manometre değeridir."
       >
-        <div className="video-grid video-grid-fill">
-          <VideoFigure video={videos.spoolTaslama} />
-          <VideoFigure video={videos.test240} />
-          <VideoFigure video={videos.test320} />
+        <div className="video-grid">
+          <VideoFigure video={videos.spoolLogo} lazyPoster />
+          <VideoFigure video={videos.spoolTaslama} lazyPoster />
+          <VideoFigure video={videos.test240} lazyPoster />
+          <VideoFigure video={videos.test320} lazyPoster />
         </div>
         <div className="gauge-row">
           <div className="gauge-pair">
@@ -543,6 +582,7 @@ export default function Page() {
         <FaqList items={faqItems} idPrefix="valf-soru" />
       </Section>
 
+      <AtelierScript />
       <QuoteCta note="Makine markası, valf tipi ve bir fotoğraf yeter. Süre ve garanti, tespit sonrası yazılı teklifte belirtilir." />
     </>
   );

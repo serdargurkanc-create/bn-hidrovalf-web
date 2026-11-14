@@ -9,17 +9,31 @@ import { asset } from "@/lib/paths";
 export function VideoFigure({
   video,
   className,
+  lazyPoster = false,
 }: {
   video: Video;
   className?: string;
+  /** Katın altındaki kayıtlarda poster görseli lazy yüklenir; video poster’ı indirmez. */
+  lazyPoster?: boolean;
 }) {
+  const figureClass = `video-figure${lazyPoster ? " video-figure-lazy" : ""}${className ? ` ${className}` : ""}`;
   return (
-    <figure className={`video-figure${className ? ` ${className}` : ""}`}>
+    <figure className={figureClass}>
+      {lazyPoster ? (
+        <img
+          src={asset(video.poster)}
+          alt=""
+          width={video.w}
+          height={video.h}
+          loading="lazy"
+          decoding="async"
+        />
+      ) : null}
       <video
         controls
         playsInline
         preload="none"
-        poster={asset(video.poster)}
+        poster={lazyPoster ? undefined : asset(video.poster)}
         width={video.w}
         height={video.h}
         aria-label={video.title}

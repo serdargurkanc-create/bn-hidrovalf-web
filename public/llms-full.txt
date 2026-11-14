@@ -38,7 +38,9 @@ Her marka iş makinasının hidrolik pompası revizyona kabul edilir. Kapsam: s�
 
 ### Videolu test (/revizyon/videolu-test)
 
-Testler yazılı rapor yerine videoyla belgelenir. Yayınlanan örnek kayıtlarda manometreden 240 bar (Yanmar valf testi, sesli) ve 320 bar (çok dilimli valf testi, sesli) okunur. Bu değerler yalnızca o kayıtların gerçek değerleridir; her işin standart test basıncı değildir. Test basıncı parça tipine göre belirlenir.
+Testler yazılı rapor yerine videoyla belgelenir. Yayınlanan örnek kayıtlarda manometreden 240 bar (Yanmar valf testi, sesli) ve 320 bar (çok dilimli valf testi, sesli) okunur. Sessiz bir ek kayıtta ana basınç manometresi yaklaşık 200 bar gösterir; bu da yalnızca o klibin değeridir. Bu sayılar her işin standart test basıncı değildir. Test basıncı parça tipine göre belirlenir.
+
+12 Kasım 2026 sessiz klipler: port sızıntısı (/revizyon/ariza-belirtileri); ayar kontrolü, gri blok testi, akış kontrolü ve kontrol valfi testi (/revizyon/valf); manometre ve çok gözlü blok yan yana (/revizyon/videolu-test); sarı blok test tezgâhı (/revizyon/surec); barel-pleyt alıştırma genel ve yakın (/revizyon/pompa, yakın plan /imalat).
 
 ### Arıza belirtileri (/revizyon/ariza-belirtileri)
 
