@@ -198,6 +198,22 @@ const shots = [
     alt: "Civatalı siyah hidrolik valf bloğu ve bağlı hortumlar.",
     cap: "Hortumlu valf bloğu",
   },
+  {
+    src: "/images/foto-valf-govde-yayli-spool-01-600.webp",
+    srcSet:
+      "/images/foto-valf-govde-yayli-spool-01-600.webp 600w, /images/foto-valf-govde-yayli-spool-01-800.webp 800w, /images/foto-valf-govde-yayli-spool-01-1200.webp 1200w",
+    avif: "/images/foto-valf-govde-yayli-spool-01-600.avif 600w, /images/foto-valf-govde-yayli-spool-01-800.avif 800w, /images/foto-valf-govde-yayli-spool-01-1200.avif 1200w",
+    alt: "Ayakta duran hidrolik valf gövdesi, takılı yaylı spool ve iki flanş plakası. İvedik OSB atölyesi.",
+    cap: "Yaylı spool takılı gövde",
+  },
+  {
+    src: "/images/foto-valf-igne-cift-01-600.webp",
+    srcSet:
+      "/images/foto-valf-igne-cift-01-600.webp 600w, /images/foto-valf-igne-cift-01-800.webp 800w, /images/foto-valf-igne-cift-01-1200.webp 1200w",
+    avif: "/images/foto-valf-igne-cift-01-600.avif 600w, /images/foto-valf-igne-cift-01-800.avif 800w, /images/foto-valf-igne-cift-01-1200.avif 1200w",
+    alt: "Çizik tezgahta iki konik hidrolik valf iğnesi ve küçük pim.",
+    cap: "Valf iğneleri",
+  },
 ];
 
 const starts = [
