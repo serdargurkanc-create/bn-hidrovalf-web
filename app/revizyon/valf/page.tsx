@@ -182,6 +182,22 @@ const shots = [
     alt: "Sarı boyalı iş makinesi ana kontrol valfi, çok dilimli hidrolik blok",
     cap: "Ana kontrol valfi",
   },
+  {
+    src: "/images/foto-valf-blok-dirsek-01-600.webp",
+    srcSet:
+      "/images/foto-valf-blok-dirsek-01-600.webp 600w, /images/foto-valf-blok-dirsek-01-800.webp 800w, /images/foto-valf-blok-dirsek-01-1200.webp 1200w",
+    avif: "/images/foto-valf-blok-dirsek-01-600.avif 600w, /images/foto-valf-blok-dirsek-01-800.avif 800w, /images/foto-valf-blok-dirsek-01-1200.avif 1200w",
+    alt: "Kaldırma halkalı hidrolik valf bloğu, dirsek boru ve bağlantılar. İvedik OSB atölyesi.",
+    cap: "Valf bloğu ve dirsek",
+  },
+  {
+    src: "/images/foto-valf-blok-hortumlu-01-600.webp",
+    srcSet:
+      "/images/foto-valf-blok-hortumlu-01-600.webp 600w, /images/foto-valf-blok-hortumlu-01-800.webp 800w, /images/foto-valf-blok-hortumlu-01-1200.webp 1200w",
+    avif: "/images/foto-valf-blok-hortumlu-01-600.avif 600w, /images/foto-valf-blok-hortumlu-01-800.avif 800w, /images/foto-valf-blok-hortumlu-01-1200.avif 1200w",
+    alt: "Civatalı siyah hidrolik valf bloğu ve bağlı hortumlar.",
+    cap: "Hortumlu valf bloğu",
+  },
 ];
 
 const starts = [
