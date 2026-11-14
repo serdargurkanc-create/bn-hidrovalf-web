@@ -119,6 +119,8 @@ a { color: inherit; }
 }
 
 .btn {
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -165,6 +167,34 @@ a { color: inherit; }
 .btn-outline:hover { border-color: var(--ink); transform: translateY(-2px); }
 .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
 .btn-ghost:hover { border-color: var(--ink); }
+.btn::after,
+.faq-help-actions a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+.btn-outline::after,
+.btn-ghost::after,
+.faq-help-actions a:last-child::after {
+  background: linear-gradient(100deg, transparent, rgba(208, 120, 37, 0.35), transparent);
+}
+.btn:hover::after,
+.btn:focus-visible::after,
+.faq-help-actions a:hover::after,
+.faq-help-actions a:focus-visible::after { animation: btn-shine 0.7s ease; }
+@keyframes btn-shine { to { left: 130%; } }
+@media (prefers-reduced-motion: reduce) {
+  .btn:hover::after,
+  .btn:focus-visible::after,
+  .faq-help-actions a:hover::after,
+  .faq-help-actions a:focus-visible::after { animation: none; }
+}
 
 /* Header */
 .menu-toggle { position: absolute; opacity: 0; pointer-events: none; }
@@ -1578,25 +1608,6 @@ main { overflow-x: clip; }
   background: var(--ink);
   color: #fff;
   border: 1px solid var(--ink);
-}
-.faq-help-actions a::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -60%;
-  width: 40%;
-  height: 100%;
-  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.45), transparent);
-  transform: skewX(-20deg);
-  pointer-events: none;
-}
-.faq-help-actions a:hover::after { animation: faq-shine 0.7s ease; }
-.faq-help-actions a:last-child::after {
-  background: linear-gradient(100deg, transparent, rgba(208, 120, 37, 0.35), transparent);
-}
-@keyframes faq-shine { to { left: 130%; } }
-@media (prefers-reduced-motion: reduce) {
-  .faq-help-actions a:hover::after { animation: none; }
 }
 .faq-help-actions a svg { width: 18px; height: 18px; flex: none; }
 .faq-help-actions a.is-wa {
