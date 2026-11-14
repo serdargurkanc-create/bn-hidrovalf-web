@@ -207,38 +207,6 @@ export function PumpExploded({ className }: P) {
   );
 }
 
-/* ---------- İmalat: torna/taşlama tezgâhı ---------- */
-
-export function LatheScene({ className }: P) {
-  return (
-    <Scene viewBox="0 0 280 150" className={`sc-lathe ${className || ""}`}>
-      {/* ayna + çeneler */}
-      <g className="lt-chuck">
-        <circle cx="54" cy="70" r="30" className="sc-fill" />
-        <circle cx="54" cy="70" r="30" className="sc-wheel" pathLength={100} />
-        <rect x="48" y="36" width="12" height="12" rx="2" className="sc-accent-fill" />
-        <rect x="48" y="92" width="12" height="12" rx="2" className="sc-accent-fill" />
-        <rect x="22" y="64" width="12" height="12" rx="2" className="sc-accent-fill" />
-      </g>
-      {/* iş parçası */}
-      <g className="lt-work">
-        <rect x="84" y="60" width="118" height="20" rx="6" className="sc-fill" />
-        <line x1="84" y1="70" x2="202" y2="70" className="sc-dash lt-spin" />
-      </g>
-      {/* kesici takım */}
-      <g className="lt-tool">
-        <path d="M186 96l10-14h10l-6 20z" className="sc-accent-fill" />
-        <rect x="192" y="102" width="44" height="12" rx="3" className="sc-fill" />
-      </g>
-      <g className="sc-sparks">
-        <line x1="190" y1="80" x2="182" y2="90" className="sc-spark" />
-        <line x1="196" y1="82" x2="196" y2="94" className="sc-spark" />
-        <line x1="202" y1="80" x2="210" y2="90" className="sc-spark" />
-      </g>
-    </Scene>
-  );
-}
-
 /* ---------- Videolu test: tezgah şeması ---------- */
 
 export function TestBenchScene({ className }: P) {

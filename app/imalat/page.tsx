@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FaqList, PageHero, QuoteCta, Section } from "@/components/Inner";
 import { Pic } from "@/components/Pic";
-import { LatheScene } from "@/components/anim/Scenes";
 import { SchemaLd } from "@/components/Schema";
 import { VideoFigure } from "@/components/VideoFigure";
 import { videos } from "@/lib/media";
@@ -116,13 +115,24 @@ export default function Page() {
 
       <Section
         id="cizimle"
-        kicker="Çizimle anlatım"
-        title="Tezgâhta"
-        accent="talaşlı imalat"
-        lead="Şematik çizim: aynaya bağlı iş parçası döner, kesici takım yüzeyi işler. Spool ve özel parçalar bu düzende üretilir."
+        kicker="Tezgâh"
+        title="Silindir bloğu"
+        accent="tornada"
+        lead="Piston pompanın silindir bloğu torna aynasında durur; yanında valf plakası. Bu yüzeyler pompa revizyonunda ölçülür ve taşlanır."
         tone="soft"
       >
-        <LatheScene />
+        <figure className="shop-frame">
+          <Pic
+            src="/images/foto-silindir-blok-torna-01-600.webp"
+            srcSet="/images/foto-silindir-blok-torna-01-600.webp 600w, /images/foto-silindir-blok-torna-01-800.webp 800w, /images/foto-silindir-blok-torna-01-1200.webp 1200w"
+            avifSrcSet="/images/foto-silindir-blok-torna-01-600.avif 600w, /images/foto-silindir-blok-torna-01-800.avif 800w, /images/foto-silindir-blok-torna-01-1200.avif 1200w"
+            alt="Atölyedeki torna aynasında piston pompa silindir bloğu ve yanında pirinç valf plakası"
+            width={1200}
+            height={900}
+            sizes="(max-width: 900px) 100vw, 1100px"
+          />
+          <figcaption>Torna aynası, silindir bloğu ve valf plakası.</figcaption>
+        </figure>
       </Section>
 
       <Section
@@ -161,28 +171,6 @@ export default function Page() {
             <p>
               Kapsam için <Link href="/revizyon/valf">valf</Link> ve{" "}
               <Link href="/revizyon/pompa">pompa</Link> sayfalarına bakın.
-            </p>
-          </div>
-        </div>
-        <div className="split" style={{ marginTop: "1.5rem" }}>
-          <div className="split-media">
-            <Pic
-              src="/images/foto-silindir-blok-torna-01-600.webp"
-              srcSet="/images/foto-silindir-blok-torna-01-600.webp 600w, /images/foto-silindir-blok-torna-01-800.webp 800w, /images/foto-silindir-blok-torna-01-1200.webp 1200w"
-              avifSrcSet="/images/foto-silindir-blok-torna-01-600.avif 600w, /images/foto-silindir-blok-torna-01-800.avif 800w, /images/foto-silindir-blok-torna-01-1200.avif 1200w"
-              alt="Atölyedeki torna aynasında piston pompa silindir bloğu ve yanında pirinç valf plakası"
-              width={1200}
-              height={900}
-              sizes="(max-width: 900px) 100vw, 480px"
-            />
-          </div>
-          <div className="split-copy">
-            <h3>
-              Silindir bloğu, <span className="serif-accent">tornada.</span>
-            </h3>
-            <p>
-              Piston pompanın silindir bloğu torna aynasında durur; yanında valf plakası.
-              Bu yüzeyler pompa revizyonunda ölçülür ve taşlanır.
             </p>
           </div>
         </div>

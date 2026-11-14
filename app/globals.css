@@ -1832,6 +1832,28 @@ html.js:not(.reduced) .anim.in .flow-oil { animation: flow-dash 2.6s linear infi
 .split { display: grid; gap: 1.75rem; margin-top: 2.25rem; align-items: center; }
 .split-media { border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--sh-md); }
 .split-media img { width: 100%; height: 100%; object-fit: cover; }
+.shop-frame {
+  margin: 0;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-md);
+}
+.shop-frame img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+.shop-frame figcaption {
+  margin: 0;
+  padding: 0.9rem 1.15rem 1.05rem;
+  font-size: 0.95rem;
+  font-weight: 650;
+  color: var(--ink-soft);
+}
 .split-copy h3 { font-size: clamp(1.4rem, 2.6vw, 2rem); letter-spacing: -0.04em; margin: 0 0 0.75rem; }
 .split-copy p { color: var(--ink-soft); margin: 0 0 0.85rem; }
 .split-copy a { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 2px; }
@@ -2227,7 +2249,6 @@ html.js:not(.reduced) .anim.in .sc-spark:nth-child(2) { animation-delay: 0.18s; 
 html.js:not(.reduced) .anim.in .sc-spark:nth-child(3) { animation-delay: 0.36s; }
 html.js:not(.reduced) .anim.in .sc-spark:nth-child(4) { animation-delay: 0.5s; }
 html.js:not(.reduced) .anim.in .sc-flow { animation: sc-slide-dash 0.8s linear infinite; }
-html.js:not(.reduced) .anim.in .lt-spin { animation: sc-slide-dash 0.5s linear infinite; }
 .bn-rec-dot { fill: #c2452c; }
 html.js:not(.reduced) .anim.in .bn-rec-dot { animation: sc-blink 1.2s ease infinite; }
 
@@ -2364,7 +2385,7 @@ html.js:not(.reduced) .timeline.in::after { opacity: 0.85; animation: tl-flow 1s
 @media (prefers-reduced-motion: reduce) { .timeline::after { opacity: 0.5 !important; animation: none !important; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .sc-wheel, .sc-spark, .sc-flow, .lt-spin, .bn-rec-dot { animation: none !important; }
+  .sc-wheel, .sc-spark, .sc-flow, .bn-rec-dot { animation: none !important; }
 }
 
 /* ===================== Hakkımızda ===================== */
