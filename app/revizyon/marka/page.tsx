@@ -5,7 +5,7 @@ import { SchemaLd } from "@/components/Schema";
 import { brands } from "@/lib/brands";
 import { videos } from "@/lib/media";
 import { pageMeta } from "@/lib/meta";
-import { PhotoBand, RevFacts, RevLinks, VideoBand, shots } from "@/components/revizyon/Frame";
+import { PhotoBand, RevFacts, VideoBand, shots } from "@/components/revizyon/Frame";
 
 export const metadata: Metadata = pageMeta({
   title: "Marka bazlı valf ve pompa revizyonu",
@@ -103,7 +103,6 @@ export default function Page() {
       <Section id="sss" kicker="SSS" title="Marka" accent="soruları" tone="soft">
         <FaqList items={faqItems} idPrefix="marka-soru" />
       </Section>
-      <RevLinks current="/revizyon/marka" />
       <QuoteCta />
     </>
   );

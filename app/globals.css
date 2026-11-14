@@ -1547,25 +1547,6 @@ main { overflow-x: clip; }
 }
 .rev-shot img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
 .rev-shot figcaption { padding: 0.65rem 0.85rem 0.85rem; color: var(--ink-soft); font-size: 0.88rem; }
-.rev-links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-  margin: 0 auto 0.5rem;
-}
-.rev-links a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 40px;
-  padding: 0.3rem 0.85rem;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: #fff;
-  text-decoration: none;
-  font-weight: 600;
-}
-.rev-links a:hover { border-color: var(--accent); color: var(--accent-ink); }
 @media (min-width: 800px) {
   .rev-facts-grid, .rev-shots { grid-template-columns: repeat(3, 1fr); }
 }

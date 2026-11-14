@@ -6,7 +6,7 @@ import { Pic } from "@/components/Pic";
 import { SchemaLd } from "@/components/Schema";
 import { VideoFigure } from "@/components/VideoFigure";
 import { videos } from "@/lib/media";
-import { PhotoBand, RevFacts, RevLinks, shots } from "@/components/revizyon/Frame";
+import { PhotoBand, RevFacts, shots } from "@/components/revizyon/Frame";
 import { pageMeta } from "@/lib/meta";
 import { journey } from "@/lib/site";
 
@@ -126,7 +126,6 @@ export default function Page() {
       </Section>
 
       <PhotoBand shots={shots.surec} title="Sürecin" accent="kareleri" lead="Söküm, ölçü ve iç grup." />
-      <RevLinks current="/revizyon/surec" />
       <QuoteCta />
     </>
   );
