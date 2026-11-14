@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { FlowSvg, Gauge } from "@/components/Anim";
+import { Gauge } from "@/components/Anim";
 import {
   SceneMontaj,
   SceneOlcum,
@@ -270,8 +270,6 @@ export default function Page() {
             </li>
           ))}
         </ol>
-
-        <FlowSvg />
       </Section>
 
       <Section

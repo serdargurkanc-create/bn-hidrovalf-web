@@ -78,27 +78,6 @@ export function Gauge({
   );
 }
 
-/** Dekoratif hidrolik akış çizimi: hat üzerinde akan kesik çizgi. */
-export function FlowSvg() {
-  return (
-    <div className="flow-svg anim" aria-hidden="true">
-      <svg viewBox="0 0 640 120" fill="none">
-        <path
-          className="flow-pipe"
-          d="M8 96h130c20 0 28-10 34-26l10-26c6-16 14-26 34-26h114c20 0 28 10 34 26l10 26c6 16 14 26 34 26h224"
-        />
-        <path
-          className="flow-oil"
-          d="M8 96h130c20 0 28-10 34-26l10-26c6-16 14-26 34-26h114c20 0 28 10 34 26l10 26c6 16 14 26 34 26h224"
-        />
-        <rect className="flow-node" x="122" y="78" width="36" height="36" rx="8" />
-        <rect className="flow-node" x="300" y="2" width="36" height="36" rx="8" />
-        <rect className="flow-node" x="478" y="78" width="36" height="36" rx="8" />
-      </svg>
-    </div>
-  );
-}
-
 /** Dikey süreç zaman çizelgesi; çizgi görünür oldukça dolar. */
 export function Timeline({
   steps,
