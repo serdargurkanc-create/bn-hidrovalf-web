@@ -87,7 +87,7 @@ export const posts: BlogPost[] = [
       { type: "h2", text: "Nereden başlanır?" },
       {
         type: "p",
-        text: "Form, telefon veya WhatsApp aynı kapıya çıkar. Adres tektir: Genç Kardeşler Sanayi Sitesi, 2285. Sk. No:40, İvedik OSB, Yenimahalle/Ankara. Çalışma saati sitede yayınlanmaz; gün ve saat için telefon kullanılır.",
+        text: "Form, telefon veya WhatsApp aynı kapıya çıkar. Adres tektir: Genç Kardeşler Sanayi Sitesi, 2285. Sk. No:40, İvedik OSB, Yenimahalle/Ankara.",
       },
     ],
   },
@@ -684,7 +684,7 @@ export const posts: BlogPost[] = [
       { type: "h2", text: "Sahadaki not" },
       {
         type: "p",
-        text: "Göndermeden önce hangi hareketin durduğunu, ne zamandır sürdüğünü ve makine markasını yazmak yeter. Saat yayınlanmaz. Adres ve gönderim, [[/blog/parca-atolyeye-nasil-ulasir|parçanın atölyeye gelişi]] yazısındadır.",
+        text: "Göndermeden önce hangi hareketin durduğunu, ne zamandır sürdüğünü ve makine markasını yazmak yeter. Adres ve gönderim, [[/blog/parca-atolyeye-nasil-ulasir|parçanın atölyeye gelişi]] yazısındadır.",
       },
     ],
   },
@@ -716,7 +716,7 @@ export const posts: BlogPost[] = [
       { type: "h2", text: "Gönderim" },
       {
         type: "p",
-        text: "Seçenekler [[/revizyon/teslimat|teslimat]] sayfasında ve yazılı teklifte yer alır. Göndermeden önce aramak, parçanın takibini kolaylaştırır. Çalışma saati sitede yayınlanmaz; gün ve saat için telefon kullanılır. [[/iletisim|İletişim]] sayfası telefon, e-posta ve adresi bir arada tutar.",
+        text: "Seçenekler [[/revizyon/teslimat|teslimat]] sayfasında ve yazılı teklifte yer alır. Göndermeden önce aramak, parçanın takibini kolaylaştırır. [[/iletisim|İletişim]] sayfası telefon, e-posta ve adresi bir arada tutar.",
       },
       { type: "h2", text: "Atölyede ne olur?" },
       {

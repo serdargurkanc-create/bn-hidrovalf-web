@@ -56,7 +56,7 @@ export default function Page() {
         kicker="İletişim"
         title="Tek atölye,"
         accent="üç kanal"
-        lead="Cep telefonu, WhatsApp veya e-posta. Çalışma saati sitede yayınlanmaz; gün ve saat için arayın. Adres ve harita aşağıda."
+        lead="Cep telefonu, WhatsApp veya e-posta. Fotoğraf ve makine bilgisiyle başlanır. Adres ve harita aşağıda."
         crumbs={crumbs}
       />
 
