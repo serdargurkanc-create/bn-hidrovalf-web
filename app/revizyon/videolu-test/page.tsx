@@ -6,7 +6,7 @@ import { FaqList, PageHero, QuoteCta, Section } from "@/components/Inner";
 import { SchemaLd } from "@/components/Schema";
 import { AtelierFigure, AtelierScript } from "@/components/AtelierClip";
 import { VideoFigure } from "@/components/VideoFigure";
-import { atelier, atelierVideo, videos } from "@/lib/media";
+import { atelier, atelierPortrait, videos } from "@/lib/media";
 import { PhotoBand, RevFacts, shots } from "@/components/revizyon/Frame";
 import { pageMeta } from "@/lib/meta";
 
@@ -46,8 +46,8 @@ const pageVideos = [
   videos.test240,
   videos.test320,
   videos.test320b,
-  atelierVideo(atelier.anaBasinc),
-  atelierVideo(atelier.cokGozlu),
+  atelierPortrait(atelier.anaBasinc),
+  atelierPortrait(atelier.cokGozlu),
 ];
 
 export default function Page() {
