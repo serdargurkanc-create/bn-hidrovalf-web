@@ -4,8 +4,9 @@ import { Gauge } from "@/components/Anim";
 import { TestBenchScene } from "@/components/anim/Scenes";
 import { FaqList, PageHero, QuoteCta, Section } from "@/components/Inner";
 import { SchemaLd } from "@/components/Schema";
+import { AtelierFigure, AtelierScript } from "@/components/AtelierClip";
 import { VideoFigure } from "@/components/VideoFigure";
-import { videos } from "@/lib/media";
+import { atelier, atelierVideo, videos } from "@/lib/media";
 import { PhotoBand, RevFacts, shots } from "@/components/revizyon/Frame";
 import { pageMeta } from "@/lib/meta";
 
@@ -41,7 +42,13 @@ const faqItems = [
   },
 ];
 
-const pageVideos = [videos.test240, videos.test320, videos.test320b];
+const pageVideos = [
+  videos.test240,
+  videos.test320,
+  videos.test320b,
+  atelierVideo(atelier.anaBasinc),
+  atelierVideo(atelier.cokGozlu),
+];
 
 export default function Page() {
   return (
@@ -72,6 +79,20 @@ export default function Page() {
           {pageVideos.map((v) => (
             <VideoFigure key={v.src} video={v} />
           ))}
+        </div>
+      </Section>
+
+      <Section
+        id="tezgah"
+        kicker="Test kaydı"
+        title="Manometre ve"
+        accent="valf bloğu"
+        lead="İki sessiz klip yan yana durur. Manometre yaklaşık 200 bar gösterir; bu, o kaydın değeridir. Kısa blok klibi tek başına büyük kartta yer almaz."
+        tone="soft"
+      >
+        <div className="video-grid">
+          <AtelierFigure clip={atelier.anaBasinc} />
+          <AtelierFigure clip={atelier.cokGozlu} />
         </div>
       </Section>
 
@@ -108,6 +129,7 @@ export default function Page() {
       </Section>
 
       <PhotoBand shots={shots.test} title="Test öncesi" accent="parçalar" lead="Kaydın konusu olan parçalar." />
+      <AtelierScript />
       <QuoteCta />
     </>
   );

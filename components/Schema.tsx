@@ -182,6 +182,7 @@ export function SchemaLd({
         thumbnailUrl: `${site.url}${v.poster}`,
         duration: v.duration,
         inLanguage: "tr",
+        ...(v.uploadDate ? { uploadDate: v.uploadDate } : {}),
       });
     }
   }

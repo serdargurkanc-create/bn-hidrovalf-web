@@ -13,6 +13,8 @@ export type Video = {
   sound: boolean;
   title: string;
   desc: string;
+  /** Yalnız 12 Kasım 2026 atölye kliplerinde. */
+  uploadDate?: string;
 };
 
 export const videos = {
@@ -129,3 +131,105 @@ export const videos = {
 } as const satisfies Record<string, Video>;
 
 export type VideoKey = keyof typeof videos;
+
+/** 12 Kasım 2026 sessiz atölye klipleri. Dosya adları MANIFEST ile aynı kalır. */
+export type AtelierClip = {
+  id: string;
+  name: string;
+  desc: string;
+  duration: string;
+  uploadDate: "2026-11-12";
+  desktop: { mp4: string; webm: string; poster: string; w: 576; h: 720 };
+  mobile: { mp4: string; webm: string; poster: string; w: 404; h: 720 };
+};
+
+function atelierClip(id: string, name: string, desc: string, duration: string): AtelierClip {
+  const base = `/videos/atolye-1114/${id}`;
+  return {
+    id,
+    name,
+    desc,
+    duration,
+    uploadDate: "2026-11-12",
+    desktop: { mp4: `${base}-45.mp4`, webm: `${base}-45.webm`, poster: `${base}-45.webp`, w: 576, h: 720 },
+    mobile: { mp4: `${base}-916.mp4`, webm: `${base}-916.webm`, poster: `${base}-916.webp`, w: 404, h: 720 },
+  };
+}
+
+export const atelier = {
+  portSizinti: atelierClip(
+    "valf-ariza-tespiti-port-sizinti",
+    "Valf arıza tespiti: port sızıntısı",
+    "Test tezgâhındaki iş makinesi kontrol valfinde port çevresindeki sızıntının yakından incelenmesi.",
+    "PT7.5S"
+  ),
+  ayarKontrol: atelierClip(
+    "valf-ariza-tespiti-ayar-kontrolu",
+    "Valf arıza tespiti: ayar kontrolü",
+    "Kontrol valfinde ayar noktasının elle kontrol edilerek arızanın tespit edilmesi.",
+    "PT6.5S"
+  ),
+  kontrolValfi: atelierClip(
+    "kontrol-valfi-basinc-testi",
+    "Kontrol valfi basınç testi",
+    "Çok dilimli kontrol valfinin test tezgâhında basınç altında denenmesi.",
+    "PT4.3S"
+  ),
+  anaBasinc: atelierClip(
+    "test-unitesi-ana-basinc-200bar",
+    "Valf test ünitesi ana basınç (200 bar)",
+    "Valf test ünitesinde ana basınç manometresi yaklaşık 200 bar gösteriyor.",
+    "PT5.5S"
+  ),
+  cokGozlu: atelierClip(
+    "cok-gozlu-valf-blogu-testi",
+    "Çok gözlü valf bloğu testi",
+    "Çok gözlü valf bloğu hortumları bağlanmış hâlde test tezgâhında.",
+    "PT2.9S"
+  ),
+  griTest: atelierClip(
+    "valf-blogu-basinc-testi-gri",
+    "Valf bloğu basınç testi",
+    "Revizyonu yapılan valf bloğunun test tezgâhında basınç testi.",
+    "PT5S"
+  ),
+  sariTezgah: atelierClip(
+    "valf-blogu-test-tezgahi-sari",
+    "Valf bloğu test tezgâhında",
+    "Sarı valf bloğu test tezgâhına bağlanmış, basınç testi sürüyor.",
+    "PT5.5S"
+  ),
+  akisKontrol: atelierClip(
+    "valf-akis-kontrolu-kol-testi",
+    "Valf akış kontrolü",
+    "Valf kolunun hareket ettirilerek akışın kontrol edilmesi.",
+    "PT8S"
+  ),
+  barelGenel: atelierClip(
+    "barel-pleyt-alistirma-genel",
+    "Pompa barel ve pleyt alıştırma",
+    "Hidrolik pompa barel ve pleyt yüzeyinin alıştırma makinesinde işlenmesi.",
+    "PT4.8S"
+  ),
+  barelYakin: atelierClip(
+    "barel-pleyt-alistirma-yakin",
+    "Pompa barel alıştırma, yakın plan",
+    "Pompa barel yüzeyinin alıştırma işlemi, yakın plan.",
+    "PT5.6S"
+  ),
+} as const satisfies Record<string, AtelierClip>;
+
+/** VideoObject: masaüstü dosya kanonik adres. Eski kliplerle @id çakışmaz. */
+export function atelierVideo(clip: AtelierClip): Video {
+  return {
+    src: clip.desktop.mp4,
+    poster: clip.desktop.poster,
+    w: clip.desktop.w,
+    h: clip.desktop.h,
+    duration: clip.duration,
+    sound: false,
+    title: clip.name,
+    desc: clip.desc,
+    uploadDate: clip.uploadDate,
+  };
+}

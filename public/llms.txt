@@ -18,7 +18,7 @@ BN Hidrovalf Makina, iş makinaları hidrolik valf ve pompa revizyonunda kurumsa
 - [İş makinası valf revizyonu](https://bnhidrovalf.com/revizyon/valf): Her marka iş makinası valf revizyonu, spool imalatı, arıza çözümü ve valf testi.
 - [İş makinası pompa revizyonu](https://bnhidrovalf.com/revizyon/pompa): Her marka iş makinası pompa revizyonu, iç grup yüzey taşlama ve pompa testi.
 - [Revizyon süreci, test ve teslimat](https://bnhidrovalf.com/revizyon/surec): Ön değerlendirme, söküm, yazılı teklif, revizyon, videolu test kaydı; kargo ile adrese teslim ve otobüs kurye.
-- [Videolu test kaydı](https://bnhidrovalf.com/revizyon/videolu-test): Yazılı rapor yerine tezgâhta çekilen test videosu; gerçek kayıt örneklerinde 240 bar ve 320 bar değerleri okunur.
+- [Videolu test kaydı](https://bnhidrovalf.com/revizyon/videolu-test): Yazılı rapor yerine tezgâhta çekilen test videosu; gerçek kayıt örneklerinde 240 bar ve 320 bar değerleri okunur. Sessiz ek kayıtta ana basınç manometresi yaklaşık 200 bar gösterir.
 - [Arıza belirtileri rehberi](https://bnhidrovalf.com/revizyon/ariza-belirtileri): Güç kaybı, ısınma, iç kaçak, spool sıkışması gibi belirtiler ve olası nedenleri. Kesin tespit atölyede yapılır.
 - [Teslimat](https://bnhidrovalf.com/revizyon/teslimat): Türkiye geneline kargo ile adrese teslim; hızlı seçenek otobüs kurye. Şube ağı yoktur, tek atölye Ankara İvedik OSB'dedir.
 - [Marka sayfaları](https://bnhidrovalf.com/revizyon/marka): Komatsu, CAT, Hitachi, Volvo, JCB, Hyundai iş makinaları ile Rexroth, Kawasaki, Linde valf/pompa gruplarının revizyonu. Gereken parça tedarik edilir veya atölyede imal edilir.
@@ -28,6 +28,14 @@ BN Hidrovalf Makina, iş makinaları hidrolik valf ve pompa revizyonunda kurumsa
 - [Hakkımızda](https://bnhidrovalf.com/hakkimizda): 20+ yıllık tecrübe, kurumsal çözüm ortaklığı ve İvedik OSB atölyesi.
 - [İletişim](https://bnhidrovalf.com/iletisim): Adres, telefon, WhatsApp ve e-posta.
 - [Sık sorulan sorular](https://bnhidrovalf.com/sss): Ankara, İvedik ve Ostim’de iş makinası valf veya pompa revizyonu için başvuru, test ve teslimat soruları.
+
+## Atölye videoları (12 Kasım 2026, sessiz)
+
+- Port sızıntısı incelemesi — /revizyon/ariza-belirtileri
+- Ayar kontrolü, gri blok basınç testi, kol ile akış kontrolü, çok dilimli kontrol valfi testi — /revizyon/valf
+- Ana basınç manometresi (yaklaşık 200 bar) ve çok gözlü blok, yan yana — /revizyon/videolu-test
+- Sarı valf bloğu test tezgâhında — /revizyon/surec
+- Barel ve pleyt alıştırma, genel ve yakın plan — /revizyon/pompa; yakın plan ayrıca /imalat
 
 ## Valf revizyonu kapsamı
 

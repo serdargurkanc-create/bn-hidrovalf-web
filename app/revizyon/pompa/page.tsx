@@ -10,9 +10,10 @@ import {
 import { SchemaLd } from "@/components/Schema";
 import { Pic } from "@/components/Pic";
 import { PumpExploded } from "@/components/anim/Scenes";
+import { AtelierFigure, AtelierScript } from "@/components/AtelierClip";
 import { VideoFigure } from "@/components/VideoFigure";
 import { brands } from "@/lib/brands";
-import { videos } from "@/lib/media";
+import { atelier, atelierVideo, videos } from "@/lib/media";
 import { PhotoBand, RevFacts, shots } from "@/components/revizyon/Frame";
 import { pageMeta } from "@/lib/meta";
 
@@ -75,7 +76,12 @@ const faqItems = [
   },
 ];
 
-const pageVideos = [videos.icCapTaslama, videos.icCapIsleme];
+const pageVideos = [
+  videos.icCapTaslama,
+  videos.icCapIsleme,
+  atelierVideo(atelier.barelGenel),
+  atelierVideo(atelier.barelYakin),
+];
 
 export default function Page() {
   return (
@@ -137,6 +143,19 @@ export default function Page() {
         tone="soft"
       >
         <PumpExploded />
+      </Section>
+
+      <Section
+        id="barel"
+        kicker="Barel / pleyt"
+        title="Yüzey"
+        accent="alıştırma"
+        lead="İki sessiz klip aynı işi gösterir: önce genel plan, sonra barel yüzeyinin yakın planı. Görünürken oynar."
+      >
+        <div className="video-grid">
+          <AtelierFigure clip={atelier.barelGenel} />
+          <AtelierFigure clip={atelier.barelYakin} />
+        </div>
       </Section>
 
       <Section
@@ -208,6 +227,7 @@ export default function Page() {
         <FaqList items={faqItems} idPrefix="pompa-soru" />
       </Section>
 
+      <AtelierScript />
       <QuoteCta />
     </>
   );
