@@ -2,13 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Gauge } from "@/components/Anim";
 import {
-  SceneMontaj,
-  SceneOlcum,
-  SceneSokum,
-  SceneTaslama,
-  SceneTest,
-} from "@/components/anim/Scenes";
-import {
   BrandChips,
   FaqList,
   PageHero,
@@ -88,31 +81,68 @@ const chapters = [
     n: "01",
     t: "Söküm",
     d: "Valf açılır. Kapak, cıvata ve spool dışarı alınır; arıza gözle ve ölçüyle ayrılır.",
-    Scene: SceneSokum,
+    cap: "Spool ve yay sökümü",
+    src: "/images/foto-valf-spool-yay-sokum-01-600.webp",
+    srcSet:
+      "/images/foto-valf-spool-yay-sokum-01-600.webp 600w, /images/foto-valf-spool-yay-sokum-01-800.webp 800w, /images/foto-valf-spool-yay-sokum-01-1200.webp 1200w",
+    avif:
+      "/images/foto-valf-spool-yay-sokum-01-600.avif 600w, /images/foto-valf-spool-yay-sokum-01-800.avif 800w, /images/foto-valf-spool-yay-sokum-01-1200.avif 1200w",
+    alt: "Sarı tezgahta sökülmüş iki hidrolik valf gövdesi ve yaylı spool’lar, İvedik OSB",
+    w: 1200,
+    h: 900,
   },
   {
     n: "02",
     t: "Ölçüm",
     d: "Spool çapı, kanal ve boşluk mikrometreyle okunur. Yazılı teklif bu ölçüye dayanır.",
-    Scene: SceneOlcum,
+    cap: "Kanal ve boyunlar",
+    src: "/images/gallery/galeri-01-spool-600.webp",
+    srcSet:
+      "/images/gallery/galeri-01-spool-600.webp 600w, /images/gallery/galeri-01-spool-800.webp 800w, /images/gallery/galeri-01-spool-1200.webp 1200w",
+    avif: "/images/gallery/galeri-01-spool-600.avif 600w, /images/gallery/galeri-01-spool-800.avif 800w",
+    alt: "Sökülmüş hidrolik valf spool’u; kanal ve boyunlar yakın planda",
+    w: 1200,
+    h: 900,
   },
   {
     n: "03",
     t: "Taşlama ve imalat",
     d: "Kurtarılan yüzey taşlanır. Ölçüsü bozulan spool atölyede yeniden imal edilir.",
-    Scene: SceneTaslama,
+    cap: "Silindirik taşlama",
+    src: "/images/spool-silindirik-taslama-01-600.webp",
+    srcSet: "/images/spool-silindirik-taslama-01-600.webp 600w, /images/spool-silindirik-taslama-01.webp 1200w",
+    avif:
+      "/images/spool-silindirik-taslama-01-600.avif 600w, /images/spool-silindirik-taslama-01-800.avif 800w, /images/spool-silindirik-taslama-01.avif 1600w",
+    alt: "Silindirik taşlama tezgâhında spool işleme",
+    w: 576,
+    h: 1024,
   },
   {
     n: "04",
     t: "Montaj",
     d: "Temizlenen parçalar gövdeye toplanır. Yay, keçe ve plaka yerinde kontrol edilir.",
-    Scene: SceneMontaj,
+    cap: "Yaylı spool takılı gövde",
+    src: "/images/foto-valf-govde-yayli-spool-01-600.webp",
+    srcSet:
+      "/images/foto-valf-govde-yayli-spool-01-600.webp 600w, /images/foto-valf-govde-yayli-spool-01-800.webp 800w, /images/foto-valf-govde-yayli-spool-01-1200.webp 1200w",
+    avif:
+      "/images/foto-valf-govde-yayli-spool-01-600.avif 600w, /images/foto-valf-govde-yayli-spool-01-800.avif 800w, /images/foto-valf-govde-yayli-spool-01-1200.avif 1200w",
+    alt: "Ayakta duran hidrolik valf gövdesi, takılı yaylı spool ve iki flanş plakası. İvedik OSB atölyesi.",
+    w: 1200,
+    h: 900,
   },
   {
     n: "05",
     t: "Test",
     d: "Valf tezgâhta çalıştırılır. Manometre görüntüsü videoya alınır ve iş ile birlikte verilir.",
-    Scene: SceneTest,
+    cap: "Test tezgâhı",
+    src: "/images/valf-testi-pakens-01-600.webp",
+    srcSet:
+      "/images/valf-testi-pakens-01-600.webp 600w, /images/valf-testi-pakens-01-800.webp 800w, /images/valf-testi-pakens-01.webp 1200w",
+    avif: "/images/valf-testi-pakens-01-800.avif 800w, /images/valf-testi-pakens-01.avif 1600w",
+    alt: "Pakkens manometreli valf test düzeneği",
+    w: 480,
+    h: 848,
   },
 ] as const;
 
@@ -353,23 +383,41 @@ export default function Page() {
         kicker="Atölyede sıra"
         title="Beş adımda"
         accent="valf revizyonu"
-        lead="Her adım aynı tezgahta yürür. Şema, görünür alana gelince oynar."
+        lead="Her adım aynı tezgahta yürür. Kare, o adımdaki parçanın kendisidir."
       >
-        <div className="about-rail" data-rail>
-          <span className="about-rail-track" aria-hidden="true">
-            <i data-rail-fill />
-          </span>
-          <ol>
+        <div className="bench-seq">
+          <div className="bench-seq-stage">
             {chapters.map((c) => (
-              <li key={c.n} className="about-chapter">
-                <div className="about-chapter-scene">
-                  <c.Scene live />
-                </div>
-                <div className="about-chapter-copy">
-                  <span className="hierarchy-n">{c.n}</span>
-                  <h3>{c.t}</h3>
-                  <p>{c.d}</p>
-                </div>
+              <figure key={c.n} data-step={c.n}>
+                <Pic
+                  src={c.src}
+                  srcSet={c.srcSet}
+                  avifSrcSet={c.avif}
+                  alt={c.alt}
+                  width={c.w}
+                  height={c.h}
+                  sizes="(max-width: 900px) 92vw, 640px"
+                />
+                <figcaption>{c.cap}</figcaption>
+              </figure>
+            ))}
+          </div>
+          <ol className="bench-seq-list" aria-label="Valf revizyonu adımları">
+            {chapters.map((c, i) => (
+              <li key={c.n} className="bench-seq-item">
+                <input
+                  type="radio"
+                  name="valf-adim"
+                  id={`valf-adim-${c.n}`}
+                  defaultChecked={i === 0}
+                />
+                <label htmlFor={`valf-adim-${c.n}`}>
+                  <span className="bench-seq-n">{c.n}</span>
+                  <span>
+                    <h3>{c.t}</h3>
+                    <p>{c.d}</p>
+                  </span>
+                </label>
               </li>
             ))}
           </ol>
