@@ -1,11 +1,19 @@
 import Link from "next/link";
 import { asset } from "@/lib/paths";
-import { nav, whatsappQuote } from "@/lib/site";
+import { nav, site, whatsappQuote } from "@/lib/site";
 
 function Arrow() {
   return (
     <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
       <path d="M3 8h10M9 4l4 4-4 4" />
+    </svg>
+  );
+}
+
+function PhoneIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M8 4h3l1.5 4-2 1.2a12 12 0 0 0 5.3 5.3L17 13l4 1.5v3a2 2 0 0 1-2.2 2A16 16 0 0 1 4 6.2 2 2 0 0 1 6 4h2z" />
     </svg>
   );
 }
@@ -100,21 +108,26 @@ export function Header() {
               ) : null}
             </div>
           ))}
-          <Link href="/teklif" className="btn btn-ink" style={{ marginTop: "1.25rem", width: "100%" }}>
-            Teklif Alın
-            <Arrow />
-          </Link>
-          <a
-            href={whatsappQuote}
-            className="btn btn-whatsapp"
-            style={{ marginTop: "0.65rem", width: "100%" }}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="WhatsApp ile yazın"
-          >
-            <WhatsAppIcon />
-            WhatsApp
-          </a>
+          <div className="drawer-actions">
+            <Link href="/teklif" className="btn btn-ink">
+              Teklif Alın
+              <Arrow />
+            </Link>
+            <a className="btn btn-call" href={`tel:${site.phoneTel}`}>
+              <PhoneIcon />
+              Ara <span className="btn-call-num">{site.phone}</span>
+            </a>
+            <a
+              href={whatsappQuote}
+              className="btn btn-whatsapp"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp ile yazın"
+            >
+              <WhatsAppIcon />
+              WhatsApp
+            </a>
+          </div>
         </nav>
       </div>
     </header>
