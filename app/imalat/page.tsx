@@ -5,7 +5,7 @@ import { Pic } from "@/components/Pic";
 import { SchemaLd } from "@/components/Schema";
 import { AtelierFigure, AtelierScript } from "@/components/AtelierClip";
 import { VideoFigure } from "@/components/VideoFigure";
-import { atelier, atelierPortrait, videos } from "@/lib/media";
+import { atelier, atelierVideo, videos } from "@/lib/media";
 import { pageMeta } from "@/lib/meta";
 
 export const metadata: Metadata = pageMeta({
@@ -58,12 +58,8 @@ const faqItems = [
   },
 ];
 
-const pageVideos = [
-  videos.flansIsleme,
-  videos.spoolTaslama,
-  videos.isleme,
-  atelierPortrait(atelier.barelYakin),
-];
+const benchVideos = [videos.flansIsleme, videos.spoolTaslama, videos.isleme];
+const pageVideos = [...benchVideos, atelierVideo(atelier.barelYakin)];
 
 export default function Page() {
   return (
@@ -146,20 +142,15 @@ export default function Page() {
         kicker="Atölyeden"
         title="Tezgâh"
         accent="kayıtları"
-        lead="Klipler gerçek işlerden alınmıştır; tıklayınca oynar."
+        lead="Üç kayıt tıklayınca oynar. Barel yakın planı sessizdir ve görünürken döner."
         tone="soft"
       >
-        <div className="video-grid video-grid-3">
-          {pageVideos.map((v) => (
+        <div className="bench-stage">
+          {benchVideos.map((v) => (
             <VideoFigure key={v.src} video={v} />
           ))}
-        </div>
-        <p className="sec-note">Barel yüzeyinin yakın planı sessizdir ve görünürken oynar.</p>
-        <div className="video-grid">
           <AtelierFigure clip={atelier.barelYakin} />
-        </div>
-        <div className="split" style={{ marginTop: "1.5rem" }}>
-          <div className="split-media">
+          <figure className="bench-still">
             <Pic
               src="/images/foto-pompa-govde-isleme-01-600.webp"
               srcSet="/images/foto-pompa-govde-isleme-01-600.webp 600w, /images/foto-pompa-govde-isleme-01-800.webp 800w, /images/foto-pompa-govde-isleme-01-1200.webp 1200w"
@@ -167,10 +158,10 @@ export default function Page() {
               alt="İşleme tezgâhında, soğutma hortumu yanında iki pompa gövdesi ve miller"
               width={1200}
               height={900}
-              sizes="(max-width: 900px) 100vw, 480px"
+              sizes="(max-width: 799px) 300px, 33vw"
             />
-          </div>
-          <div className="split-copy">
+          </figure>
+          <div className="bench-copy">
             <h3>
               Gövde, <span className="serif-accent">tezgâhta işlenir.</span>
             </h3>
