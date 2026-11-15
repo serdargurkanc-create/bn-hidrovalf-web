@@ -1726,6 +1726,33 @@ main { overflow-x: clip; }
   .atelier-frame img,
   .atelier-clip .atelier-frame video { aspect-ratio: 576 / 720; }
 }
+/* İmalat / atölyeden: 3 tıklamalı kayıt, altta aynı hizada klip + fotoğraf + metin */
+.bench-stage {
+  display: grid;
+  gap: 1.75rem 1.25rem;
+  justify-content: center;
+  grid-template-columns: minmax(0, 300px);
+}
+.bench-stage > * { min-width: 0; }
+.bench-copy { align-self: center; }
+.bench-copy h3 {
+  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+  letter-spacing: -0.04em;
+  margin: 0 0 0.7rem;
+}
+.bench-copy p { color: var(--ink-soft); margin: 0 0 0.75rem; }
+.bench-copy a { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 2px; }
+.bench-still {
+  margin: 0;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--sh-md);
+  align-self: start;
+}
+.bench-still img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+@media (min-width: 720px) {
+  .bench-stage { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; }
+}
 .video-grid { display: grid; gap: 1.25rem; justify-content: center; grid-template-columns: minmax(0, 300px); }
 .video-grid-fill { justify-content: stretch; grid-template-columns: 1fr; }
 @media (min-width: 700px) {
