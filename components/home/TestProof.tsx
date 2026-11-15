@@ -24,7 +24,7 @@ export function TestProof() {
             <Gauge bar={320} label="Çok dilimli valf testi kaydı" delayMs={280} />
           </div>
           <div className="test-proof-media rv-r">
-            <VideoFigure video={videos.test320} />
+            <VideoFigure video={videos.test320b} />
           </div>
         </div>
         <p className="sec-note" style={{ textAlign: "center" }}>

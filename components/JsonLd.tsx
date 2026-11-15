@@ -89,12 +89,12 @@ export function JsonLd() {
       },
       {
         "@type": "VideoObject",
-        "@id": `${site.url}${videos.test320.src}#video`,
-        name: videos.test320.title,
-        description: videos.test320.desc,
-        contentUrl: `${site.url}${videos.test320.src}`,
-        thumbnailUrl: `${site.url}${videos.test320.poster}`,
-        duration: videos.test320.duration,
+        "@id": `${site.url}${videos.test320b.src}#video`,
+        name: videos.test320b.title,
+        description: videos.test320b.desc,
+        contentUrl: `${site.url}${videos.test320b.src}`,
+        thumbnailUrl: `${site.url}${videos.test320b.poster}`,
+        duration: videos.test320b.duration,
         inLanguage: "tr",
       },
       {
