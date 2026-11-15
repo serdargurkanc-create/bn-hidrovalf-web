@@ -159,6 +159,20 @@ a { color: inherit; }
   background: #0f5c38;
   color: #fff;
 }
+.btn-call {
+  background: var(--accent-soft);
+  color: var(--ink);
+  border-color: #f0dcc8;
+  white-space: nowrap;
+}
+.btn-call:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sh-md);
+  background: #ffe4cc;
+  border-color: var(--accent);
+  color: var(--ink);
+}
+.btn-call-num { font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
 .btn-outline {
   background: transparent;
   color: var(--ink);
@@ -181,6 +195,7 @@ a { color: inherit; }
 }
 .btn-outline::after,
 .btn-ghost::after,
+.btn-call::after,
 .faq-help-actions a:last-child::after {
   background: linear-gradient(100deg, transparent, rgba(208, 120, 37, 0.35), transparent);
 }
@@ -374,6 +389,8 @@ a { color: inherit; }
   }
   .drawer ul { list-style: none; margin: 0 0 0.5rem; padding: 0 0 0 0.8rem; }
   .drawer ul a { font-weight: 500; color: var(--ink-soft); }
+  .drawer-actions { display: grid; gap: 0.5rem; margin-top: 0.85rem; }
+  .drawer-actions .btn { width: 100%; }
   .menu-toggle:checked ~ .backdrop { opacity: 1; pointer-events: auto; }
   .menu-toggle:checked ~ .drawer { transform: none; }
   .menu-toggle:checked ~ .header {
