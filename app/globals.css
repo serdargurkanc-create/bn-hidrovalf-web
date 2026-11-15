@@ -3039,10 +3039,13 @@ html.js:not(.reduced) .about-map-dot { transform-box: fill-box; transform-origin
 .blog-slider-nav a { font-weight: 700; color: var(--accent-ink); text-decoration: none; }
 @media (max-width: 799px) {
   .blog-strip { padding-bottom: 5.2rem; }
-  .blog-slide-card h3 { font-size: 0.95rem; }
-  .blog-slide-card p { -webkit-line-clamp: 2; font-size: 0.82rem; min-height: calc(1.5em * 2); }
-  .blog-slide-meta { padding-inline: 0.7rem; }
-  .blog-slide-card h3, .blog-slide-card p, .blog-slide-more { margin-inline: 0.7rem; }
+  .blog-slider-viewport { padding-inline: var(--gutter); }
+  .blog-slider-track { grid-template-columns: minmax(0, 1fr); }
+  .blog-slide.is-prev,
+  .blog-slide.is-next { display: none; }
+  .blog-slide.is-active { order: 0; }
+  .blog-slide-card h3 { font-size: 1.15rem; }
+  .blog-slide-card p { -webkit-line-clamp: 3; font-size: 0.95rem; min-height: calc(1.5em * 3); }
 }
 @media (prefers-reduced-motion: reduce) {
   .blog-slider-track, .blog-slide, .blog-slide-card { transition: none !important; }
