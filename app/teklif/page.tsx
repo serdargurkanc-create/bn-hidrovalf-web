@@ -19,7 +19,7 @@ const crumbs = [{ href: "/", label: "Ana sayfa" }, { label: "Teklif" }];
 const faqs = [
   {
     q: "Valf veya pompa revizyonu için teklif nasıl alınır?",
-    a: "Makine markası ve modeli, valf veya pompa tipi, arıza belirtisi ve bir fotoğraf yeterlidir. Form bu bilgileri WhatsApp mesajı olarak hazırlar. Fotoğrafı açılan sohbete ekleyebilirsiniz.",
+    a: "Makine markası ve modeli, valf veya pompa tipi, arıza belirtisi ve bir fotoğraf yeterlidir. Form talebi e-posta olarak iletir. Fotoğrafı WhatsApp ile de gönderebilirsiniz.",
   },
   {
     q: "Fotoğraf göndermeden net fiyat çıkar mı?",
@@ -31,7 +31,7 @@ const faqs = [
   },
   {
     q: "Teklif talebi nereye gider, parça nereye gönderilir?",
-    a: `Form sunucuya kayıt yazmaz; mesaj sizin cihazınızda WhatsApp ile ${site.phone} numarasına açılır. Parça, Genç Kardeşler Sanayi Sitesi, 2285. Sk. No:40, İvedik OSB, Yenimahalle/Ankara adresindeki tek atölyeye gelir. Teslimat kargo veya otobüs kuryedir.`,
+    a: `Form talebi e-posta olarak iletir. Ayrıca WhatsApp veya ${site.phone} numarası da kullanılabilir. Parça, Genç Kardeşler Sanayi Sitesi, 2285. Sk. No:40, İvedik OSB, Yenimahalle/Ankara adresindeki tek atölyeye gelir. Teslimat kargo veya otobüs kuryedir.`,
   },
 ] as const;
 
@@ -73,7 +73,7 @@ export default function Page() {
           >
             <div className="quote-form-head">
               <h2 id="teklif-form-title">Talebi yazın</h2>
-              <p>Alanlar WhatsApp mesajına dönüşür. Sunucuya kayıt gitmez.</p>
+              <p>Talebiniz e-posta olarak iletilir. Fotoğraf için WhatsApp da kullanılabilir.</p>
             </div>
             <div className="quote-fields">
               <label>
@@ -127,14 +127,13 @@ export default function Page() {
             </div>
             <KvkkConsent />
             <p className="form-note">
-              Fotoğrafı veya kısa videoyu açılan WhatsApp sohbetine ekleyin. Garanti koşulları yazılı teklifte belirtilir.
+              Fotoğraf veya kısa videoyu WhatsApp ile iletebilirsiniz. Garanti koşulları yazılı teklifte belirtilir.
             </p>
             <button type="submit" className="btn btn-primary">
-              WhatsApp ile gönder
+              Talebi gönder
             </button>
             <p role="status" data-wa-status hidden>
-              WhatsApp penceresi açıldı. Açılmadıysa{" "}
-              <a href={site.whatsapp}>bu bağlantıyı kullanın</a>.
+              Talebiniz iletildi. En kısa sürede dönüş yapılacak.
             </p>
             <MailFallback />
           </form>

@@ -31,7 +31,7 @@ const faqItems = [
   },
   {
     q: "Parça talebinde ne iletmeliyim?",
-    a: "Makine marka/model, parça tipi ve mümkünse parça üzerindeki etiket veya parça numarasının fotoğrafı. Aşağıdaki form bu bilgileri WhatsApp mesajı olarak hazırlar.",
+    a: "Makine marka/model, parça tipi ve mümkünse parça üzerindeki etiket veya parça numarasının fotoğrafı. Aşağıdaki form talebi e-posta olarak iletir; fotoğrafı WhatsApp ile de gönderebilirsiniz.",
   },
 ];
 
@@ -110,16 +110,15 @@ export default function Page() {
               </label>
               <KvkkConsent />
               <button type="submit" className="btn btn-primary">
-                WhatsApp ile parça sor
+                Parça talebi gönder
               </button>
               <p role="status" data-wa-status hidden>
-                WhatsApp penceresi açıldı. Açılmadıysa{" "}
-                <a href={site.whatsapp}>bu bağlantıyı kullanın</a>.
+                Talebiniz iletildi. En kısa sürede dönüş yapılacak.
               </p>
               <MailFallback />
               <p className="form-note">
-                Form sunucuya veri göndermez; mesaj WhatsApp’ta sizin
-                cihazınızda açılır. Çalışmazsa{" "}
+                Talebiniz e-posta olarak iletilir. Fotoğraf varsa WhatsApp
+                ile de gönderebilirsiniz. Çalışmazsa{" "}
                 <a href={site.whatsapp}>doğrudan WhatsApp</a> kullanın.
               </p>
             </form>
