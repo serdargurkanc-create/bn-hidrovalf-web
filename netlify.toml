@@ -1,0 +1,9 @@
+# Netlify statik export (kök yol). GitHub Pages iş akışı ayrı ve değişmedi.
+[build]
+  command = "npm run bundle:motion && npx next build --webpack && npm run defer-js"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "22"
+  BN_EXPORT = "1"
+  BN_BASE_PATH = ""

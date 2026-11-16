@@ -3078,3 +3078,9 @@ html.js:not(.reduced) .about-map-dot { transform-box: fill-box; transform-origin
   .blog-slider-track, .blog-slide, .blog-slide-card { transition: none !important; }
   .blog-slide { opacity: 1; }
 }
+
+/* Netlify ücretsiz plan rozeti (edge'de enjekte edilen "Powered by Netlify" iframe'i) gizlenir. */
+#nl-badge-frame,
+iframe[title="Powered by Netlify"] {
+  display: none !important;
+}

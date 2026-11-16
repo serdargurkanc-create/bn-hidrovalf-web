@@ -5,7 +5,10 @@ import { fileURLToPath } from "url";
 const root = path.dirname(fileURLToPath(import.meta.url));
 const isExport =
   process.env.BN_EXPORT === "1" || process.env.GITHUB_PAGES === "1";
-const basePath = isExport ? "/bn-hidrovalf-web" : "";
+// Netlify kök alan adında yayınlanır (BN_BASE_PATH=""); GitHub Pages alt yolda kalır.
+const basePath = isExport
+  ? (process.env.BN_BASE_PATH ?? "/bn-hidrovalf-web")
+  : "";
 
 const nextConfig: NextConfig = {
   images: {
